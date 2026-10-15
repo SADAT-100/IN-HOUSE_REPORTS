@@ -2,8 +2,8 @@
 <div class="app" id="app">
   <aside class="rail" id="rail" aria-label="Main navigation">
     <div class="brand">
-      <div class="brand-mark">n</div>
-      <div><div class="brand-name"><span style="color:#FEEE00">noon</span> <span style="color:#8A8C9A">×</span> <span style="color:#D9B44A">In House</span></div><div class="brand-sub">Courier channel reports · KSA</div></div>
+      <div class="brand-mark" aria-label="noon">noon</div>
+      <div><div class="brand-name">× In House</div><div class="brand-sub">Courier channel · KSA</div></div>
     </div>
     <nav class="nav" id="nav">
       <div class="nav-label">Reports</div>
@@ -20,8 +20,8 @@
       <a href="#data" data-page="data"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg>Data &amp; methods</a>
     </nav>
     <div class="rail-foot">
-      <div class="who">Sadati Fred Mwasongwe</div>
-      <div>Deputy Marketplace Manager<br>Noon courier · account 12539</div>
+      <div class="who">Channel managers</div>
+      <div>Fedaa → Ayham → Sham<br>Noon courier · account 12539</div>
       <div style="margin-top:8px" class="live"><i></i><span id="live-txt">Live view</span></div>
     </div>
   </aside>
@@ -40,6 +40,7 @@
       </div>
       <select class="month-sel" id="month-sel" aria-label="Pick a month"><option value="">Pick month</option></select>
       <select class="month-sel" id="ch-sel" aria-label="Courier type"><option value="">All types</option><option value="0">Flex</option><option value="1">FBN</option><option value="2">Supermall</option></select>
+      <div class="gsearch" role="search"><svg viewBox="0 0 24 24"><path d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM21 21l-5-5"/></svg><input id="gs" type="search" placeholder="Search orders, products, SKUs, statements" autocomplete="off" aria-label="Search the portal"><div class="gs-res" id="gs-res" hidden></div></div>
       <div class="quick">
         <a class="qbtn" href="#payments"><span class="dot" style="background:var(--orange)"></span>Last payout <b id="q-pay">0</b></a>
         <a class="qbtn" href="#orders" data-status="open"><span class="dot" style="background:var(--c2)"></span>Open orders <b id="q-open">0</b></a>
@@ -47,7 +48,7 @@
       </div>
       <button class="icon-btn" id="theme-btn" aria-label="Switch light or dark"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
       <div class="clock"><b id="clk-time">--:--:--</b><span id="clk-date">Riyadh</span></div>
-      <div class="ticker" aria-hidden="true"><div class="ticker-track"><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>Courier Channel</span><i>✦</i><span>Sadati Fred Mwasongwe</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>Courier Channel</span><i>✦</i><span>Sadati Fred Mwasongwe</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div></div></div>
+      <div class="ticker" aria-hidden="true"><div class="ticker-track"><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>Courier Channel</span><i>✦</i><span>Fedaa · Ayham · Sham</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>Courier Channel</span><i>✦</i><span>Fedaa · Ayham · Sham</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div></div></div>
     </header>
 
     <main class="content">
@@ -58,8 +59,9 @@
           <div class="hero-in">
             <div>
               <div class="eyebrow" id="greet">Noon courier · In House</div>
-              <h1>Sadati Fred Mwasongwe</h1>
-              <div class="role">Deputy Marketplace Manager · <span class="gold-tx">Noon KSA courier · 12539</span></div>
+              <h1>noon KSA · Courier channel</h1>
+              <div class="role">In House store · <span class="gold-tx">account 12539</span></div>
+              <div class="team" aria-label="Channel managers"><span><i>F</i>Fedaa</span><span class="arr">→</span><span><i>A</i>Ayham</span><span class="arr">→</span><span><i>S</i>Sham</span></div>
               <div class="tagline" id="hero-line">Every Noon order, fee, statement and payout for the courier account, with Noon's numbers and In House's numbers side by side.</div>
             </div>
             <div class="hero-stats" id="hero-stats"></div>
@@ -117,7 +119,7 @@
             <input class="search" id="ord-q" type="search" placeholder="Search order number, product, SKU, partner SKU">
             <div id="ord-chips" style="display:flex;gap:6px;flex-wrap:wrap"></div>
           </div>
-          <div class="tbl-wrap"><table id="t-orders"></table></div>
+          <div class="tbl-wrap"><table id="t-orders"></table></div><div id="ord-more"></div>
         </div>
       </section>
 
@@ -127,7 +129,7 @@
         <div class="card">
           <div class="card-head"><h3>Product performance</h3><p>Unit cost from the workbook · profit in both views</p></div>
           <div class="toolbar"><input class="search" id="prod-q" type="search" placeholder="Search product, SKU, partner SKU, category"></div>
-          <div class="tbl-wrap"><table id="t-products"></table></div>
+          <div class="tbl-wrap"><table id="t-products"></table></div><div id="prod-more"></div>
         </div>
       </section>
 
@@ -148,6 +150,7 @@
         </div>
         <div class="card">
           <div class="card-head"><h3>Weekly statements</h3><p>SAR incl. VAT · from the PS-12539 statement tab</p></div>
+          <div class="toolbar"><input class="search" id="st-q" type="search" placeholder="Search statement number or date"></div>
           <div class="tbl-wrap"><table id="t-ledger"></table></div>
         </div>
       </section>
@@ -169,7 +172,7 @@
         <div class="card"><div class="card-head"><h3>Returns and cancellations by month</h3><p>SAR · net proceeds of the items</p></div>
           <div class="legend"><span><i style="background:var(--c1)"></i>Customer returns (CIR)</span><span><i style="background:var(--crit)"></i>Could not be delivered</span><span><i style="background:var(--c4)"></i>Cancelled</span></div>
           <div class="chart-box sm"><canvas id="ch-returns"></canvas></div></div>
-        <div class="card"><div class="card-head"><h3>Returned, failed and cancelled items</h3><p id="ret-count"></p></div><div class="tbl-wrap"><table id="t-returns"></table></div></div>
+        <div class="card"><div class="card-head"><h3>Returned, failed and cancelled items</h3><p id="ret-count"></p></div><div class="toolbar"><input class="search" id="ret-q" type="search" placeholder="Search order number, product, SKU, status"></div><div class="tbl-wrap"><table id="t-returns"></table></div><div id="ret-more"></div></div>
       </section>
 
       <!-- DELIVERY -->
@@ -186,7 +189,7 @@
       <section class="page" id="p-data">
         <div class="card">
           <div class="card-head"><h3>Updating the portal</h3><span class="tag info">Coming next</span></div>
-          <p class="muted" style="font-size:13px">Uploading new Noon files will be added once the standard export from the channel manager is agreed. Until then the numbers come from the workbook named below.</p>
+          <p class="muted" style="font-size:13px">Uploading new Noon files will be added once the standard export from the channel managers is agreed. Until then the numbers come from the workbook named below. Only four people will be able to update the portal: the marketplace manager and the three Noon channel managers, Fedaa, Ayham and Sham. Everyone else can only view it.</p>
         </div>
         <div class="card"><p class="foot-note" id="data-src" style="margin:0"></p></div>
         <div class="grid g2">
@@ -345,7 +348,21 @@ function bars(sel, rows, color){
 }
 const sortTable = (rows, st) => rows.sort((x, y) => { const p = x[st.sort], q = y[st.sort]; const c = p > q ? 1 : p < q ? -1 : 0; return st.asc ? c : -c; });
 const th = (cols, st) => `<thead><tr>${cols.map(c => `<th data-k="${c[0]}" class="${c[2] || ''}${st && st.sort === c[0] ? ' sorted' + (st.asc ? ' asc' : '') : ''}">${c[1]}</th>`).join('')}</tr></thead>`;
-const LIMIT = 400;
+const STEP = 400, PAGE = { ord: STEP, prod: STEP, ret: STEP };
+function moreBar(sel, key, shown, total, what){
+  const el = $(sel); if (!el) return;
+  el.innerHTML = total > shown ? `<div class="toolbar" style="justify-content:center;margin:12px 0 0"><span class="muted">Showing ${fN(shown)} of ${fN(total)} ${what}. All of them are counted in the totals.</span><button class="btn ghost" data-more="${key}" type="button">Show ${fN(Math.min(STEP, total - shown))} more</button><button class="btn ghost" data-all="${key}" type="button">Show all ${fN(total)}</button></div>` : '';
+}
+// Colour money cells: negatives red everywhere; profit, margin and difference columns green when positive.
+function paint(sel){
+  const t = $(sel); if (!t) return;
+  const heads = [...t.querySelectorAll('thead th')].map(h => /profit|margin|difference|loss|total|revenue|to store/i.test(h.textContent));
+  t.querySelectorAll('tbody tr, tfoot tr').forEach(tr => { let loss = false;
+    [...tr.children].forEach((td, k) => { if (!td.classList.contains('r')) return; const v = td.textContent.trim();
+      if (/^−\d/.test(v)) { td.classList.add('neg'); if (heads[k] && /profit/i.test(t.querySelectorAll('thead th')[k].textContent)) loss = true; }
+      else if (heads[k] && /^\d/.test(v) && v !== '0.00' && v !== '0.0%') td.classList.add('pos'); });
+    if (loss && tr.parentNode.tagName === 'TBODY') tr.classList.add('loss'); });
+}
 
 function nextPayout(){ // Noon pays weekly; use the weekday of the last transfer
   const last = M.payments[M.payments.length - 1]; if (!last) return null;
@@ -355,6 +372,7 @@ function nextPayout(){ // Noon pays weekly; use the weekday of the last transfer
 }
 
 function renderAll(){
+  PAGE.ord = PAGE.prod = PAGE.ret = STEP;
   const C = current(), a = C.a;
   $('#range-txt').textContent = C.b[2] + (CH !== '' ? ' · ' + M.D.meta.channels[+CH] : '');
   const open = M.items.filter(i => chOK(i) && (i.g === 'processing' || i.g === 'shipped'));
@@ -389,6 +407,7 @@ function renderOverview(C){
   const dc = v => Math.abs(v) < .5 ? '<span class="muted">—</span>' : `<span class="${v > 0 ? 'diff-up' : 'diff-dn'}">${v > 0 ? '+' : ''}${fM(v)}</span>`;
   $('#t-vs').innerHTML = `<thead><tr><th></th><th class="r">Noon view</th><th class="r">In House view</th><th class="r">Difference</th></tr></thead><tbody>${rows.map(r => `<tr class="${r[3] ? 'sum' : ''}"><td>${r[0]}</td><td class="r">${fM(r[1])}</td><td class="r">${fM(r[2])}</td><td class="r">${dc(r[2] - r[1])}</td></tr>`).join('')}
     <tr><td>Margin on net sales</td><td class="r">${pct(a.n.margin)}</td><td class="r">${pct(a.h.margin)}</td><td class="r"></td></tr></tbody>`;
+  paint('#t-vs');
   // insights
   const ms = monthly(C.L), ins = [];
   if (ms.length) { const best = ms.reduce((b, x) => x.a.net > b.a.net ? x : b); ins.push(insight('good', 'star', `Best month: <b>${mLabel(best.k)}</b> with SAR ${fM(best.a.net, 0)} net sales from ${fN(best.a.orders)} orders.`)); }
@@ -443,10 +462,11 @@ function renderSales(C){
   const cols = [['Month'], ['Orders', 'r'], ['Items sold', 'r'], ['Net sales', 'r'], ['Returns', 'r'], ['Fees · Noon', 'r'], ['Profit · Noon', 'r'], ['Margin · Noon', 'r'], ['Fees · In House', 'r'], ['Profit · In House', 'r'], ['Margin · In House', 'r'], ['AOV', 'r']];
   const row = (lbl, a) => `<td>${lbl}</td><td class="r">${fN(a.orders)}</td><td class="r">${fN(a.sold)}</td><td class="r">${fM(a.net)}</td><td class="r">${fM(a.retVal + a.failVal)}</td><td class="r">${fM(-a.n.fees)}</td><td class="r">${fM(a.n.prof)}</td><td class="r">${pct(a.n.margin)}</td><td class="r">${fM(-a.h.fees)}</td><td class="r">${fM(a.h.prof)}</td><td class="r">${pct(a.h.margin)}</td><td class="r">${fM(a.aov, 0)}</td>`;
   $('#t-month').innerHTML = `<thead><tr>${cols.map(c => `<th class="${c[1] || ''}">${c[0]}</th>`).join('')}</tr></thead><tbody>${ms.map(x => `<tr>${row(mLabel(x.k), x.a)}</tr>`).join('')}</tbody><tfoot><tr>${row('Total', a)}</tr></tfoot>`;
+  paint('#t-month');
 }
 
 /* orders */
-let ORD = { q: '', g: 'all', sort: 'date', asc: false };
+let ORD = { q: '', g: 'all', sort: 'date', asc: false }, RETQ = '', STQ = '';
 function renderOrders(C){
   const groups = ['all', 'open', 'processing', 'shipped', 'delivered', 'returned', 'failed', 'canceled'];
   const label = g => g === 'all' ? 'All' : g === 'open' ? 'Open' : GROUP[g][0];
@@ -454,11 +474,12 @@ function renderOrders(C){
   const q = ORD.q.toLowerCase().trim();
   let rows = C.L.filter(i => (ORD.g === 'all' || i.g === ORD.g || (ORD.g === 'open' && (i.g === 'processing' || i.g === 'shipped'))) && (!q || (i.id + ' ' + i.p.name + ' ' + i.p.sku + ' ' + i.p.psku + ' ' + i.st).toLowerCase().includes(q)));
   rows.forEach(i => { i.fees = i.ref + i.ship + i.subs; i.name = i.p.name; });
+  const shown = Math.min(rows.length, PAGE.ord);
   sortTable(rows, ORD);
   $('#ord-count').textContent = `${fN(rows.length)} of ${fN(C.L.length)} items in this period`;
   const cols = [['date', 'Date'], ['id', 'Item'], ['name', 'Product'], ['chName', 'Type'], ['st', 'Status'], ['np', 'Net proceeds', 'r'], ['fees', 'Noon fees', 'r'], ['cost', 'Unit cost', 'r'], ['prof', 'Profit · Noon', 'r'], ['prof2', 'Profit · In House', 'r']];
-  $('#t-orders').innerHTML = th(cols, ORD) + `<tbody>${rows.slice(0, LIMIT).map(i => `<tr><td>${fD(i.date)}</td><td class="mono">${esc(i.id)}</td><td title="${esc(i.p.sku)}">${esc(i.p.name)}</td><td>${esc(i.chName)}</td><td><span class="tag ${GROUP[i.g][1]}">${esc(i.st)}</span></td><td class="r">${fM(i.np)}</td><td class="r">${i.fees ? fM(i.fees) : '—'}</td><td class="r">${fM(i.cost)}</td><td class="r">${fM(i.prof)}</td><td class="r">${fM(i.prof2)}</td></tr>`).join('')}</tbody>` +
-    (rows.length > LIMIT ? `<tfoot><tr><td colspan="${cols.length}" class="more">Showing the first ${LIMIT} of ${fN(rows.length)}. Search or pick a status to narrow the list.</td></tr></tfoot>` : '');
+  $('#t-orders').innerHTML = th(cols, ORD) + `<tbody>${rows.slice(0, shown).map(i => `<tr><td>${fD(i.date)}</td><td class="mono">${esc(i.id)}</td><td title="${esc(i.p.sku)}">${esc(i.p.name)}</td><td>${esc(i.chName)}</td><td><span class="tag ${GROUP[i.g][1]}">${esc(i.st)}</span></td><td class="r">${fM(i.np)}</td><td class="r">${i.fees ? fM(i.fees) : '—'}</td><td class="r">${fM(i.cost)}</td><td class="r">${fM(i.prof)}</td><td class="r">${fM(i.prof2)}</td></tr>`).join('')}</tbody>`;
+  moreBar('#ord-more', 'ord', shown, rows.length, 'items'); paint('#t-orders');
 }
 
 /* products */
@@ -482,15 +503,17 @@ function renderProducts(C){
   ].join('');
   let rows = all.filter(p => !q || (p.name + ' ' + p.sku + ' ' + p.psku + ' ' + p.cat).toLowerCase().includes(q));
   sortTable(rows, PROD);
+  const shown = Math.min(rows.length, PAGE.prod);
   const cols = [['name', 'Product'], ['sku', 'Noon SKU'], ['psku', 'Partner SKU'], ['cat', 'Category'], ['sold', 'Sold', 'r'], ['ret', 'Returned', 'r'], ['canceled', 'Cancelled', 'r'], ['net', 'Net sales', 'r'], ['cost', 'Unit cost', 'r'], ['prof', 'Profit · Noon', 'r'], ['margin', 'Margin · Noon', 'r'], ['prof2', 'Profit · In House', 'r'], ['margin2', 'Margin · In House', 'r']];
-  $('#t-products').innerHTML = th(cols, PROD) + `<tbody>${rows.slice(0, LIMIT).map(p => `<tr><td class="wrap">${esc(p.name)}</td><td class="mono">${esc(p.sku)}</td><td class="mono">${esc(p.psku)}</td><td>${esc(p.cat)}</td><td class="r">${fN(p.sold)}</td><td class="r">${p.ret || '—'}</td><td class="r">${p.canceled || '—'}</td><td class="r">${fM(p.net)}</td><td class="r">${fM(p.cost)}</td><td class="r">${fM(p.prof)}</td><td class="r">${p.net ? pct(p.margin) : '—'}</td><td class="r">${fM(p.prof2)}</td><td class="r">${p.net ? pct(p.margin2) : '—'}</td></tr>`).join('')}</tbody>` +
-    (rows.length > LIMIT ? `<tfoot><tr><td colspan="${cols.length}" class="more">Showing the first ${LIMIT} of ${fN(rows.length)} products. Search to find the rest.</td></tr></tfoot>` : '');
+  $('#t-products').innerHTML = th(cols, PROD) + `<tbody>${rows.slice(0, shown).map(p => `<tr><td class="wrap">${esc(p.name)}</td><td class="mono">${esc(p.sku)}</td><td class="mono">${esc(p.psku)}</td><td>${esc(p.cat)}</td><td class="r">${fN(p.sold)}</td><td class="r">${p.ret || '—'}</td><td class="r">${p.canceled || '—'}</td><td class="r">${fM(p.net)}</td><td class="r">${fM(p.cost)}</td><td class="r">${fM(p.prof)}</td><td class="r">${p.net ? pct(p.margin) : '—'}</td><td class="r">${fM(p.prof2)}</td><td class="r">${p.net ? pct(p.margin2) : '—'}</td></tr>`).join('')}</tbody>`;
+  moreBar('#prod-more', 'prod', shown, rows.length, 'products'); paint('#t-products');
 }
 
 /* payments */
 function renderPayments(C){
   const P = M.payments, inP = P.filter(p => inR(p.date, C.b)), paidP = inP.reduce((s, p) => s + p.amt, 0), np = nextPayout();
-  const S = M.statements.filter(s => inR(s.date, C.b)), stTot = S.reduce((s, x) => s + x.total, 0);
+  const S = M.statements.filter(s => inR(s.date, C.b)), stTot = S.reduce((s, x) => s + x.total, 0), sq = STQ.toLowerCase().trim();
+  const SV = S.filter(s => !sq || (s.ref + ' ' + fD(s.date)).toLowerCase().includes(sq));
   const stAll = M.D.stLines.reduce((s, x) => s + x[1], 0), vat = M.D.vat.reduce((s, x) => s + x[1], 0), fbn = M.D.fbn.reduce((s, x) => s + x[1], 0), paid = P.reduce((s, p) => s + p.amt, 0);
   $('#pay-kpis').innerHTML = [
     kpi('Paid out by Noon', fM(paidP, 0), `${inP.length} transfers in this period`, { raw: paidP }),
@@ -506,9 +529,10 @@ function renderPayments(C){
     `<span class="sum">Owed to the store</span><span class="num sum">${fM(due)}</span><span>Paid out (${P.length} transfers)</span><span class="num">${fM(-paid)}</span><span class="sum">Difference</span><span class="num sum">${fM(due - paid)}</span>` +
     `<span class="muted" style="grid-column:1/-1">${Math.abs(due - paid) < 1 ? '<span class="tag good">Balanced</span> Statements and payouts match.' : '<span class="tag warn">Check</span> Statements and payouts differ by SAR ' + fM(due - paid) + ' (' + pct(paid ? Math.abs(due - paid) / paid : 0) + ' of all payouts). Taken from the Statement &amp; Payment tab.'}</span>`;
   const cols = ['Date', 'Statement', 'Rows', 'Net proceeds', 'Referral', 'Fulfilment & logistics', 'Other order fees', 'Subsidies', 'Ads & other', 'Ad subsidies', 'Total'];
-  const tot = S.reduce((t, s) => ({ rows: t.rows + s.rows, np: t.np + s.np, referral: t.referral + s.referral, fulfil: t.fulfil + s.fulfil, otherOrder: t.otherOrder + s.otherOrder + s.shipCredit + s.others, subsidy: t.subsidy + s.subsidy, nonOrderFee: t.nonOrderFee + s.nonOrderFee, nonOrderSubsidy: t.nonOrderSubsidy + s.nonOrderSubsidy, total: t.total + s.total }), { rows: 0, np: 0, referral: 0, fulfil: 0, otherOrder: 0, subsidy: 0, nonOrderFee: 0, nonOrderSubsidy: 0, total: 0 });
+  const tot = SV.reduce((t, s) => ({ rows: t.rows + s.rows, np: t.np + s.np, referral: t.referral + s.referral, fulfil: t.fulfil + s.fulfil, otherOrder: t.otherOrder + s.otherOrder + s.shipCredit + s.others, subsidy: t.subsidy + s.subsidy, nonOrderFee: t.nonOrderFee + s.nonOrderFee, nonOrderSubsidy: t.nonOrderSubsidy + s.nonOrderSubsidy, total: t.total + s.total }), { rows: 0, np: 0, referral: 0, fulfil: 0, otherOrder: 0, subsidy: 0, nonOrderFee: 0, nonOrderSubsidy: 0, total: 0 });
   const cells = s => `<td class="r">${fN(s.rows)}</td><td class="r">${fM(s.np)}</td><td class="r">${fM(s.referral)}</td><td class="r">${fM(s.fulfil)}</td><td class="r">${fM(s.otherOrder)}</td><td class="r">${fM(s.subsidy)}</td><td class="r">${fM(s.nonOrderFee)}</td><td class="r">${fM(s.nonOrderSubsidy)}</td><td class="r">${fM(s.total)}</td>`;
-  $('#t-ledger').innerHTML = `<thead><tr>${cols.map((c, i) => `<th class="${i > 1 ? 'r' : ''}">${c}</th>`).join('')}</tr></thead><tbody>${S.slice().reverse().map(s => `<tr><td>${fD(s.date)}</td><td class="mono">${esc(s.ref)}</td>${cells(Object.assign({}, s, { otherOrder: s.otherOrder + s.shipCredit + s.others }))}</tr>`).join('') || `<tr><td colspan="11" class="more">No statements in this period.</td></tr>`}</tbody><tfoot><tr><td>Total</td><td></td>${cells(tot)}</tr></tfoot>`;
+  $('#t-ledger').innerHTML = `<thead><tr>${cols.map((c, i) => `<th class="${i > 1 ? 'r' : ''}">${c}</th>`).join('')}</tr></thead><tbody>${SV.slice().reverse().map(s => `<tr><td>${fD(s.date)}</td><td class="mono">${esc(s.ref)}</td>${cells(Object.assign({}, s, { otherOrder: s.otherOrder + s.shipCredit + s.others }))}</tr>`).join('') || `<tr><td colspan="11" class="more">No statements in this period.</td></tr>`}</tbody><tfoot><tr><td>Total</td><td></td>${cells(tot)}</tr></tfoot>`;
+  paint('#t-ledger');
 }
 
 function renderFees(C){
@@ -533,6 +557,7 @@ function renderFees(C){
   const F = M.fees, t = acct(F);
   const fr = (lbl, f) => `<td>${lbl}</td><td class="r">${fM(f.ads)}</td><td class="r">${fM(f.adsSub)}</td><td class="r">${fM(f.fbn)}</td><td class="r">${fM(f.dmg)}</td><td class="r">${fM(f.ads + f.adsSub + f.fbn + f.dmg)}</td><td class="r">${fM(f.vat)}</td>`;
   $('#t-acct').innerHTML = `<thead><tr><th>Month</th><th class="r">Advertising</th><th class="r">Ad subsidy</th><th class="r">FBN charges</th><th class="r">Damaged returns</th><th class="r">Net charges</th><th class="r">VAT</th></tr></thead><tbody>${F.map(f => `<tr>${fr(mLabel(f.k), f)}</tr>`).join('')}</tbody><tfoot><tr>${fr('Total', t)}</tr></tfoot>`;
+  paint('#t-fees'); paint('#t-acct');
 }
 
 function renderReturns(C){
@@ -545,10 +570,11 @@ function renderReturns(C){
   ].join('');
   const ms = monthly(C.L);
   chart('ch-returns', { data: { labels: ms.map(x => mLabel(x.k)), datasets: [barDS('Customer returns', ms.map(x => r2(x.a.retVal)), css('--c1')), barDS('Not delivered', ms.map(x => r2(x.a.failVal)), css('--crit')), barDS('Cancelled', ms.map(x => r2(x.a.cancelVal)), css('--c4'))] } });
-  const rows = C.L.filter(i => i.g === 'returned' || i.g === 'failed' || i.g === 'canceled').sort((x, y) => y.date - x.date);
+  const rq = RETQ.toLowerCase().trim(), rows = C.L.filter(i => (i.g === 'returned' || i.g === 'failed' || i.g === 'canceled') && (!rq || (i.id + ' ' + i.p.name + ' ' + i.p.sku + ' ' + i.p.psku + ' ' + i.st).toLowerCase().includes(rq))).sort((x, y) => y.date - x.date);
+  const shown = Math.min(rows.length, PAGE.ret);
   $('#ret-count').textContent = `${fN(rows.length)} items in this period`;
-  $('#t-returns').innerHTML = `<thead><tr><th>Date</th><th>Item</th><th>Product</th><th>Type</th><th>Status</th><th class="r">Net proceeds</th><th class="r">Noon fees</th><th class="r">Loss · Noon</th><th class="r">Loss · In House</th></tr></thead><tbody>${rows.slice(0, LIMIT).map(i => `<tr><td>${fD(i.date)}</td><td class="mono">${esc(i.id)}</td><td>${esc(i.p.name)}</td><td>${esc(i.chName)}</td><td><span class="tag ${GROUP[i.g][1]}">${esc(i.st)}</span></td><td class="r">${fM(i.np)}</td><td class="r">${i.ref + i.ship + i.subs ? fM(i.ref + i.ship + i.subs) : '—'}</td><td class="r">${i.prof ? fM(i.prof) : '—'}</td><td class="r">${i.prof2 ? fM(i.prof2) : '—'}</td></tr>`).join('')}</tbody>` +
-    (rows.length > LIMIT ? `<tfoot><tr><td colspan="9" class="more">Showing the latest ${LIMIT} of ${fN(rows.length)}. Pick a month to see the rest.</td></tr></tfoot>` : '');
+  $('#t-returns').innerHTML = `<thead><tr><th>Date</th><th>Item</th><th>Product</th><th>Type</th><th>Status</th><th class="r">Net proceeds</th><th class="r">Noon fees</th><th class="r">Loss · Noon</th><th class="r">Loss · In House</th></tr></thead><tbody>${rows.slice(0, shown).map(i => `<tr><td>${fD(i.date)}</td><td class="mono">${esc(i.id)}</td><td>${esc(i.p.name)}</td><td>${esc(i.chName)}</td><td><span class="tag ${GROUP[i.g][1]}">${esc(i.st)}</span></td><td class="r">${fM(i.np)}</td><td class="r">${i.ref + i.ship + i.subs ? fM(i.ref + i.ship + i.subs) : '—'}</td><td class="r">${i.prof ? fM(i.prof) : '—'}</td><td class="r">${i.prof2 ? fM(i.prof2) : '—'}</td></tr>`).join('')}</tbody>`;
+  moreBar('#ret-more', 'ret', shown, rows.length, 'items'); paint('#t-returns');
 }
 
 function renderDelivery(C){
@@ -611,11 +637,55 @@ function setPills(){ document.querySelectorAll('.pill').forEach(p => p.classList
 document.querySelector('.quick [data-status="open"]').addEventListener('click', () => { ORD.g = 'open'; renderOrders(current()); });
 $('#pipeline').addEventListener('click', e => { const s = e.target.closest('.stage'); if (!s) return; ORD.g = s.dataset.go; location.hash = 'orders'; renderOrders(current()); });
 let qT; const later = f => { clearTimeout(qT); qT = setTimeout(f, 160); };
-$('#ord-q').addEventListener('input', e => { ORD.q = e.target.value; later(() => renderOrders(current())); });
-$('#prod-q').addEventListener('input', e => { PROD.q = e.target.value; later(() => renderProducts(current())); });
-$('#ord-chips').addEventListener('click', e => { const c = e.target.closest('.chip'); if (!c) return; ORD.g = c.dataset.g; renderOrders(current()); });
+$('#ord-q').addEventListener('input', e => { ORD.q = e.target.value; PAGE.ord = STEP; later(() => renderOrders(current())); });
+$('#ret-q').addEventListener('input', e => { RETQ = e.target.value; PAGE.ret = STEP; later(() => renderReturns(current())); });
+$('#st-q').addEventListener('input', e => { STQ = e.target.value; later(() => renderPayments(current())); });
+document.addEventListener('click', e => { const b = e.target.closest('[data-more],[data-all]'); if (!b) return; const k = b.dataset.more || b.dataset.all;
+  PAGE[k] = b.dataset.all ? 1e9 : PAGE[k] + STEP; ({ ord: renderOrders, prod: renderProducts, ret: renderReturns })[k](current()); });
+$('#prod-q').addEventListener('input', e => { PROD.q = e.target.value; PAGE.prod = STEP; later(() => renderProducts(current())); });
+$('#ord-chips').addEventListener('click', e => { const c = e.target.closest('.chip'); if (!c) return; ORD.g = c.dataset.g; PAGE.ord = STEP; renderOrders(current()); });
 $('#t-orders').addEventListener('click', e => { const h = e.target.closest('th[data-k]'); if (!h) return; if (ORD.sort === h.dataset.k) ORD.asc = !ORD.asc; else { ORD.sort = h.dataset.k; ORD.asc = false; } renderOrders(current()); });
 $('#t-products').addEventListener('click', e => { const h = e.target.closest('th[data-k]'); if (!h) return; if (PROD.sort === h.dataset.k) PROD.asc = !PROD.asc; else { PROD.sort = h.dataset.k; PROD.asc = false; } renderProducts(current()); });
+
+
+/* ---------- global search ---------- */
+let GS = null;
+function gsIndex(){
+  if (GS) return GS;
+  const orders = new Map();
+  for (const i of M.items) { let o = orders.get(i.order); if (!o) orders.set(i.order, o = { order: i.order, date: i.date, n: 0, np: 0, st: new Set(), text: i.order });
+    o.n++; o.np += i.np; o.st.add(i.st); o.text += ' ' + i.id + ' ' + i.p.sku + ' ' + i.p.psku; }
+  return GS = { orders: [...orders.values()], skus: M.skus.map(p => ({ p, text: (p.name + ' ' + p.sku + ' ' + p.psku + ' ' + p.cat).toLowerCase() })) };
+}
+function gsRun(q){
+  const box = $('#gs-res'); q = q.toLowerCase().trim();
+  if (q.length < 2) { box.hidden = true; return; }
+  const I = gsIndex(), words = q.split(/\s+/), hit = t => words.every(w => t.includes(w));
+  const ords = I.orders.filter(o => o.text.toLowerCase().includes(q)).slice(0, 6);
+  const prods = I.skus.filter(x => hit(x.text)).slice(0, 6);
+  const sts = M.statements.filter(x => (x.ref + ' ' + fD(x.date)).toLowerCase().includes(q)).slice(0, 4);
+  const sec = (h, arr, f) => arr.length ? `<div class="gs-h">${h}</div>` + arr.map(f).join('') : '';
+  box.innerHTML = sec('Orders', ords, o => `<div class="gs-i" data-k="o" data-v="${esc(o.order)}"><b>${esc(o.order)}</b><em>${fM(o.np)}</em><span>${fD(o.date)} · ${o.n} item${o.n > 1 ? 's' : ''} · ${esc([...o.st].join(', '))}</span></div>`) +
+    sec('Products', prods, x => `<div class="gs-i" data-k="p" data-v="${esc(x.p.sku)}"><b>${esc(x.p.name)}</b><em>${esc(x.p.cat)}</em><span>${esc(x.p.sku)} · ${esc(x.p.psku)}</span></div>`) +
+    sec('Statements', sts, x => `<div class="gs-i" data-k="s" data-v="${esc(x.ref)}"><b>${esc(x.ref)}</b><em>${fM(x.total)}</em><span>${fD(x.date)}</span></div>`) ||
+    `<div class="gs-h">No matches</div><div class="gs-i" style="cursor:default"><span>Try an order number, product name, Noon SKU, partner SKU or statement number.</span></div>`;
+  box.hidden = false;
+}
+function gsPick(el){
+  if (!el || !el.dataset.k) return; const k = el.dataset.k, v = el.dataset.v;
+  $('#gs-res').hidden = true; $('#gs').value = ''; $('#gs').blur();
+  if (RANGE.kind !== 'all' || CH !== '') { RANGE = { kind: 'all' }; CH = ''; $('#ch-sel').value = ''; $('#ch-sel').classList.remove('on'); setPills(); renderAll(); }
+  if (k === 'o') { ORD.q = v; ORD.g = 'all'; $('#ord-q').value = v; renderOrders(current()); location.hash = 'orders'; }
+  if (k === 'p') { PROD.q = v; $('#prod-q').value = v; renderProducts(current()); location.hash = 'products'; }
+  if (k === 's') { STQ = v; $('#st-q').value = v; renderPayments(current()); location.hash = 'payments'; }
+  toast('Showing ' + v);
+}
+$('#gs').addEventListener('input', e => later(() => gsRun(e.target.value)));
+$('#gs').addEventListener('focus', e => { if (e.target.value) gsRun(e.target.value); });
+$('#gs').addEventListener('keydown', e => { if (e.key === 'Escape') { $('#gs-res').hidden = true; e.target.blur(); } if (e.key === 'Enter') { e.preventDefault(); gsRun(e.target.value); gsPick($('#gs-res .gs-i[data-k]')); } });
+$('#gs-res').addEventListener('mousedown', e => { e.preventDefault(); gsPick(e.target.closest('.gs-i')); });
+document.addEventListener('click', e => { if (!e.target.closest('.gsearch')) $('#gs-res').hidden = true; });
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('on'), 2200); }
 
 /* theme */
 $('#theme-btn').onclick = () => { const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;

@@ -5,35 +5,43 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: fixed left rail (brand + nav) · sticky top command bar (range pills, quick jumps, clock) · paged content area.
-   Palette: Noon yellow and Noon black, blended with In House navy and gold. */
+   Palette: noon.com KSA yellow, ink and blue, with In House gold accents. */
 :root{
-  --orange:#FEEE00; --accent-ink:#6B6200; --navy:#0A2266; --blue:#22389A; --gold:#C9A227; --noon-black:#0E0F14; --teal:#14907F;
+  --orange:#FEEE00; --accent-ink:#3866DF; --navy:#0A2266; --blue:#3866DF; --gold:#C9A227; --noon-black:#1A1C22; --teal:#14907F;
   --gold-line:linear-gradient(90deg,#FEEE00,#F3DA2A 50%,#C9A227);
-  --blend-ui:linear-gradient(120deg,#22389A,#0E0F14);
-  --bg:#F5F5F0; --surface:#FFFFFF; --surface-2:#F8F8F3; --line:#E6E5DC; --line-strong:#D2D0C2;
-  --fg:#15161C; --fg-2:#4B4C58; --fg-3:#7E7F8C;
-  --rail:#0E0F14; --rail-fg:#C9CBD6; --rail-fg-strong:#FFFFFF; --rail-hover:rgba(255,255,255,.07);
-  --good:#1E8C4E; --good-bg:#E3F4EA; --warn:#B26A00; --warn-bg:#FDF0DA; --crit:#C23A2B; --crit-bg:#FBE6E3; --info-bg:#E8ECFA;
-  --c1:#B8A800; --c2:#22389A; --c3:#14907F; --c4:#9A5BB0;
-  --blend:linear-gradient(115deg,#0B0C10 0%,#151A33 28%,#1D2C70 52%,#2B3F95 66%,#C9B400 86%,#FEEE00 100%);
-  --shadow:0 1px 2px rgba(20,26,51,.05),0 6px 22px rgba(20,26,51,.06);
+  --blend-ui:linear-gradient(120deg,#3866DF,#404553);
+  --bg:#F7F7FA; --surface:#FFFFFF; --surface-2:#F3F4F8; --line:#E2E5F1; --line-strong:#CBD0DE;
+  --fg:#2E3240; --fg-2:#5B6170; --fg-3:#7E859B;
+  --rail:#FEEE00; --rail-fg:#404553; --rail-fg-strong:#1A1C22; --rail-hover:rgba(26,28,34,.07); --rail-label:#6E6A1F;
+  --rail-active-bg:#1A1C22; --rail-active-fg:#FEEE00; --rail-bar:#1A1C22; --rail-badge-bg:rgba(26,28,34,.1); --rail-badge-fg:#1A1C22;
+  --hot-bg:#1A1C22; --hot-fg:#FEEE00; --rail-foot-bg:rgba(255,255,255,.5); --rail-foot-line:rgba(26,28,34,.1); --live:#1E7A45; --brand-ring:#1A1C22;
+  --good:#1E8C4E; --good-bg:#E3F4EA; --warn:#B26A00; --warn-bg:#FDF0DA; --crit:#D0342C; --crit-bg:#FBE6E3; --info-bg:#E8EEFC;
+  --c1:#C9B800; --c2:#3866DF; --c3:#14907F; --c4:#9A5BB0;
+  --blend:linear-gradient(115deg,#2E3240 0%,#404553 26%,#3866DF 58%,#6F92EC 74%,#E8DA00 90%,#FEEE00 100%);
+  --shadow:0 1px 2px rgba(46,50,64,.05),0 6px 22px rgba(46,50,64,.06);
   --f-display:"Sora","Manrope",system-ui,sans-serif; --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
   --r:14px; --rail-w:252px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0A0B10; --surface:#12141C; --surface-2:#1A1D28; --line:#262A38; --line-strong:#353A4D; --accent-ink:#FEEE00;
-  --fg:#F1F1EC; --fg-2:#BDBEC8; --fg-3:#8A8C9A;
-  --rail:#060709; --rail-fg:#B4B6C2; --rail-fg-strong:#FFFFFF; --rail-hover:rgba(255,255,255,.06);
-  --good:#4CC584; --good-bg:rgba(76,197,132,.14); --warn:#F0B44C; --warn-bg:rgba(240,180,76,.14); --crit:#FF7A6B; --crit-bg:rgba(255,122,107,.14); --info-bg:rgba(107,131,230,.16);
-  --c1:#E6D600; --c2:#7F95F0; --c3:#1FA894; --c4:#9E6BC0;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 26px rgba(0,0,0,.25); color-scheme:dark}}
+  --bg:#1B1D24; --surface:#252832; --surface-2:#2D303C; --line:#383C4A; --line-strong:#474C5D; --accent-ink:#FEEE00;
+  --fg:#F2F3F7; --fg-2:#C3C6D2; --fg-3:#959AAC;
+  --rail:#23262F; --rail-fg:#C3C6D2; --rail-fg-strong:#FFFFFF; --rail-hover:rgba(255,255,255,.07); --rail-label:#8A8FA2;
+  --rail-active-bg:rgba(254,238,0,.14); --rail-active-fg:#FEEE00; --rail-bar:#FEEE00; --rail-badge-bg:rgba(255,255,255,.1); --rail-badge-fg:#FFFFFF;
+  --hot-bg:#FEEE00; --hot-fg:#1A1C22; --rail-foot-bg:rgba(255,255,255,.04); --rail-foot-line:rgba(255,255,255,.08); --live:#9FE3BD; --brand-ring:transparent;
+  --blend-ui:linear-gradient(120deg,#3866DF,#2A2D38);
+  --good:#4CC584; --good-bg:rgba(76,197,132,.14); --warn:#F0B44C; --warn-bg:rgba(240,180,76,.14); --crit:#FF7A6B; --crit-bg:rgba(255,122,107,.14); --info-bg:rgba(126,155,242,.16);
+  --c1:#EADB00; --c2:#7E9BF2; --c3:#2BB59F; --c4:#B17FD4;
+  --shadow:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.2); color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0A0B10; --surface:#12141C; --surface-2:#1A1D28; --line:#262A38; --line-strong:#353A4D; --accent-ink:#FEEE00;
-  --fg:#F1F1EC; --fg-2:#BDBEC8; --fg-3:#8A8C9A;
-  --rail:#060709; --rail-fg:#B4B6C2; --rail-fg-strong:#FFFFFF; --rail-hover:rgba(255,255,255,.06);
-  --good:#4CC584; --good-bg:rgba(76,197,132,.14); --warn:#F0B44C; --warn-bg:rgba(240,180,76,.14); --crit:#FF7A6B; --crit-bg:rgba(255,122,107,.14); --info-bg:rgba(107,131,230,.16);
-  --c1:#E6D600; --c2:#7F95F0; --c3:#1FA894; --c4:#9E6BC0;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 26px rgba(0,0,0,.25); color-scheme:dark}
+  --bg:#1B1D24; --surface:#252832; --surface-2:#2D303C; --line:#383C4A; --line-strong:#474C5D; --accent-ink:#FEEE00;
+  --fg:#F2F3F7; --fg-2:#C3C6D2; --fg-3:#959AAC;
+  --rail:#23262F; --rail-fg:#C3C6D2; --rail-fg-strong:#FFFFFF; --rail-hover:rgba(255,255,255,.07); --rail-label:#8A8FA2;
+  --rail-active-bg:rgba(254,238,0,.14); --rail-active-fg:#FEEE00; --rail-bar:#FEEE00; --rail-badge-bg:rgba(255,255,255,.1); --rail-badge-fg:#FFFFFF;
+  --hot-bg:#FEEE00; --hot-fg:#1A1C22; --rail-foot-bg:rgba(255,255,255,.04); --rail-foot-line:rgba(255,255,255,.08); --live:#9FE3BD; --brand-ring:transparent;
+  --blend-ui:linear-gradient(120deg,#3866DF,#2A2D38);
+  --good:#4CC584; --good-bg:rgba(76,197,132,.14); --warn:#F0B44C; --warn-bg:rgba(240,180,76,.14); --crit:#FF7A6B; --crit-bg:rgba(255,122,107,.14); --info-bg:rgba(126,155,242,.16);
+  --c1:#EADB00; --c2:#7E9BF2; --c3:#2BB59F; --c4:#B17FD4;
+  --shadow:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.2); color-scheme:dark}
 
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -46,23 +54,24 @@ button,input,select{font:inherit;color:inherit}
 /* ---------- App shell ---------- */
 .app{display:grid;grid-template-columns:var(--rail-w) minmax(0,1fr);min-height:100%}
 .rail{position:sticky;top:0;height:100vh;background:var(--rail);color:var(--rail-fg);display:flex;flex-direction:column;padding:20px 14px;gap:18px;overflow-y:auto;z-index:30}
-.rail::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--gold-line)}
+.rail::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--gold-line);opacity:.9}
 .brand{display:flex;align-items:center;gap:12px;padding:6px 8px 4px}
-.brand-mark{width:40px;height:40px;border-radius:12px;background:var(--gold-line);background-size:200% 200%;animation:blend 14s ease-in-out infinite;display:grid;place-items:center;color:#0E0F14;font-family:var(--f-display);font-weight:700;font-size:15px;flex:none;box-shadow:0 6px 18px rgba(254,238,0,.35)}
+.brand-mark{height:40px;padding:0 12px;border-radius:12px;background:#FEEE00;display:grid;place-items:center;color:#1A1C22;font-family:"Sora",var(--f-display);font-weight:800;font-size:21px;letter-spacing:-.06em;line-height:1;flex:none;box-shadow:0 0 0 2px var(--brand-ring),0 6px 18px rgba(254,238,0,.3)}
 .brand-name{font-family:var(--f-display);font-weight:600;color:var(--rail-fg-strong);font-size:15px;line-height:1.2}
 .brand-sub{font-size:11.5px;color:var(--rail-fg);letter-spacing:.04em}
 .nav{display:flex;flex-direction:column;gap:2px;position:relative}
-.nav-label{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#7C7F92;padding:10px 12px 6px}
+.nav-label{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rail-label);padding:10px 12px 6px}
 .nav a{position:relative;display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;color:var(--rail-fg);text-decoration:none;font-weight:500;transition:background .2s,color .2s,transform .2s}
 .nav a svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .nav a:hover{background:var(--rail-hover);color:var(--rail-fg-strong);transform:translateX(2px)}
-.nav a.active{color:#fff;background:linear-gradient(90deg,rgba(254,238,0,.22),rgba(34,56,154,.35) 60%,transparent)}
-.nav a.active::before{content:"";position:absolute;left:-14px;top:8px;bottom:8px;width:4px;border-radius:0 4px 4px 0;background:var(--gold-line)}
-.nav .badge{margin-left:auto;font-family:var(--f-mono);font-size:11px;padding:1px 7px;border-radius:999px;background:rgba(255,255,255,.1);color:#fff}
-.nav .badge.hot{background:var(--orange);color:#0E0F14;font-weight:600}
-.rail-foot{margin-top:auto;padding:14px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);font-size:12px}
-.rail-foot .who{color:#fff;font-weight:600;font-size:13px}
-.live{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:#9FE3BD}
+.nav a.active{color:var(--rail-active-fg);background:var(--rail-active-bg);font-weight:700}
+.nav a.active::before{content:"";position:absolute;left:-14px;top:8px;bottom:8px;width:4px;border-radius:0 4px 4px 0;background:var(--rail-bar)}
+.nav .badge{margin-left:auto;font-family:var(--f-mono);font-size:11px;padding:1px 7px;border-radius:999px;background:var(--rail-badge-bg);color:var(--rail-badge-fg)}
+.nav .badge.hot{background:var(--hot-bg);color:var(--hot-fg);font-weight:600}
+.nav a.active .badge{background:var(--rail-active-fg);color:var(--rail-active-bg)}
+.rail-foot{margin-top:auto;padding:14px 12px;border-radius:12px;background:var(--rail-foot-bg);border:1px solid var(--rail-foot-line);font-size:12px}
+.rail-foot .who{color:var(--rail-fg-strong);font-weight:600;font-size:13px}
+.live{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--live)}
 .live i{width:7px;height:7px;border-radius:50%;background:#4CC584;box-shadow:0 0 0 0 rgba(76,197,132,.6);animation:pulse 2s infinite}
 
 .main{min-width:0;display:flex;flex-direction:column}
@@ -75,27 +84,27 @@ button,input,select{font:inherit;color:inherit}
 .pill{position:relative;border:0;background:transparent;padding:6px 11px;border-radius:8px;cursor:pointer;font-weight:600;font-size:12.5px;color:var(--fg-2);white-space:nowrap;transition:background .25s,color .25s,box-shadow .25s,text-shadow .25s,transform .25s}
 .pill:hover,.pill:focus-visible{color:var(--fg);outline:0;background:color-mix(in srgb,#FEEE00 14%,transparent);box-shadow:0 0 0 1px rgba(254,238,0,.55),0 0 14px rgba(254,238,0,.45),inset 0 0 10px rgba(254,238,0,.18);text-shadow:0 0 8px rgba(254,238,0,.75);transform:translateY(-1px)}
 .pill.on{background:var(--blend-ui);color:#fff;box-shadow:inset 0 -2px 0 #FEEE00,0 3px 10px rgba(14,15,20,.3);animation:pillglow 2.8s ease-in-out infinite}
-.pill.on:hover{text-shadow:0 0 8px rgba(255,240,60,.9);box-shadow:inset 0 -2px 0 #FEEE00,0 0 0 1px rgba(254,238,0,.7),0 0 18px rgba(74,104,232,.6),0 0 26px rgba(254,238,0,.35)}
-@keyframes pillglow{0%,100%{box-shadow:inset 0 -2px 0 #FEEE00,0 3px 10px rgba(14,15,20,.3)}50%{box-shadow:inset 0 -2px 0 #FEEE00,0 0 16px rgba(74,104,232,.55),0 0 22px rgba(254,238,0,.3)}}
+.pill.on:hover{text-shadow:0 0 8px rgba(255,240,60,.9);box-shadow:inset 0 -2px 0 #FEEE00,0 0 0 1px rgba(254,238,0,.7),0 0 18px rgba(56,102,223,.6),0 0 26px rgba(254,238,0,.35)}
+@keyframes pillglow{0%,100%{box-shadow:inset 0 -2px 0 #FEEE00,0 3px 10px rgba(14,15,20,.3)}50%{box-shadow:inset 0 -2px 0 #FEEE00,0 0 16px rgba(56,102,223,.55),0 0 22px rgba(254,238,0,.3)}}
 .month-sel{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:7px 10px;font-weight:600;font-size:12.5px;cursor:pointer;transition:border-color .25s,box-shadow .25s,transform .25s}
-.month-sel:hover,.month-sel:focus-visible{outline:0;border-color:#FEEE00;box-shadow:0 0 0 1px rgba(254,238,0,.5),0 0 16px rgba(254,238,0,.45),0 0 30px rgba(74,104,232,.25);transform:translateY(-1px)}
+.month-sel:hover,.month-sel:focus-visible{outline:0;border-color:#FEEE00;box-shadow:0 0 0 1px rgba(254,238,0,.5),0 0 16px rgba(254,238,0,.45),0 0 30px rgba(56,102,223,.25);transform:translateY(-1px)}
 .month-sel.on{border-color:#FEEE00;box-shadow:0 0 0 1px rgba(254,238,0,.6),0 0 14px rgba(254,238,0,.4);animation:selglow 2.8s ease-in-out infinite}
-@keyframes selglow{0%,100%{box-shadow:0 0 0 1px rgba(254,238,0,.6),0 0 10px rgba(254,238,0,.3)}50%{box-shadow:0 0 0 1px rgba(254,238,0,.8),0 0 20px rgba(254,238,0,.5),0 0 28px rgba(74,104,232,.3)}}
+@keyframes selglow{0%,100%{box-shadow:0 0 0 1px rgba(254,238,0,.6),0 0 10px rgba(254,238,0,.3)}50%{box-shadow:0 0 0 1px rgba(254,238,0,.8),0 0 20px rgba(254,238,0,.5),0 0 28px rgba(56,102,223,.3)}}
 .quick{display:flex;gap:6px;flex-wrap:wrap}
 .qbtn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px 6px 10px;cursor:pointer;font-weight:600;font-size:12.5px;text-decoration:none;color:var(--fg);transition:transform .25s,border-color .25s,box-shadow .25s}
-.qbtn:hover,.qbtn:focus-visible{outline:0;transform:translateY(-2px);border-color:#4A68E8;box-shadow:0 0 0 1px rgba(74,104,232,.5),0 0 14px rgba(74,104,232,.45),0 0 26px rgba(254,238,0,.25)}
+.qbtn:hover,.qbtn:focus-visible{outline:0;transform:translateY(-2px);border-color:#3866DF;box-shadow:0 0 0 1px rgba(56,102,223,.5),0 0 14px rgba(56,102,223,.45),0 0 26px rgba(254,238,0,.25)}
 .qbtn:hover .dot{box-shadow:0 0 8px currentColor,0 0 4px #fff}
-.ticker{--tick-grad:linear-gradient(90deg,#0E0F14,#22389A 30%,#A89A00 50%,#22389A 70%,#0E0F14);order:99;flex:1 1 240px;min-width:0;position:relative;height:34px;border-radius:10px;overflow:hidden;border:1px solid color-mix(in srgb,#FEEE00 40%,var(--line));background:linear-gradient(90deg,color-mix(in srgb,#22389A 10%,var(--surface)),var(--surface) 50%,color-mix(in srgb,#FEEE00 10%,var(--surface)));-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.ticker{--tick-grad:linear-gradient(90deg,#404553,#3866DF 30%,#B8A800 50%,#3866DF 70%,#404553);order:99;flex:1 1 240px;min-width:0;position:relative;height:34px;border-radius:10px;overflow:hidden;border:1px solid color-mix(in srgb,#FEEE00 40%,var(--line));background:linear-gradient(90deg,color-mix(in srgb,#3866DF 10%,var(--surface)),var(--surface) 50%,color-mix(in srgb,#FEEE00 10%,var(--surface)));-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
 .ticker-track{position:absolute;left:0;top:0;height:100%;display:flex;align-items:center;white-space:nowrap;width:max-content;animation:tick 34s linear infinite}
 .ticker:hover .ticker-track{animation-play-state:paused}
 .ticker-set{display:flex;align-items:center;gap:22px;padding-right:22px}
 .ticker-set span{font-family:var(--f-display);font-weight:700;font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;background:var(--tick-grad);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 4s linear infinite,flick 6s ease-in-out infinite}
 .ticker-set span:nth-child(4n+2){animation-delay:0s,1.5s}.ticker-set span:nth-child(4n+3){animation-delay:0s,3s}.ticker-set span:nth-child(4n){animation-delay:0s,4.5s}
 .ticker-set i{font-style:normal;color:#FEEE00;font-size:11px;text-shadow:0 0 8px rgba(254,238,0,.9);animation:spark 2s ease-in-out infinite}
-.ticker::after{content:"";position:absolute;top:0;bottom:0;width:70px;left:-80px;background:linear-gradient(90deg,transparent,rgba(255,245,120,.55),rgba(255,255,255,.7),rgba(74,104,232,.4),transparent);transform:skewX(-20deg);animation:scan 3.6s cubic-bezier(.5,0,.2,1) infinite;pointer-events:none;mix-blend-mode:screen}
-.ticker::before{content:"";position:absolute;inset:auto 0 0 0;height:1px;background:linear-gradient(90deg,transparent,#4A68E8,#FEEE00,#4A68E8,transparent);background-size:200% 100%;animation:shimmer 3s linear infinite;opacity:.9}
-:root[data-theme="dark"] .ticker{--tick-grad:linear-gradient(90deg,#7F95F0,#C3CDFF 30%,#FEEE00 50%,#C3CDFF 70%,#7F95F0)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ticker{--tick-grad:linear-gradient(90deg,#7F95F0,#C3CDFF 30%,#FEEE00 50%,#C3CDFF 70%,#7F95F0)}}
+.ticker::after{content:"";position:absolute;top:0;bottom:0;width:70px;left:-80px;background:linear-gradient(90deg,transparent,rgba(255,245,120,.55),rgba(255,255,255,.7),rgba(56,102,223,.4),transparent);transform:skewX(-20deg);animation:scan 3.6s cubic-bezier(.5,0,.2,1) infinite;pointer-events:none;mix-blend-mode:screen}
+.ticker::before{content:"";position:absolute;inset:auto 0 0 0;height:1px;background:linear-gradient(90deg,transparent,#3866DF,#FEEE00,#3866DF,transparent);background-size:200% 100%;animation:shimmer 3s linear infinite;opacity:.9}
+:root[data-theme="dark"] .ticker{--tick-grad:linear-gradient(90deg,#7E9BF2,#C9D6FF 30%,#FEEE00 50%,#C9D6FF 70%,#7E9BF2)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ticker{--tick-grad:linear-gradient(90deg,#7E9BF2,#C9D6FF 30%,#FEEE00 50%,#C9D6FF 70%,#7E9BF2)}}
 @keyframes tick{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 @keyframes shimmer{from{background-position:200% 0}to{background-position:0 0}}
 @keyframes flick{0%,100%{opacity:1;filter:none}40%{opacity:1}50%{opacity:.18;filter:blur(1.5px)}60%{opacity:1;filter:none}}
@@ -124,7 +133,7 @@ button,input,select{font:inherit;color:inherit}
 .g-32{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}
 .g-23{grid-template-columns:minmax(0,2fr) minmax(0,3fr)}
 
-.hero{position:relative;overflow:hidden;border-radius:20px;padding:28px 30px;color:#fff;background:var(--blend);background-size:220% 220%;animation:blend 18s ease-in-out infinite;box-shadow:0 18px 40px rgba(14,15,20,.3)}
+.hero{position:relative;overflow:hidden;border-radius:20px;padding:28px 30px;color:#fff;background:var(--blend);background-size:220% 220%;animation:blend 18s ease-in-out infinite;box-shadow:0 18px 40px rgba(46,50,64,.22)}
 .hero::before{content:"";position:absolute;right:-12%;bottom:-60%;width:60%;height:160%;background:radial-gradient(closest-side,rgba(254,238,0,.55),rgba(254,238,0,.18) 55%,transparent);pointer-events:none;animation:glow 9s ease-in-out infinite}
 @keyframes glow{0%,100%{transform:translate(0,0)}50%{transform:translate(-6%,-4%)}}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
@@ -262,7 +271,7 @@ dl.defs dt{font-weight:700} dl.defs dd{margin:0;color:var(--fg-2)}
   .menu-btn{display:grid}
   .topbar,.content{padding-inline:16px}
   .topbar{position:relative;top:0}
-  .topbar{gap:8px}.menu-btn{order:0}.page-title{order:1;flex:1 1 0}#theme-btn{order:2}.pills{order:3;flex:1 1 100%}.month-sel{order:4}.quick{order:5;flex:1 1 0;min-width:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.qbtn{flex:none}
+  .topbar{gap:8px}.gsearch{order:7;flex:1 1 100%;max-width:none}.menu-btn{order:0}.page-title{order:1;flex:1 1 0}#theme-btn{order:2}.pills{order:3;flex:1 1 100%}.month-sel{order:4}.quick{order:5;flex:1 1 0;min-width:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.qbtn{flex:none}
   .ticker{order:6;flex:1 1 100%;height:30px}
   .g2{grid-template-columns:minmax(0,1fr)}
   .clock{display:none}
@@ -279,6 +288,22 @@ table.vs td,table.vs th{cursor:default}
 table.vs tr.sum td{font-weight:700;border-top:1px solid var(--line-strong)}
 .diff-up{color:var(--good)} .diff-dn{color:var(--crit)}
 .more{padding:10px 12px;font-size:12px;color:var(--fg-3)}
+td.neg,span.neg{color:var(--crit)} td.pos,span.pos{color:var(--good)} tr.loss td:first-child{box-shadow:inset 3px 0 0 var(--crit)}
+.more-btn{margin:10px auto;display:flex}
+.gsearch{position:relative;flex:1 1 220px;min-width:0;max-width:340px}
+.gsearch input{width:100%;padding:8px 12px 8px 34px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font-size:13px;transition:border-color .25s,box-shadow .25s}
+.gsearch input:focus{outline:0;border-color:#FEEE00;box-shadow:0 0 0 1px rgba(254,238,0,.6),0 0 16px rgba(254,238,0,.4)}
+.gsearch svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--fg-3);fill:none;stroke-width:2;stroke-linecap:round}
+.gs-res{position:absolute;left:0;right:0;top:calc(100% + 6px);background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow),0 18px 40px rgba(0,0,0,.18);max-height:420px;overflow:auto;z-index:50;padding:6px}
+.gs-res[hidden]{display:none}
+.gs-h{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3);padding:8px 10px 4px;font-weight:700}
+.gs-i{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:12.5px}
+.gs-i:hover,.gs-i.on{background:color-mix(in srgb,#FEEE00 18%,var(--surface-2))}
+.gs-i b{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .gs-i span{color:var(--fg-3);font-size:11.5px} .gs-i em{font-style:normal;font-family:var(--f-mono);font-size:12px;grid-row:span 2;align-self:center}
+.team{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.team span{display:inline-flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);font-weight:600;font-size:13px;backdrop-filter:blur(6px)}
+.team span i{width:24px;height:24px;border-radius:50%;background:#FEEE00;color:#1A1C22;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:12px}
+.team .arr{padding:0;background:none;border:0;opacity:.7;backdrop-filter:none}
 .payouts{max-height:640px;overflow-y:auto;padding-right:6px}
 @media (max-width:520px){.hs b{font-size:15px}}
 </style>
@@ -286,8 +311,8 @@ table.vs tr.sum td{font-weight:700;border-top:1px solid var(--line-strong)}
 <div class="app" id="app">
   <aside class="rail" id="rail" aria-label="Main navigation">
     <div class="brand">
-      <div class="brand-mark">n</div>
-      <div><div class="brand-name"><span style="color:#FEEE00">noon</span> <span style="color:#8A8C9A">×</span> <span style="color:#D9B44A">In House</span></div><div class="brand-sub">Courier channel reports · KSA</div></div>
+      <div class="brand-mark" aria-label="noon">noon</div>
+      <div><div class="brand-name">× In House</div><div class="brand-sub">Courier channel · KSA</div></div>
     </div>
     <nav class="nav" id="nav">
       <div class="nav-label">Reports</div>
@@ -304,8 +329,8 @@ table.vs tr.sum td{font-weight:700;border-top:1px solid var(--line-strong)}
       <a href="#data" data-page="data"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg>Data &amp; methods</a>
     </nav>
     <div class="rail-foot">
-      <div class="who">Sadati Fred Mwasongwe</div>
-      <div>Deputy Marketplace Manager<br>Noon courier · account 12539</div>
+      <div class="who">Channel managers</div>
+      <div>Fedaa → Ayham → Sham<br>Noon courier · account 12539</div>
       <div style="margin-top:8px" class="live"><i></i><span id="live-txt">Live view</span></div>
     </div>
   </aside>
@@ -324,6 +349,7 @@ table.vs tr.sum td{font-weight:700;border-top:1px solid var(--line-strong)}
       </div>
       <select class="month-sel" id="month-sel" aria-label="Pick a month"><option value="">Pick month</option></select>
       <select class="month-sel" id="ch-sel" aria-label="Courier type"><option value="">All types</option><option value="0">Flex</option><option value="1">FBN</option><option value="2">Supermall</option></select>
+      <div class="gsearch" role="search"><svg viewBox="0 0 24 24"><path d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM21 21l-5-5"/></svg><input id="gs" type="search" placeholder="Search orders, products, SKUs, statements" autocomplete="off" aria-label="Search the portal"><div class="gs-res" id="gs-res" hidden></div></div>
       <div class="quick">
         <a class="qbtn" href="#payments"><span class="dot" style="background:var(--orange)"></span>Last payout <b id="q-pay">0</b></a>
         <a class="qbtn" href="#orders" data-status="open"><span class="dot" style="background:var(--c2)"></span>Open orders <b id="q-open">0</b></a>
@@ -331,7 +357,7 @@ table.vs tr.sum td{font-weight:700;border-top:1px solid var(--line-strong)}
       </div>
       <button class="icon-btn" id="theme-btn" aria-label="Switch light or dark"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
       <div class="clock"><b id="clk-time">--:--:--</b><span id="clk-date">Riyadh</span></div>
-      <div class="ticker" aria-hidden="true"><div class="ticker-track"><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>Courier Channel</span><i>✦</i><span>Sadati Fred Mwasongwe</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>Courier Channel</span><i>✦</i><span>Sadati Fred Mwasongwe</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div></div></div>
+      <div class="ticker" aria-hidden="true"><div class="ticker-track"><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>Courier Channel</span><i>✦</i><span>Fedaa · Ayham · Sham</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>Courier Channel</span><i>✦</i><span>Fedaa · Ayham · Sham</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div></div></div>
     </header>
 
     <main class="content">
@@ -342,8 +368,9 @@ table.vs tr.sum td{font-weight:700;border-top:1px solid var(--line-strong)}
           <div class="hero-in">
             <div>
               <div class="eyebrow" id="greet">Noon courier · In House</div>
-              <h1>Sadati Fred Mwasongwe</h1>
-              <div class="role">Deputy Marketplace Manager · <span class="gold-tx">Noon KSA courier · 12539</span></div>
+              <h1>noon KSA · Courier channel</h1>
+              <div class="role">In House store · <span class="gold-tx">account 12539</span></div>
+              <div class="team" aria-label="Channel managers"><span><i>F</i>Fedaa</span><span class="arr">→</span><span><i>A</i>Ayham</span><span class="arr">→</span><span><i>S</i>Sham</span></div>
               <div class="tagline" id="hero-line">Every Noon order, fee, statement and payout for the courier account, with Noon's numbers and In House's numbers side by side.</div>
             </div>
             <div class="hero-stats" id="hero-stats"></div>
@@ -401,7 +428,7 @@ table.vs tr.sum td{font-weight:700;border-top:1px solid var(--line-strong)}
             <input class="search" id="ord-q" type="search" placeholder="Search order number, product, SKU, partner SKU">
             <div id="ord-chips" style="display:flex;gap:6px;flex-wrap:wrap"></div>
           </div>
-          <div class="tbl-wrap"><table id="t-orders"></table></div>
+          <div class="tbl-wrap"><table id="t-orders"></table></div><div id="ord-more"></div>
         </div>
       </section>
 
@@ -411,7 +438,7 @@ table.vs tr.sum td{font-weight:700;border-top:1px solid var(--line-strong)}
         <div class="card">
           <div class="card-head"><h3>Product performance</h3><p>Unit cost from the workbook · profit in both views</p></div>
           <div class="toolbar"><input class="search" id="prod-q" type="search" placeholder="Search product, SKU, partner SKU, category"></div>
-          <div class="tbl-wrap"><table id="t-products"></table></div>
+          <div class="tbl-wrap"><table id="t-products"></table></div><div id="prod-more"></div>
         </div>
       </section>
 
@@ -432,6 +459,7 @@ table.vs tr.sum td{font-weight:700;border-top:1px solid var(--line-strong)}
         </div>
         <div class="card">
           <div class="card-head"><h3>Weekly statements</h3><p>SAR incl. VAT · from the PS-12539 statement tab</p></div>
+          <div class="toolbar"><input class="search" id="st-q" type="search" placeholder="Search statement number or date"></div>
           <div class="tbl-wrap"><table id="t-ledger"></table></div>
         </div>
       </section>
@@ -453,7 +481,7 @@ table.vs tr.sum td{font-weight:700;border-top:1px solid var(--line-strong)}
         <div class="card"><div class="card-head"><h3>Returns and cancellations by month</h3><p>SAR · net proceeds of the items</p></div>
           <div class="legend"><span><i style="background:var(--c1)"></i>Customer returns (CIR)</span><span><i style="background:var(--crit)"></i>Could not be delivered</span><span><i style="background:var(--c4)"></i>Cancelled</span></div>
           <div class="chart-box sm"><canvas id="ch-returns"></canvas></div></div>
-        <div class="card"><div class="card-head"><h3>Returned, failed and cancelled items</h3><p id="ret-count"></p></div><div class="tbl-wrap"><table id="t-returns"></table></div></div>
+        <div class="card"><div class="card-head"><h3>Returned, failed and cancelled items</h3><p id="ret-count"></p></div><div class="toolbar"><input class="search" id="ret-q" type="search" placeholder="Search order number, product, SKU, status"></div><div class="tbl-wrap"><table id="t-returns"></table></div><div id="ret-more"></div></div>
       </section>
 
       <!-- DELIVERY -->
@@ -470,7 +498,7 @@ table.vs tr.sum td{font-weight:700;border-top:1px solid var(--line-strong)}
       <section class="page" id="p-data">
         <div class="card">
           <div class="card-head"><h3>Updating the portal</h3><span class="tag info">Coming next</span></div>
-          <p class="muted" style="font-size:13px">Uploading new Noon files will be added once the standard export from the channel manager is agreed. Until then the numbers come from the workbook named below.</p>
+          <p class="muted" style="font-size:13px">Uploading new Noon files will be added once the standard export from the channel managers is agreed. Until then the numbers come from the workbook named below. Only four people will be able to update the portal: the marketplace manager and the three Noon channel managers, Fedaa, Ayham and Sham. Everyone else can only view it.</p>
         </div>
         <div class="card"><p class="foot-note" id="data-src" style="margin:0"></p></div>
         <div class="grid g2">
@@ -629,7 +657,21 @@ function bars(sel, rows, color){
 }
 const sortTable = (rows, st) => rows.sort((x, y) => { const p = x[st.sort], q = y[st.sort]; const c = p > q ? 1 : p < q ? -1 : 0; return st.asc ? c : -c; });
 const th = (cols, st) => `<thead><tr>${cols.map(c => `<th data-k="${c[0]}" class="${c[2] || ''}${st && st.sort === c[0] ? ' sorted' + (st.asc ? ' asc' : '') : ''}">${c[1]}</th>`).join('')}</tr></thead>`;
-const LIMIT = 400;
+const STEP = 400, PAGE = { ord: STEP, prod: STEP, ret: STEP };
+function moreBar(sel, key, shown, total, what){
+  const el = $(sel); if (!el) return;
+  el.innerHTML = total > shown ? `<div class="toolbar" style="justify-content:center;margin:12px 0 0"><span class="muted">Showing ${fN(shown)} of ${fN(total)} ${what}. All of them are counted in the totals.</span><button class="btn ghost" data-more="${key}" type="button">Show ${fN(Math.min(STEP, total - shown))} more</button><button class="btn ghost" data-all="${key}" type="button">Show all ${fN(total)}</button></div>` : '';
+}
+// Colour money cells: negatives red everywhere; profit, margin and difference columns green when positive.
+function paint(sel){
+  const t = $(sel); if (!t) return;
+  const heads = [...t.querySelectorAll('thead th')].map(h => /profit|margin|difference|loss|total|revenue|to store/i.test(h.textContent));
+  t.querySelectorAll('tbody tr, tfoot tr').forEach(tr => { let loss = false;
+    [...tr.children].forEach((td, k) => { if (!td.classList.contains('r')) return; const v = td.textContent.trim();
+      if (/^−\d/.test(v)) { td.classList.add('neg'); if (heads[k] && /profit/i.test(t.querySelectorAll('thead th')[k].textContent)) loss = true; }
+      else if (heads[k] && /^\d/.test(v) && v !== '0.00' && v !== '0.0%') td.classList.add('pos'); });
+    if (loss && tr.parentNode.tagName === 'TBODY') tr.classList.add('loss'); });
+}
 
 function nextPayout(){ // Noon pays weekly; use the weekday of the last transfer
   const last = M.payments[M.payments.length - 1]; if (!last) return null;
@@ -639,6 +681,7 @@ function nextPayout(){ // Noon pays weekly; use the weekday of the last transfer
 }
 
 function renderAll(){
+  PAGE.ord = PAGE.prod = PAGE.ret = STEP;
   const C = current(), a = C.a;
   $('#range-txt').textContent = C.b[2] + (CH !== '' ? ' · ' + M.D.meta.channels[+CH] : '');
   const open = M.items.filter(i => chOK(i) && (i.g === 'processing' || i.g === 'shipped'));
@@ -673,6 +716,7 @@ function renderOverview(C){
   const dc = v => Math.abs(v) < .5 ? '<span class="muted">—</span>' : `<span class="${v > 0 ? 'diff-up' : 'diff-dn'}">${v > 0 ? '+' : ''}${fM(v)}</span>`;
   $('#t-vs').innerHTML = `<thead><tr><th></th><th class="r">Noon view</th><th class="r">In House view</th><th class="r">Difference</th></tr></thead><tbody>${rows.map(r => `<tr class="${r[3] ? 'sum' : ''}"><td>${r[0]}</td><td class="r">${fM(r[1])}</td><td class="r">${fM(r[2])}</td><td class="r">${dc(r[2] - r[1])}</td></tr>`).join('')}
     <tr><td>Margin on net sales</td><td class="r">${pct(a.n.margin)}</td><td class="r">${pct(a.h.margin)}</td><td class="r"></td></tr></tbody>`;
+  paint('#t-vs');
   // insights
   const ms = monthly(C.L), ins = [];
   if (ms.length) { const best = ms.reduce((b, x) => x.a.net > b.a.net ? x : b); ins.push(insight('good', 'star', `Best month: <b>${mLabel(best.k)}</b> with SAR ${fM(best.a.net, 0)} net sales from ${fN(best.a.orders)} orders.`)); }
@@ -727,10 +771,11 @@ function renderSales(C){
   const cols = [['Month'], ['Orders', 'r'], ['Items sold', 'r'], ['Net sales', 'r'], ['Returns', 'r'], ['Fees · Noon', 'r'], ['Profit · Noon', 'r'], ['Margin · Noon', 'r'], ['Fees · In House', 'r'], ['Profit · In House', 'r'], ['Margin · In House', 'r'], ['AOV', 'r']];
   const row = (lbl, a) => `<td>${lbl}</td><td class="r">${fN(a.orders)}</td><td class="r">${fN(a.sold)}</td><td class="r">${fM(a.net)}</td><td class="r">${fM(a.retVal + a.failVal)}</td><td class="r">${fM(-a.n.fees)}</td><td class="r">${fM(a.n.prof)}</td><td class="r">${pct(a.n.margin)}</td><td class="r">${fM(-a.h.fees)}</td><td class="r">${fM(a.h.prof)}</td><td class="r">${pct(a.h.margin)}</td><td class="r">${fM(a.aov, 0)}</td>`;
   $('#t-month').innerHTML = `<thead><tr>${cols.map(c => `<th class="${c[1] || ''}">${c[0]}</th>`).join('')}</tr></thead><tbody>${ms.map(x => `<tr>${row(mLabel(x.k), x.a)}</tr>`).join('')}</tbody><tfoot><tr>${row('Total', a)}</tr></tfoot>`;
+  paint('#t-month');
 }
 
 /* orders */
-let ORD = { q: '', g: 'all', sort: 'date', asc: false };
+let ORD = { q: '', g: 'all', sort: 'date', asc: false }, RETQ = '', STQ = '';
 function renderOrders(C){
   const groups = ['all', 'open', 'processing', 'shipped', 'delivered', 'returned', 'failed', 'canceled'];
   const label = g => g === 'all' ? 'All' : g === 'open' ? 'Open' : GROUP[g][0];
@@ -738,11 +783,12 @@ function renderOrders(C){
   const q = ORD.q.toLowerCase().trim();
   let rows = C.L.filter(i => (ORD.g === 'all' || i.g === ORD.g || (ORD.g === 'open' && (i.g === 'processing' || i.g === 'shipped'))) && (!q || (i.id + ' ' + i.p.name + ' ' + i.p.sku + ' ' + i.p.psku + ' ' + i.st).toLowerCase().includes(q)));
   rows.forEach(i => { i.fees = i.ref + i.ship + i.subs; i.name = i.p.name; });
+  const shown = Math.min(rows.length, PAGE.ord);
   sortTable(rows, ORD);
   $('#ord-count').textContent = `${fN(rows.length)} of ${fN(C.L.length)} items in this period`;
   const cols = [['date', 'Date'], ['id', 'Item'], ['name', 'Product'], ['chName', 'Type'], ['st', 'Status'], ['np', 'Net proceeds', 'r'], ['fees', 'Noon fees', 'r'], ['cost', 'Unit cost', 'r'], ['prof', 'Profit · Noon', 'r'], ['prof2', 'Profit · In House', 'r']];
-  $('#t-orders').innerHTML = th(cols, ORD) + `<tbody>${rows.slice(0, LIMIT).map(i => `<tr><td>${fD(i.date)}</td><td class="mono">${esc(i.id)}</td><td title="${esc(i.p.sku)}">${esc(i.p.name)}</td><td>${esc(i.chName)}</td><td><span class="tag ${GROUP[i.g][1]}">${esc(i.st)}</span></td><td class="r">${fM(i.np)}</td><td class="r">${i.fees ? fM(i.fees) : '—'}</td><td class="r">${fM(i.cost)}</td><td class="r">${fM(i.prof)}</td><td class="r">${fM(i.prof2)}</td></tr>`).join('')}</tbody>` +
-    (rows.length > LIMIT ? `<tfoot><tr><td colspan="${cols.length}" class="more">Showing the first ${LIMIT} of ${fN(rows.length)}. Search or pick a status to narrow the list.</td></tr></tfoot>` : '');
+  $('#t-orders').innerHTML = th(cols, ORD) + `<tbody>${rows.slice(0, shown).map(i => `<tr><td>${fD(i.date)}</td><td class="mono">${esc(i.id)}</td><td title="${esc(i.p.sku)}">${esc(i.p.name)}</td><td>${esc(i.chName)}</td><td><span class="tag ${GROUP[i.g][1]}">${esc(i.st)}</span></td><td class="r">${fM(i.np)}</td><td class="r">${i.fees ? fM(i.fees) : '—'}</td><td class="r">${fM(i.cost)}</td><td class="r">${fM(i.prof)}</td><td class="r">${fM(i.prof2)}</td></tr>`).join('')}</tbody>`;
+  moreBar('#ord-more', 'ord', shown, rows.length, 'items'); paint('#t-orders');
 }
 
 /* products */
@@ -766,15 +812,17 @@ function renderProducts(C){
   ].join('');
   let rows = all.filter(p => !q || (p.name + ' ' + p.sku + ' ' + p.psku + ' ' + p.cat).toLowerCase().includes(q));
   sortTable(rows, PROD);
+  const shown = Math.min(rows.length, PAGE.prod);
   const cols = [['name', 'Product'], ['sku', 'Noon SKU'], ['psku', 'Partner SKU'], ['cat', 'Category'], ['sold', 'Sold', 'r'], ['ret', 'Returned', 'r'], ['canceled', 'Cancelled', 'r'], ['net', 'Net sales', 'r'], ['cost', 'Unit cost', 'r'], ['prof', 'Profit · Noon', 'r'], ['margin', 'Margin · Noon', 'r'], ['prof2', 'Profit · In House', 'r'], ['margin2', 'Margin · In House', 'r']];
-  $('#t-products').innerHTML = th(cols, PROD) + `<tbody>${rows.slice(0, LIMIT).map(p => `<tr><td class="wrap">${esc(p.name)}</td><td class="mono">${esc(p.sku)}</td><td class="mono">${esc(p.psku)}</td><td>${esc(p.cat)}</td><td class="r">${fN(p.sold)}</td><td class="r">${p.ret || '—'}</td><td class="r">${p.canceled || '—'}</td><td class="r">${fM(p.net)}</td><td class="r">${fM(p.cost)}</td><td class="r">${fM(p.prof)}</td><td class="r">${p.net ? pct(p.margin) : '—'}</td><td class="r">${fM(p.prof2)}</td><td class="r">${p.net ? pct(p.margin2) : '—'}</td></tr>`).join('')}</tbody>` +
-    (rows.length > LIMIT ? `<tfoot><tr><td colspan="${cols.length}" class="more">Showing the first ${LIMIT} of ${fN(rows.length)} products. Search to find the rest.</td></tr></tfoot>` : '');
+  $('#t-products').innerHTML = th(cols, PROD) + `<tbody>${rows.slice(0, shown).map(p => `<tr><td class="wrap">${esc(p.name)}</td><td class="mono">${esc(p.sku)}</td><td class="mono">${esc(p.psku)}</td><td>${esc(p.cat)}</td><td class="r">${fN(p.sold)}</td><td class="r">${p.ret || '—'}</td><td class="r">${p.canceled || '—'}</td><td class="r">${fM(p.net)}</td><td class="r">${fM(p.cost)}</td><td class="r">${fM(p.prof)}</td><td class="r">${p.net ? pct(p.margin) : '—'}</td><td class="r">${fM(p.prof2)}</td><td class="r">${p.net ? pct(p.margin2) : '—'}</td></tr>`).join('')}</tbody>`;
+  moreBar('#prod-more', 'prod', shown, rows.length, 'products'); paint('#t-products');
 }
 
 /* payments */
 function renderPayments(C){
   const P = M.payments, inP = P.filter(p => inR(p.date, C.b)), paidP = inP.reduce((s, p) => s + p.amt, 0), np = nextPayout();
-  const S = M.statements.filter(s => inR(s.date, C.b)), stTot = S.reduce((s, x) => s + x.total, 0);
+  const S = M.statements.filter(s => inR(s.date, C.b)), stTot = S.reduce((s, x) => s + x.total, 0), sq = STQ.toLowerCase().trim();
+  const SV = S.filter(s => !sq || (s.ref + ' ' + fD(s.date)).toLowerCase().includes(sq));
   const stAll = M.D.stLines.reduce((s, x) => s + x[1], 0), vat = M.D.vat.reduce((s, x) => s + x[1], 0), fbn = M.D.fbn.reduce((s, x) => s + x[1], 0), paid = P.reduce((s, p) => s + p.amt, 0);
   $('#pay-kpis').innerHTML = [
     kpi('Paid out by Noon', fM(paidP, 0), `${inP.length} transfers in this period`, { raw: paidP }),
@@ -790,9 +838,10 @@ function renderPayments(C){
     `<span class="sum">Owed to the store</span><span class="num sum">${fM(due)}</span><span>Paid out (${P.length} transfers)</span><span class="num">${fM(-paid)}</span><span class="sum">Difference</span><span class="num sum">${fM(due - paid)}</span>` +
     `<span class="muted" style="grid-column:1/-1">${Math.abs(due - paid) < 1 ? '<span class="tag good">Balanced</span> Statements and payouts match.' : '<span class="tag warn">Check</span> Statements and payouts differ by SAR ' + fM(due - paid) + ' (' + pct(paid ? Math.abs(due - paid) / paid : 0) + ' of all payouts). Taken from the Statement &amp; Payment tab.'}</span>`;
   const cols = ['Date', 'Statement', 'Rows', 'Net proceeds', 'Referral', 'Fulfilment & logistics', 'Other order fees', 'Subsidies', 'Ads & other', 'Ad subsidies', 'Total'];
-  const tot = S.reduce((t, s) => ({ rows: t.rows + s.rows, np: t.np + s.np, referral: t.referral + s.referral, fulfil: t.fulfil + s.fulfil, otherOrder: t.otherOrder + s.otherOrder + s.shipCredit + s.others, subsidy: t.subsidy + s.subsidy, nonOrderFee: t.nonOrderFee + s.nonOrderFee, nonOrderSubsidy: t.nonOrderSubsidy + s.nonOrderSubsidy, total: t.total + s.total }), { rows: 0, np: 0, referral: 0, fulfil: 0, otherOrder: 0, subsidy: 0, nonOrderFee: 0, nonOrderSubsidy: 0, total: 0 });
+  const tot = SV.reduce((t, s) => ({ rows: t.rows + s.rows, np: t.np + s.np, referral: t.referral + s.referral, fulfil: t.fulfil + s.fulfil, otherOrder: t.otherOrder + s.otherOrder + s.shipCredit + s.others, subsidy: t.subsidy + s.subsidy, nonOrderFee: t.nonOrderFee + s.nonOrderFee, nonOrderSubsidy: t.nonOrderSubsidy + s.nonOrderSubsidy, total: t.total + s.total }), { rows: 0, np: 0, referral: 0, fulfil: 0, otherOrder: 0, subsidy: 0, nonOrderFee: 0, nonOrderSubsidy: 0, total: 0 });
   const cells = s => `<td class="r">${fN(s.rows)}</td><td class="r">${fM(s.np)}</td><td class="r">${fM(s.referral)}</td><td class="r">${fM(s.fulfil)}</td><td class="r">${fM(s.otherOrder)}</td><td class="r">${fM(s.subsidy)}</td><td class="r">${fM(s.nonOrderFee)}</td><td class="r">${fM(s.nonOrderSubsidy)}</td><td class="r">${fM(s.total)}</td>`;
-  $('#t-ledger').innerHTML = `<thead><tr>${cols.map((c, i) => `<th class="${i > 1 ? 'r' : ''}">${c}</th>`).join('')}</tr></thead><tbody>${S.slice().reverse().map(s => `<tr><td>${fD(s.date)}</td><td class="mono">${esc(s.ref)}</td>${cells(Object.assign({}, s, { otherOrder: s.otherOrder + s.shipCredit + s.others }))}</tr>`).join('') || `<tr><td colspan="11" class="more">No statements in this period.</td></tr>`}</tbody><tfoot><tr><td>Total</td><td></td>${cells(tot)}</tr></tfoot>`;
+  $('#t-ledger').innerHTML = `<thead><tr>${cols.map((c, i) => `<th class="${i > 1 ? 'r' : ''}">${c}</th>`).join('')}</tr></thead><tbody>${SV.slice().reverse().map(s => `<tr><td>${fD(s.date)}</td><td class="mono">${esc(s.ref)}</td>${cells(Object.assign({}, s, { otherOrder: s.otherOrder + s.shipCredit + s.others }))}</tr>`).join('') || `<tr><td colspan="11" class="more">No statements in this period.</td></tr>`}</tbody><tfoot><tr><td>Total</td><td></td>${cells(tot)}</tr></tfoot>`;
+  paint('#t-ledger');
 }
 
 function renderFees(C){
@@ -817,6 +866,7 @@ function renderFees(C){
   const F = M.fees, t = acct(F);
   const fr = (lbl, f) => `<td>${lbl}</td><td class="r">${fM(f.ads)}</td><td class="r">${fM(f.adsSub)}</td><td class="r">${fM(f.fbn)}</td><td class="r">${fM(f.dmg)}</td><td class="r">${fM(f.ads + f.adsSub + f.fbn + f.dmg)}</td><td class="r">${fM(f.vat)}</td>`;
   $('#t-acct').innerHTML = `<thead><tr><th>Month</th><th class="r">Advertising</th><th class="r">Ad subsidy</th><th class="r">FBN charges</th><th class="r">Damaged returns</th><th class="r">Net charges</th><th class="r">VAT</th></tr></thead><tbody>${F.map(f => `<tr>${fr(mLabel(f.k), f)}</tr>`).join('')}</tbody><tfoot><tr>${fr('Total', t)}</tr></tfoot>`;
+  paint('#t-fees'); paint('#t-acct');
 }
 
 function renderReturns(C){
@@ -829,10 +879,11 @@ function renderReturns(C){
   ].join('');
   const ms = monthly(C.L);
   chart('ch-returns', { data: { labels: ms.map(x => mLabel(x.k)), datasets: [barDS('Customer returns', ms.map(x => r2(x.a.retVal)), css('--c1')), barDS('Not delivered', ms.map(x => r2(x.a.failVal)), css('--crit')), barDS('Cancelled', ms.map(x => r2(x.a.cancelVal)), css('--c4'))] } });
-  const rows = C.L.filter(i => i.g === 'returned' || i.g === 'failed' || i.g === 'canceled').sort((x, y) => y.date - x.date);
+  const rq = RETQ.toLowerCase().trim(), rows = C.L.filter(i => (i.g === 'returned' || i.g === 'failed' || i.g === 'canceled') && (!rq || (i.id + ' ' + i.p.name + ' ' + i.p.sku + ' ' + i.p.psku + ' ' + i.st).toLowerCase().includes(rq))).sort((x, y) => y.date - x.date);
+  const shown = Math.min(rows.length, PAGE.ret);
   $('#ret-count').textContent = `${fN(rows.length)} items in this period`;
-  $('#t-returns').innerHTML = `<thead><tr><th>Date</th><th>Item</th><th>Product</th><th>Type</th><th>Status</th><th class="r">Net proceeds</th><th class="r">Noon fees</th><th class="r">Loss · Noon</th><th class="r">Loss · In House</th></tr></thead><tbody>${rows.slice(0, LIMIT).map(i => `<tr><td>${fD(i.date)}</td><td class="mono">${esc(i.id)}</td><td>${esc(i.p.name)}</td><td>${esc(i.chName)}</td><td><span class="tag ${GROUP[i.g][1]}">${esc(i.st)}</span></td><td class="r">${fM(i.np)}</td><td class="r">${i.ref + i.ship + i.subs ? fM(i.ref + i.ship + i.subs) : '—'}</td><td class="r">${i.prof ? fM(i.prof) : '—'}</td><td class="r">${i.prof2 ? fM(i.prof2) : '—'}</td></tr>`).join('')}</tbody>` +
-    (rows.length > LIMIT ? `<tfoot><tr><td colspan="9" class="more">Showing the latest ${LIMIT} of ${fN(rows.length)}. Pick a month to see the rest.</td></tr></tfoot>` : '');
+  $('#t-returns').innerHTML = `<thead><tr><th>Date</th><th>Item</th><th>Product</th><th>Type</th><th>Status</th><th class="r">Net proceeds</th><th class="r">Noon fees</th><th class="r">Loss · Noon</th><th class="r">Loss · In House</th></tr></thead><tbody>${rows.slice(0, shown).map(i => `<tr><td>${fD(i.date)}</td><td class="mono">${esc(i.id)}</td><td>${esc(i.p.name)}</td><td>${esc(i.chName)}</td><td><span class="tag ${GROUP[i.g][1]}">${esc(i.st)}</span></td><td class="r">${fM(i.np)}</td><td class="r">${i.ref + i.ship + i.subs ? fM(i.ref + i.ship + i.subs) : '—'}</td><td class="r">${i.prof ? fM(i.prof) : '—'}</td><td class="r">${i.prof2 ? fM(i.prof2) : '—'}</td></tr>`).join('')}</tbody>`;
+  moreBar('#ret-more', 'ret', shown, rows.length, 'items'); paint('#t-returns');
 }
 
 function renderDelivery(C){
@@ -895,11 +946,55 @@ function setPills(){ document.querySelectorAll('.pill').forEach(p => p.classList
 document.querySelector('.quick [data-status="open"]').addEventListener('click', () => { ORD.g = 'open'; renderOrders(current()); });
 $('#pipeline').addEventListener('click', e => { const s = e.target.closest('.stage'); if (!s) return; ORD.g = s.dataset.go; location.hash = 'orders'; renderOrders(current()); });
 let qT; const later = f => { clearTimeout(qT); qT = setTimeout(f, 160); };
-$('#ord-q').addEventListener('input', e => { ORD.q = e.target.value; later(() => renderOrders(current())); });
-$('#prod-q').addEventListener('input', e => { PROD.q = e.target.value; later(() => renderProducts(current())); });
-$('#ord-chips').addEventListener('click', e => { const c = e.target.closest('.chip'); if (!c) return; ORD.g = c.dataset.g; renderOrders(current()); });
+$('#ord-q').addEventListener('input', e => { ORD.q = e.target.value; PAGE.ord = STEP; later(() => renderOrders(current())); });
+$('#ret-q').addEventListener('input', e => { RETQ = e.target.value; PAGE.ret = STEP; later(() => renderReturns(current())); });
+$('#st-q').addEventListener('input', e => { STQ = e.target.value; later(() => renderPayments(current())); });
+document.addEventListener('click', e => { const b = e.target.closest('[data-more],[data-all]'); if (!b) return; const k = b.dataset.more || b.dataset.all;
+  PAGE[k] = b.dataset.all ? 1e9 : PAGE[k] + STEP; ({ ord: renderOrders, prod: renderProducts, ret: renderReturns })[k](current()); });
+$('#prod-q').addEventListener('input', e => { PROD.q = e.target.value; PAGE.prod = STEP; later(() => renderProducts(current())); });
+$('#ord-chips').addEventListener('click', e => { const c = e.target.closest('.chip'); if (!c) return; ORD.g = c.dataset.g; PAGE.ord = STEP; renderOrders(current()); });
 $('#t-orders').addEventListener('click', e => { const h = e.target.closest('th[data-k]'); if (!h) return; if (ORD.sort === h.dataset.k) ORD.asc = !ORD.asc; else { ORD.sort = h.dataset.k; ORD.asc = false; } renderOrders(current()); });
 $('#t-products').addEventListener('click', e => { const h = e.target.closest('th[data-k]'); if (!h) return; if (PROD.sort === h.dataset.k) PROD.asc = !PROD.asc; else { PROD.sort = h.dataset.k; PROD.asc = false; } renderProducts(current()); });
+
+
+/* ---------- global search ---------- */
+let GS = null;
+function gsIndex(){
+  if (GS) return GS;
+  const orders = new Map();
+  for (const i of M.items) { let o = orders.get(i.order); if (!o) orders.set(i.order, o = { order: i.order, date: i.date, n: 0, np: 0, st: new Set(), text: i.order });
+    o.n++; o.np += i.np; o.st.add(i.st); o.text += ' ' + i.id + ' ' + i.p.sku + ' ' + i.p.psku; }
+  return GS = { orders: [...orders.values()], skus: M.skus.map(p => ({ p, text: (p.name + ' ' + p.sku + ' ' + p.psku + ' ' + p.cat).toLowerCase() })) };
+}
+function gsRun(q){
+  const box = $('#gs-res'); q = q.toLowerCase().trim();
+  if (q.length < 2) { box.hidden = true; return; }
+  const I = gsIndex(), words = q.split(/\s+/), hit = t => words.every(w => t.includes(w));
+  const ords = I.orders.filter(o => o.text.toLowerCase().includes(q)).slice(0, 6);
+  const prods = I.skus.filter(x => hit(x.text)).slice(0, 6);
+  const sts = M.statements.filter(x => (x.ref + ' ' + fD(x.date)).toLowerCase().includes(q)).slice(0, 4);
+  const sec = (h, arr, f) => arr.length ? `<div class="gs-h">${h}</div>` + arr.map(f).join('') : '';
+  box.innerHTML = sec('Orders', ords, o => `<div class="gs-i" data-k="o" data-v="${esc(o.order)}"><b>${esc(o.order)}</b><em>${fM(o.np)}</em><span>${fD(o.date)} · ${o.n} item${o.n > 1 ? 's' : ''} · ${esc([...o.st].join(', '))}</span></div>`) +
+    sec('Products', prods, x => `<div class="gs-i" data-k="p" data-v="${esc(x.p.sku)}"><b>${esc(x.p.name)}</b><em>${esc(x.p.cat)}</em><span>${esc(x.p.sku)} · ${esc(x.p.psku)}</span></div>`) +
+    sec('Statements', sts, x => `<div class="gs-i" data-k="s" data-v="${esc(x.ref)}"><b>${esc(x.ref)}</b><em>${fM(x.total)}</em><span>${fD(x.date)}</span></div>`) ||
+    `<div class="gs-h">No matches</div><div class="gs-i" style="cursor:default"><span>Try an order number, product name, Noon SKU, partner SKU or statement number.</span></div>`;
+  box.hidden = false;
+}
+function gsPick(el){
+  if (!el || !el.dataset.k) return; const k = el.dataset.k, v = el.dataset.v;
+  $('#gs-res').hidden = true; $('#gs').value = ''; $('#gs').blur();
+  if (RANGE.kind !== 'all' || CH !== '') { RANGE = { kind: 'all' }; CH = ''; $('#ch-sel').value = ''; $('#ch-sel').classList.remove('on'); setPills(); renderAll(); }
+  if (k === 'o') { ORD.q = v; ORD.g = 'all'; $('#ord-q').value = v; renderOrders(current()); location.hash = 'orders'; }
+  if (k === 'p') { PROD.q = v; $('#prod-q').value = v; renderProducts(current()); location.hash = 'products'; }
+  if (k === 's') { STQ = v; $('#st-q').value = v; renderPayments(current()); location.hash = 'payments'; }
+  toast('Showing ' + v);
+}
+$('#gs').addEventListener('input', e => later(() => gsRun(e.target.value)));
+$('#gs').addEventListener('focus', e => { if (e.target.value) gsRun(e.target.value); });
+$('#gs').addEventListener('keydown', e => { if (e.key === 'Escape') { $('#gs-res').hidden = true; e.target.blur(); } if (e.key === 'Enter') { e.preventDefault(); gsRun(e.target.value); gsPick($('#gs-res .gs-i[data-k]')); } });
+$('#gs-res').addEventListener('mousedown', e => { e.preventDefault(); gsPick(e.target.closest('.gs-i')); });
+document.addEventListener('click', e => { if (!e.target.closest('.gsearch')) $('#gs-res').hidden = true; });
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('on'), 2200); }
 
 /* theme */
 $('#theme-btn').onclick = () => { const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
