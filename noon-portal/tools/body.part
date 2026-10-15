@@ -1,0 +1,655 @@
+
+<div class="app" id="app">
+  <aside class="rail" id="rail" aria-label="Main navigation">
+    <div class="brand">
+      <div class="brand-mark">n</div>
+      <div><div class="brand-name"><span style="color:#FEEE00">noon</span> <span style="color:#8A8C9A">×</span> <span style="color:#D9B44A">In House</span></div><div class="brand-sub">Courier channel reports · KSA</div></div>
+    </div>
+    <nav class="nav" id="nav">
+      <div class="nav-label">Reports</div>
+      <a href="#overview" data-page="overview"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Overview</a>
+      <a href="#sales" data-page="sales"><svg viewBox="0 0 24 24"><path d="M3 20h18M6 16l4-5 3 3 5-7"/></svg>Sales</a>
+      <a href="#orders" data-page="orders"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM9 8h6M9 12h6M9 16h4"/></svg>Orders<span class="badge" id="b-orders">0</span></a>
+      <a href="#products" data-page="products"><svg viewBox="0 0 24 24"><path d="M4 13V9a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v4M3 13h18v4H3zM6 17v3M18 17v3"/></svg>Products</a>
+      <div class="nav-label">Money</div>
+      <a href="#payments" data-page="payments"><svg viewBox="0 0 24 24"><path d="M3 7h18v12H3zM3 11h18M7 15h3"/></svg>Payments<span class="badge hot" id="b-pay">·</span></a>
+      <a href="#fees" data-page="fees"><svg viewBox="0 0 24 24"><path d="M19 5L5 19M7 9a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM17 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>Fees &amp; ads</a>
+      <a href="#returns" data-page="returns"><svg viewBox="0 0 24 24"><path d="M9 14L4 9l5-5M4 9h11a5 5 0 0 1 0 10h-3"/></svg>Returns &amp; cancels<span class="badge" id="b-ret">0</span></a>
+      <div class="nav-label">Operations</div>
+      <a href="#delivery" data-page="delivery"><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM17 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>Delivery</a>
+      <a href="#data" data-page="data"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg>Data &amp; methods</a>
+    </nav>
+    <div class="rail-foot">
+      <div class="who">Sadati Fred Mwasongwe</div>
+      <div>Deputy Marketplace Manager<br>Noon courier · account 12539</div>
+      <div style="margin-top:8px" class="live"><i></i><span id="live-txt">Live view</span></div>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menu-btn" aria-label="Open menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div class="page-title" id="page-title">Overview<small id="range-txt">All time</small></div>
+      <div class="pills" role="group" aria-label="Date range" id="pills">
+        <button class="pill on" data-range="all">All time</button>
+        <button class="pill" data-range="mtd">Latest month</button>
+        <button class="pill" data-range="last">Month before</button>
+        <button class="pill" data-range="30">30 days</button>
+        <button class="pill" data-range="90">90 days</button>
+      </div>
+      <select class="month-sel" id="month-sel" aria-label="Pick a month"><option value="">Pick month</option></select>
+      <select class="month-sel" id="ch-sel" aria-label="Courier type"><option value="">All types</option><option value="0">Flex</option><option value="1">FBN</option><option value="2">Supermall</option></select>
+      <div class="quick">
+        <a class="qbtn" href="#payments"><span class="dot" style="background:var(--orange)"></span>Last payout <b id="q-pay">0</b></a>
+        <a class="qbtn" href="#orders" data-status="open"><span class="dot" style="background:var(--c2)"></span>Open orders <b id="q-open">0</b></a>
+        <a class="qbtn" href="#returns"><span class="dot" style="background:var(--crit)"></span>Returns <b id="q-ret">0</b></a>
+      </div>
+      <button class="icon-btn" id="theme-btn" aria-label="Switch light or dark"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
+      <div class="clock"><b id="clk-time">--:--:--</b><span id="clk-date">Riyadh</span></div>
+      <div class="ticker" aria-hidden="true"><div class="ticker-track"><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>Courier Channel</span><i>✦</i><span>Sadati Fred Mwasongwe</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>Courier Channel</span><i>✦</i><span>Sadati Fred Mwasongwe</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div></div></div>
+    </header>
+
+    <main class="content">
+      <!-- OVERVIEW -->
+      <section class="page" id="p-overview">
+        <div class="hero">
+          <canvas id="hero-canvas" aria-hidden="true"></canvas>
+          <div class="hero-in">
+            <div>
+              <div class="eyebrow" id="greet">Noon courier · In House</div>
+              <h1>Sadati Fred Mwasongwe</h1>
+              <div class="role">Deputy Marketplace Manager · <span class="gold-tx">Noon KSA courier · 12539</span></div>
+              <div class="tagline" id="hero-line">Every Noon order, fee, statement and payout for the courier account, with Noon's numbers and In House's numbers side by side.</div>
+            </div>
+            <div class="hero-stats" id="hero-stats"></div>
+          </div>
+        </div>
+        <div class="kpis" id="kpis"></div>
+        <div class="grid g-32">
+          <div class="card">
+            <div class="card-head"><h3>From net sales to profit</h3><div class="seg" id="wf-view" role="group" aria-label="Profit view"><button data-v="noon" class="on">Noon view</button><button data-v="ih">In House view</button></div></div>
+            <div class="wf" id="wf"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Highlights</h3><p id="ins-sub">Auto-generated from the data</p></div>
+            <ul class="insights" id="insights"></ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Noon view and In House view, side by side</h3><p>SAR · selected period and courier type</p></div>
+          <div class="tbl-wrap"><table class="vs" id="t-vs"></table></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Monthly performance</h3><p>Net sales and profit in both views, by order month</p></div>
+          <div class="legend"><span><i style="background:var(--c2)"></i>Net sales</span><span><i style="background:var(--c1)"></i>Profit · Noon view</span><span><i style="background:var(--c3)"></i>Profit · In House view</span></div>
+          <div class="chart-box lg"><canvas id="ch-monthly"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Order pipeline</h3><p>Items by Noon status</p></div>
+          <div class="pipeline" id="pipeline"></div>
+        </div>
+      </section>
+
+      <!-- SALES -->
+      <section class="page" id="p-sales">
+        <div class="kpis" id="sales-kpis"></div>
+        <div class="card">
+          <div class="card-head"><h3>Daily net sales</h3><p>SAR · Noon net proceeds of items sold, with the 7-day average</p></div>
+          <div class="legend"><span><i style="background:var(--c2)"></i>Net sales per day</span><span><i style="background:var(--c1)"></i>7-day average</span></div>
+          <div class="chart-box"><canvas id="ch-daily"></canvas></div>
+        </div>
+        <div class="grid g2">
+          <div class="card"><div class="card-head"><h3>Orders by weekday</h3><p>Order count</p></div><div class="chart-box sm"><canvas id="ch-weekday"></canvas></div></div>
+          <div class="card"><div class="card-head"><h3>Sales by category</h3><p>Net sales, SAR</p></div><div class="bars" id="cat-bars"></div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Monthly sales report</h3><p>SAR · counted on the order date</p></div>
+          <div class="tbl-wrap"><table id="t-month"></table></div>
+        </div>
+      </section>
+
+      <!-- ORDERS -->
+      <section class="page" id="p-orders">
+        <div class="card">
+          <div class="card-head"><h3>All order items</h3><p id="ord-count"></p></div>
+          <div class="toolbar">
+            <input class="search" id="ord-q" type="search" placeholder="Search order number, product, SKU, partner SKU">
+            <div id="ord-chips" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+          </div>
+          <div class="tbl-wrap"><table id="t-orders"></table></div>
+        </div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section class="page" id="p-products">
+        <div class="kpis" id="prod-kpis"></div>
+        <div class="card">
+          <div class="card-head"><h3>Product performance</h3><p>Unit cost from the workbook · profit in both views</p></div>
+          <div class="toolbar"><input class="search" id="prod-q" type="search" placeholder="Search product, SKU, partner SKU, category"></div>
+          <div class="tbl-wrap"><table id="t-products"></table></div>
+        </div>
+      </section>
+
+      <!-- PAYMENTS -->
+      <section class="page" id="p-payments">
+        <div class="kpis" id="pay-kpis"></div>
+        <div class="grid g-23">
+          <div class="card">
+            <div class="card-head"><h3>Payout timeline</h3><p>Transfers from Noon</p></div>
+            <div class="payouts" id="payouts"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Payouts</h3><p>SAR transferred each week</p></div>
+            <div class="chart-box"><canvas id="ch-payouts"></canvas></div>
+            <div class="card-head" style="margin-top:18px"><h3>Cash reconciliation</h3><p>All time · statements against payouts</p></div>
+            <div class="recon" id="recon"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Weekly statements</h3><p>SAR incl. VAT · from the PS-12539 statement tab</p></div>
+          <div class="tbl-wrap"><table id="t-ledger"></table></div>
+        </div>
+      </section>
+
+      <!-- FEES -->
+      <section class="page" id="p-fees">
+        <div class="kpis" id="fee-kpis"></div>
+        <div class="grid g2">
+          <div class="card"><div class="card-head"><h3>Order fees by month</h3><p>SAR · Noon view, referral and shipping after subsidies</p></div><div class="chart-box"><canvas id="ch-comm"></canvas></div></div>
+          <div class="card"><div class="card-head"><h3>Fees as a share of net sales</h3><p>Order fees ÷ net sales, both views</p></div><div class="chart-box"><canvas id="ch-rate"></canvas></div></div>
+        </div>
+        <div class="card"><div class="card-head"><h3>Charges from Noon</h3><p>SAR · selected period</p></div><div class="tbl-wrap"><table class="vs" id="t-fees"></table></div></div>
+        <div class="card"><div class="card-head"><h3>Monthly account charges</h3><p>SAR · ads, FBN charges and VAT from the All Fee tab</p></div><div class="tbl-wrap"><table id="t-acct"></table></div></div>
+      </section>
+
+      <!-- RETURNS -->
+      <section class="page" id="p-returns">
+        <div class="kpis" id="ret-kpis"></div>
+        <div class="card"><div class="card-head"><h3>Returns and cancellations by month</h3><p>SAR · net proceeds of the items</p></div>
+          <div class="legend"><span><i style="background:var(--c1)"></i>Customer returns (CIR)</span><span><i style="background:var(--crit)"></i>Could not be delivered</span><span><i style="background:var(--c4)"></i>Cancelled</span></div>
+          <div class="chart-box sm"><canvas id="ch-returns"></canvas></div></div>
+        <div class="card"><div class="card-head"><h3>Returned, failed and cancelled items</h3><p id="ret-count"></p></div><div class="tbl-wrap"><table id="t-returns"></table></div></div>
+      </section>
+
+      <!-- DELIVERY -->
+      <section class="page" id="p-delivery">
+        <div class="kpis" id="del-kpis"></div>
+        <div class="grid g2">
+          <div class="card"><div class="card-head"><h3>Needs attention</h3><p id="att-sub">Open items checked against the data date</p></div><ul class="insights" id="attention"></ul></div>
+          <div class="card"><div class="card-head"><h3>Courier type</h3><p>Items sold · delivery success</p></div><div class="bars" id="carrier-bars"></div></div>
+        </div>
+        <div class="card"><div class="card-head"><h3>Top categories</h3><p>Net sales · items sold</p></div><div class="bars" id="city-bars"></div></div>
+      </section>
+
+      <!-- DATA -->
+      <section class="page" id="p-data">
+        <div class="card">
+          <div class="card-head"><h3>Updating the portal</h3><span class="tag info">Coming next</span></div>
+          <p class="muted" style="font-size:13px">Uploading new Noon files will be added once the standard export from the channel manager is agreed. Until then the numbers come from the workbook named below.</p>
+        </div>
+        <div class="card"><p class="foot-note" id="data-src" style="margin:0"></p></div>
+        <div class="grid g2">
+          <div class="card"><div class="card-head"><h3>Data health</h3><p>Workbook tabs checked against each other</p></div><div class="recon" id="health"></div></div>
+          <div class="card"><div class="card-head"><h3>How each number is calculated</h3></div>
+            <dl class="defs">
+              <dt>Net sales</dt><dd>Noon net proceeds of items that are Delivered, Shipped, Processing or Pending. Returned, failed and cancelled items are left out.</dd>
+              <dt>Orders</dt><dd>Noon order numbers with at least one item that was not cancelled.</dd>
+              <dt>Noon view</dt><dd>Referral, shipping and order subsidies exactly as Noon charged them (the first set of fee columns). Revenue and profit use the workbook's Revenue and Profit columns.</dd>
+              <dt>In House view</dt><dd>Your own fee figures (Comm, Shipping and the second subsidy column). Revenue and profit use the Revenue2 and Profit2 columns. The two views are the same until June 2026.</dd>
+              <dt>Profit</dt><dd>Revenue minus the unit cost of each item sold. Returned items carry their fees but no product cost.</dd>
+              <dt>Profit after account charges</dt><dd>Profit plus ads, ad subsidies, FBN charges and damaged-return credits from the All Fee tab. Shown for whole months and for all courier types only, because these charges are not split by order.</dd>
+              <dt>Payouts</dt><dd>Transfers listed in the Statement &amp; Payment tab. Statement totals in the PS-12539 tab already include VAT.</dd>
+              <dt>Period filter</dt><dd>Order money follows the order date. The range buttons count back from the last order in the data, not from today.</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const EMBED = /*__DATA__*/null;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const store = { get(k){ try{ return JSON.parse(localStorage.getItem('noon-' + k)); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem('noon-' + k, JSON.stringify(v)); }catch(e){} } };
+
+const r2 = x => Math.round(x * 100) / 100;
+const mk = d => d ? d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') : '';
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const mLabel = k => { const [y, m] = k.split('-'); return MONTHS[+m - 1] + ' ' + y.slice(2); };
+const fD = d => d ? d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear() : '—';
+const fM = (x, dp = 2) => (x < 0 ? '−' : '') + Math.abs(x).toLocaleString('en-US', { minimumFractionDigits: dp, maximumFractionDigits: dp });
+const fN = x => Math.round(x).toLocaleString('en-US');
+const pct = x => isFinite(x) ? (x * 100).toFixed(1) + '%' : '—';
+const titleCase = s => s.replace(/\s+/g, ' ').trim().replace(/(^|\s)([a-z])/g, (m, a, b) => a + b.toUpperCase());
+const isoDate = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+
+// Noon status → report group
+const GROUP_OF = { 'Delivered':'delivered', 'Shipped':'shipped', 'Processing':'processing', 'Pending Confirmation':'processing', 'CIR':'returned', 'Could Not Be Delivered':'failed', 'Cancelled':'canceled' };
+const GROUP = { processing:['Processing','warn'], shipped:['Shipped','info'], delivered:['Delivered','good'], returned:['Customer return','crit'], failed:['Not delivered','crit'], canceled:['Cancelled','mute'] };
+const SOLD = new Set(['delivered', 'shipped', 'processing']);
+
+/* ---------- model ---------- */
+let M = null;
+function build(D){
+  const base = isoDate(D.meta.base).getTime(), at = m => m == null ? null : new Date(base + m * 6e4);
+  const skus = D.skus.map(s => { let t = s[2] ? titleCase(s[2].toLowerCase()) : ''; if (t.length > 72) t = t.slice(0, 70) + '…';
+    return { sku: s[0], psku: s[1], name: t || (s[3] || 'Item') + ' · ' + s[0], cat: s[3] || 'Other', family: s[4], brand: s[5] }; });
+  const items = D.items.map(r => { const p = skus[r[3]], st = D.meta.status[r[4]], g = GROUP_OF[st] || 'processing';
+    return { date: at(r[0]), order: r[1], id: r[1] + '-' + r[2], p, st, g, sold: SOLD.has(g), ch: r[5], chName: D.meta.channels[r[5]],
+      gmv: r[6], np: r[7], ref: r[8], ship: r[9], subs: r[10], cost: r[11], ref2: r[12], ship2: r[13], subs2: r[14], rev: r[15], prof: r[16], rev2: r[17], prof2: r[18],
+      shipD: at(r[19]), delD: at(r[20]) }; });
+  const asOf = at(D.meta.asOf), first = new Date(Math.min(...items.map(i => i.date).filter(Boolean)));
+  const payments = D.payments.map(([d, a]) => ({ date: isoDate(d), amt: a }));
+  const statements = D.statements.map(s => Object.assign({}, s, { date: isoDate(s.date) }));
+  const fees = D.fees.map(f => ({ k: '2026-' + String(f[0]).padStart(2, '0'), ads: f[1], adsSub: f[2], fbn: f[3], dmg: f[4], vat: f[5] }));
+  return { D, skus, items, asOf, first, payments, statements, fees };
+}
+
+function aggregate(L){
+  const a = { lines: L.length, orders: 0, placed: 0, sold: 0, sales: 0, net: 0, gmv: 0, retLines: 0, retVal: 0, failLines: 0, failVal: 0, canceled: 0, cancelVal: 0,
+    n: { ref: 0, ship: 0, subs: 0, rev: 0, prof: 0 }, h: { ref: 0, ship: 0, subs: 0, rev: 0, prof: 0 } };
+  const ords = new Set(), placed = new Set();
+  for (const i of L) {
+    placed.add(i.order);
+    if (i.g === 'canceled') { a.canceled++; a.cancelVal += i.np; continue; }
+    ords.add(i.order); a.sales += i.np;
+    if (i.sold) { a.sold++; a.net += i.np; a.gmv += i.gmv; }
+    else if (i.g === 'returned') { a.retLines++; a.retVal += i.np; }
+    else if (i.g === 'failed') { a.failLines++; a.failVal += i.np; }
+    a.n.ref += i.ref; a.n.ship += i.ship; a.n.subs += i.subs; a.n.rev += i.rev; a.n.prof += i.prof;
+    a.h.ref += i.ref2; a.h.ship += i.ship2; a.h.subs += i.subs2; a.h.rev += i.rev2; a.h.prof += i.prof2;
+  }
+  a.orders = ords.size; a.placed = placed.size;
+  for (const v of [a.n, a.h]) { v.fees = v.ref + v.ship + v.subs; v.cost = v.rev - v.prof; v.other = v.rev - (a.net + v.fees); v.margin = a.net ? v.prof / a.net : 0; v.feeRate = a.net ? -v.fees / a.net : 0; }
+  a.aov = a.orders ? a.net / a.orders : 0;
+  a.retRate = a.sales ? (a.retVal + a.failVal) / a.sales : 0;
+  return a;
+}
+
+/* ---------- range & filters ---------- */
+let RANGE = { kind: 'all' }, CH = '', VIEW = 'noon';
+function rangeBounds(){
+  const now = M.asOf, k = RANGE.kind, far = new Date(2100, 0, 1);
+  if (k === 'all') return [new Date(2000, 0, 1), far, 'All time · ' + fD(M.first) + ' to ' + fD(M.asOf)];
+  if (k === 'mtd') { const s = new Date(now.getFullYear(), now.getMonth(), 1); return [s, far, MONTHS[now.getMonth()] + ' ' + now.getFullYear() + ' · data through ' + fD(now)]; }
+  if (k === 'last') { const s = new Date(now.getFullYear(), now.getMonth() - 1, 1), e = new Date(now.getFullYear(), now.getMonth(), 1); return [s, e, MONTHS[s.getMonth()] + ' ' + s.getFullYear()]; }
+  if (k === 'month') { const [y, m] = RANGE.month.split('-').map(Number); return [new Date(y, m - 1, 1), new Date(y, m, 1), MONTHS[m - 1] + ' ' + y]; }
+  const days = +k, s = new Date(now); s.setHours(0, 0, 0, 0); s.setDate(s.getDate() - days + 1); return [s, far, 'Last ' + days + ' days to ' + fD(now)];
+}
+const inR = (d, b) => d && d >= b[0] && d < b[1];
+const chOK = i => CH === '' || i.ch === +CH;
+function current(){
+  const b = rangeBounds(), L = M.items.filter(i => chOK(i) && inR(i.date, b));
+  const keys = monthKeys(L);
+  // Account charges are monthly and not split by order, so they only apply to whole months with all courier types.
+  const whole = CH === '' && (RANGE.kind === 'all' || RANGE.kind === 'month' || RANGE.kind === 'last');
+  const F = whole ? M.fees.filter(f => keys.includes(f.k)) : [];
+  return { b, L, a: aggregate(L), keys, F, whole };
+}
+function monthKeys(L){ const ks = [...new Set(L.map(i => mk(i.date)).filter(Boolean))].sort(); if (!ks.length) return [];
+  const out = []; let [y, m] = ks[0].split('-').map(Number); const last = ks[ks.length - 1];
+  while (true) { const k = y + '-' + String(m).padStart(2, '0'); out.push(k); if (k >= last) break; m++; if (m > 12) { m = 1; y++; } }
+  return out; }
+function monthly(L){ return monthKeys(L).map(k => ({ k, a: aggregate(L.filter(i => mk(i.date) === k)) })); }
+const acct = F => F.reduce((s, f) => ({ ads: s.ads + f.ads, adsSub: s.adsSub + f.adsSub, fbn: s.fbn + f.fbn, dmg: s.dmg + f.dmg, vat: s.vat + f.vat }), { ads: 0, adsSub: 0, fbn: 0, dmg: 0, vat: 0 });
+
+/* ---------- charts ---------- */
+const charts = {};
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function chart(id, cfg){
+  if (charts[id]) charts[id].destroy();
+  const el = document.getElementById(id); if (!el || !window.Chart) return;
+  const fg2 = css('--fg-3'), grid = css('--line');
+  Chart.defaults.font.family = css('--f-body'); Chart.defaults.color = fg2;
+  cfg.options = Object.assign({ responsive: true, maintainAspectRatio: false, animation: { duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 900, easing: 'easeOutQuart' },
+    interaction: { mode: 'index', intersect: false },
+    plugins: { legend: { display: false }, tooltip: { backgroundColor: css('--fg'), titleColor: css('--bg'), bodyColor: css('--bg'), padding: 10, cornerRadius: 8, boxPadding: 4, usePointStyle: true,
+      callbacks: { label: c => ' ' + c.dataset.label + ': ' + (c.dataset.fmt === 'pct' ? (c.parsed.y * 100).toFixed(1) + '%' : c.dataset.fmt === 'n' ? fN(c.parsed.y) : 'SAR ' + fM(c.parsed.y)) } } },
+    scales: { x: { grid: { display: false }, border: { color: grid }, ticks: { color: fg2, maxRotation: 0, autoSkipPadding: 12 } },
+      y: { grid: { color: grid }, border: { display: false }, beginAtZero: true, ticks: { color: fg2, callback: v => cfg.yfmt === 'pct' ? (v * 100).toFixed(0) + '%' : cfg.yfmt === 'n' ? v : (Math.abs(v) >= 1000 ? (v / 1000).toFixed(0) + 'k' : v) } } } }, cfg.options || {});
+  charts[id] = new Chart(el, cfg);
+}
+const barDS = (label, data, color, extra) => Object.assign({ type: 'bar', label, data, backgroundColor: color, borderRadius: 4, borderSkipped: 'bottom', maxBarThickness: 34, categoryPercentage: .72, barPercentage: .9 }, extra || {});
+
+/* ---------- rendering helpers ---------- */
+function kpi(label, val, sub, opts = {}){
+  const prefix = opts.money === false ? '' : '<small>SAR</small>';
+  return `<div class="kpi" title="${esc(opts.title || '')}"><div class="k-label">${label}${opts.tag || ''}</div><div class="k-val" data-v="${opts.raw ?? ''}" data-fmt="${opts.fmt || ''}">${prefix}${val}</div><div class="k-sub">${sub}</div></div>`;
+}
+function countUp(root){
+  if (!root || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  root.querySelectorAll('.k-val[data-v]').forEach(el => {
+    const v = parseFloat(el.dataset.v); if (!isFinite(v) || !v) return;
+    const fmt = el.dataset.fmt, small = el.querySelector('small'), pre = small ? small.outerHTML : '';
+    const t0 = performance.now(), dur = 700, show = x => fmt === 'n' ? fN(x) : fmt === 'pct' ? (x * 100).toFixed(1) + '%' : fM(x, 0);
+    const step = t => { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.innerHTML = pre + show(p < 1 ? v * (.6 + .4 * e) : v); if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  });
+}
+const icon = {
+  up: '<svg viewBox="0 0 24 24"><path d="M4 16l6-6 4 4 6-7"/></svg>', star: '<svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.8 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg>',
+  alert: '<svg viewBox="0 0 24 24"><path d="M12 8v5M12 17h.01M10.3 3.9L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>',
+  cash: '<svg viewBox="0 0 24 24"><path d="M3 7h18v10H3zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>', pin: '<svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12zM12 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>',
+  ret: '<svg viewBox="0 0 24 24"><path d="M9 14L4 9l5-5M4 9h11a5 5 0 0 1 0 10h-3"/></svg>', ok: '<svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>'
+};
+const insight = (kind, ic, html) => `<li class="${kind}"><span class="ic">${icon[ic]}</span><span>${html}</span></li>`;
+function bars(sel, rows, color){
+  const max = Math.max(...rows.map(r => r[1]), 1);
+  $(sel).innerHTML = rows.map(([k, v, lab]) => `<div class="bar-row"><span title="${esc(k)}" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(k)}</span><div class="bt"><i style="width:${Math.max(0, v) / max * 100}%;background:${color}"></i></div><span class="bv">${lab}</span></div>`).join('') || '<p class="muted">Nothing in this period.</p>';
+}
+const sortTable = (rows, st) => rows.sort((x, y) => { const p = x[st.sort], q = y[st.sort]; const c = p > q ? 1 : p < q ? -1 : 0; return st.asc ? c : -c; });
+const th = (cols, st) => `<thead><tr>${cols.map(c => `<th data-k="${c[0]}" class="${c[2] || ''}${st && st.sort === c[0] ? ' sorted' + (st.asc ? ' asc' : '') : ''}">${c[1]}</th>`).join('')}</tr></thead>`;
+const LIMIT = 400;
+
+function nextPayout(){ // Noon pays weekly; use the weekday of the last transfer
+  const last = M.payments[M.payments.length - 1]; if (!last) return null;
+  const now = new Date(); now.setHours(0, 0, 0, 0); const d = new Date(now);
+  while (d.getDay() !== last.date.getDay() || d <= now) d.setDate(d.getDate() + 1);
+  return d;
+}
+
+function renderAll(){
+  const C = current(), a = C.a;
+  $('#range-txt').textContent = C.b[2] + (CH !== '' ? ' · ' + M.D.meta.channels[+CH] : '');
+  const open = M.items.filter(i => chOK(i) && (i.g === 'processing' || i.g === 'shipped'));
+  const last = M.payments[M.payments.length - 1];
+  $('#b-orders').textContent = fN(a.orders); $('#b-ret').textContent = fN(a.retLines + a.failLines);
+  $('#b-pay').textContent = last ? fM(last.amt / 1000, 1) + 'k' : '·'; $('#q-pay').textContent = last ? fM(last.amt, 0) : '—'; $('#q-open').textContent = fN(open.length); $('#q-ret').textContent = fN(a.retLines);
+  renderOverview(C); renderSales(C); renderOrders(C); renderProducts(C); renderPayments(C); renderFees(C); renderReturns(C); renderDelivery(C); renderData();
+  countUp(document.querySelector('.page.on'));
+}
+
+function renderOverview(C){
+  const a = C.a, paid = M.payments.filter(p => inR(p.date, C.b)).reduce((s, p) => s + p.amt, 0), np = nextPayout();
+  const hr = new Date().getHours(); $('#greet').textContent = (hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening') + ' · Noon courier · In House';
+  $('#hero-stats').innerHTML = [['Net sales', 'SAR ' + fM(a.net, 0)], ['Orders', fN(a.orders)], ['Paid out by Noon', 'SAR ' + fM(paid, 0)], ['Next payout', np ? fD(np) : '—']].map(([k, v]) => `<div class="hs"><span>${k}</span><b>${v}</b></div>`).join('');
+  const d = a.h.prof - a.n.prof;
+  $('#kpis').innerHTML = [
+    kpi('Net sales', fM(a.net, 0), `${fN(a.sold)} items sold · SAR ${fM(a.sales, 0)} before returns`, { raw: a.net }),
+    kpi('Orders', fN(a.orders), `${fN(a.lines)} items · ${fN(a.canceled)} cancelled`, { raw: a.orders, fmt: 'n', money: false }),
+    kpi('Profit · Noon view', fM(a.n.prof, 0), `${pct(a.n.margin)} of net sales`, { raw: a.n.prof }),
+    kpi('Profit · In House view', fM(a.h.prof, 0), `${pct(a.h.margin)} of net sales · ${d >= 0 ? '+' : '−'}SAR ${fM(Math.abs(d), 0)} vs Noon`, { raw: a.h.prof }),
+    kpi('Average order', fM(a.aov, 0), 'net sales ÷ orders', { raw: a.aov }),
+    kpi('Noon order fees', fM(-a.n.fees, 0), `${pct(a.n.feeRate)} of net sales · after subsidies`, { raw: -a.n.fees }),
+    kpi('Product cost', fM(a.n.cost, 0), 'unit cost × items sold', { raw: a.n.cost }),
+    kpi('Returns', fN(a.retLines + a.failLines), `${pct(a.retRate)} of sales · ${fN(a.retLines)} customer returns`, { raw: a.retLines + a.failLines, fmt: 'n', money: false })
+  ].join('');
+  renderWaterfall(C);
+  // side by side
+  const ac = acct(C.F), rows = [['Net sales', a.net, a.net], ['Referral / commission', a.n.ref, a.h.ref], ['Shipping', a.n.ship, a.h.ship], ['Order subsidies', a.n.subs, a.h.subs]];
+  if (Math.abs(a.n.other) > 1 || Math.abs(a.h.other) > 1) rows.push(['Other adjustments', a.n.other, a.h.other]);
+  rows.push(['Revenue', a.n.rev, a.h.rev, 1], ['Product cost', -a.n.cost, -a.h.cost], ['Profit', a.n.prof, a.h.prof, 1]);
+  if (C.F.length) { const x = ac.ads + ac.adsSub + ac.fbn + ac.dmg; rows.push(['Ads, FBN and damaged returns', x, x], ['Profit after account charges', a.n.prof + x, a.h.prof + x, 1]); }
+  const dc = v => Math.abs(v) < .5 ? '<span class="muted">—</span>' : `<span class="${v > 0 ? 'diff-up' : 'diff-dn'}">${v > 0 ? '+' : ''}${fM(v)}</span>`;
+  $('#t-vs').innerHTML = `<thead><tr><th></th><th class="r">Noon view</th><th class="r">In House view</th><th class="r">Difference</th></tr></thead><tbody>${rows.map(r => `<tr class="${r[3] ? 'sum' : ''}"><td>${r[0]}</td><td class="r">${fM(r[1])}</td><td class="r">${fM(r[2])}</td><td class="r">${dc(r[2] - r[1])}</td></tr>`).join('')}
+    <tr><td>Margin on net sales</td><td class="r">${pct(a.n.margin)}</td><td class="r">${pct(a.h.margin)}</td><td class="r"></td></tr></tbody>`;
+  // insights
+  const ms = monthly(C.L), ins = [];
+  if (ms.length) { const best = ms.reduce((b, x) => x.a.net > b.a.net ? x : b); ins.push(insight('good', 'star', `Best month: <b>${mLabel(best.k)}</b> with SAR ${fM(best.a.net, 0)} net sales from ${fN(best.a.orders)} orders.`)); }
+  const full = ms.filter(x => x.k < mk(M.asOf));
+  if (full.length >= 2) { const x = full[full.length - 1], y = full[full.length - 2], ch = y.a.net ? (x.a.net - y.a.net) / y.a.net : 0;
+    ins.push(insight(ch >= 0 ? 'good' : 'warn', 'up', `${mLabel(x.k)} net sales ${ch >= 0 ? 'grew' : 'fell'} <b>${pct(Math.abs(ch))}</b> against ${mLabel(y.k)}.`)); }
+  const prods = productRows(C.L); if (prods.length) { const tp = prods.slice().sort((p, q) => q.sold - p.sold)[0]; ins.push(insight('', 'star', `Top seller: <b>${esc(tp.name)}</b>, ${fN(tp.sold)} items and SAR ${fM(tp.net, 0)} net sales.`)); }
+  if (Math.abs(d) > 1) { const dm = ms.filter(x => Math.abs(x.a.h.prof - x.a.n.prof) > 1).map(x => mLabel(x.k));
+    ins.push(insight('', 'cash', `The In House view shows <b>SAR ${fM(Math.abs(d), 0)} ${d > 0 ? 'more' : 'less'}</b> profit than Noon's numbers${dm.length ? ', all of it in ' + dm[0] + (dm.length > 1 ? ' to ' + dm[dm.length - 1] : '') : ''}.`)); }
+  ins.push(insight(a.retRate > .1 ? 'warn' : '', 'ret', `Returns and failed deliveries are <b>${pct(a.retRate)}</b> of sales (${fN(a.retLines)} customer returns, ${fN(a.failLines)} not delivered).`));
+  const stale = M.items.filter(i => chOK(i) && i.g === 'processing' && (M.asOf - i.date) / 864e5 > 3);
+  if (stale.length) ins.push(insight('crit', 'alert', `<b>${stale.length} item${stale.length > 1 ? 's have' : ' has'} been processing for more than 3 days</b> at the data date.`));
+  $('#insights').innerHTML = ins.join('');
+  chart('ch-monthly', { data: { labels: ms.map(x => mLabel(x.k)), datasets: [barDS('Net sales', ms.map(x => r2(x.a.net)), css('--c2')), barDS('Profit · Noon view', ms.map(x => r2(x.a.n.prof)), css('--c1')), barDS('Profit · In House view', ms.map(x => r2(x.a.h.prof)), css('--c3'))] } });
+  const L = C.L, tot = L.length || 1;
+  $('#pipeline').innerHTML = ['processing', 'shipped', 'delivered', 'returned', 'failed', 'canceled'].map(g => { const x = L.filter(i => i.g === g), v = x.reduce((s, i) => s + i.np, 0);
+    return `<div class="stage" data-go="${g}" role="button" tabindex="0"><span>${GROUP[g][0]}</span><b>${fN(x.length)}</b><em>SAR ${fM(v, 0)}</em><div class="meter"><i style="width:${x.length / tot * 100}%"></i></div></div>`; }).join('');
+}
+function renderWaterfall(C){
+  const a = C.a, v = VIEW === 'ih' ? a.h : a.n;
+  const steps = [['Net sales', a.net, 't'], [VIEW === 'ih' ? 'Commission' : 'Referral fees', v.ref, 'd'], ['Shipping', v.ship, 'd'], ['Order subsidies', v.subs, 'd']];
+  if (Math.abs(v.other) > 1) steps.push(['Other adjustments', v.other, 'd']);
+  steps.push(['Revenue', v.rev, 't'], ['Product cost', -v.cost, 'd'], ['Profit', v.prof, 'p']);
+  const max = Math.max(a.net, ...steps.map(s => s[1]), 1); let run = 0;
+  $('#wf').innerHTML = steps.filter(s => s[2] !== 'd' || Math.abs(s[1]) > .004).map(([lbl, x, k]) => {
+    let left, width; if (k === 'd') { left = Math.min(run, run + x) / max; width = Math.abs(x) / max; run += x; } else { run = x; left = Math.min(0, x) / max; width = Math.abs(x) / max; }
+    return `<div class="wf-row ${k === 'd' ? 'ded' : 'total'}"><span class="lbl">${lbl}</span><div class="wf-track"><div class="wf-bar ${k}" style="left:${Math.max(0, left) * 100}%;width:${Math.max(.3, width * 100)}%"></div></div><span class="v">${fM(x)}</span></div>`;
+  }).join('');
+}
+
+function renderSales(C){
+  const a = C.a;
+  $('#sales-kpis').innerHTML = [
+    kpi('Net sales', fM(a.net, 0), `customer paid SAR ${fM(a.gmv, 0)} after Noon discounts`, { raw: a.net }),
+    kpi('Items sold', fN(a.sold), `${fN(a.sold + a.retLines + a.failLines)} shipped or sold before returns`, { raw: a.sold, fmt: 'n', money: false }),
+    kpi('Average order', fM(a.aov, 0), 'net sales ÷ orders', { raw: a.aov }),
+    kpi('Items per order', (a.orders ? (a.lines - a.canceled) / a.orders : 0).toFixed(2), `${fN(a.lines - a.canceled)} items in ${fN(a.orders)} orders`, { money: false })
+  ].join('');
+  const L = C.L.filter(i => i.sold && i.date), by = {};
+  L.forEach(i => { const k = new Date(i.date.getFullYear(), i.date.getMonth(), i.date.getDate()).getTime(); by[k] = (by[k] || 0) + i.np; });
+  const ks = Object.keys(by).map(Number).sort((x, y) => x - y), days = [];
+  if (ks.length) for (let d = new Date(ks[0]); d.getTime() <= ks[ks.length - 1]; d.setDate(d.getDate() + 1)) days.push([new Date(d), by[d.getTime()] || 0]);
+  const avg = days.map((_, i) => { const w = days.slice(Math.max(0, i - 6), i + 1); return r2(w.reduce((s, x) => s + x[1], 0) / w.length); });
+  chart('ch-daily', { data: { labels: days.map(d => d[0].getDate() + ' ' + MONTHS[d[0].getMonth()]), datasets: [barDS('Net sales', days.map(d => r2(d[1])), css('--c2'), { maxBarThickness: 10, categoryPercentage: 1, borderRadius: 2 }),
+    { type: 'line', label: '7-day average', data: avg, borderColor: css('--c1'), borderWidth: 2, pointRadius: 0, tension: .35, fill: false }] } });
+  const wd = [0, 0, 0, 0, 0, 0, 0], seen = new Set();
+  L.forEach(i => { if (!seen.has(i.order)) { seen.add(i.order); wd[i.date.getDay()]++; } });
+  chart('ch-weekday', { yfmt: 'n', data: { labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], datasets: [barDS('Orders', wd, css('--c3'), { fmt: 'n' })] } });
+  const cats = {}; L.forEach(i => { cats[i.p.cat] = (cats[i.p.cat] || 0) + i.np; });
+  bars('#cat-bars', Object.entries(cats).sort((x, y) => y[1] - x[1]).slice(0, 10).map(([k, v]) => [k, v, 'SAR ' + fM(v, 0)]), css('--c4'));
+  const ms = monthly(C.L);
+  const cols = [['Month'], ['Orders', 'r'], ['Items sold', 'r'], ['Net sales', 'r'], ['Returns', 'r'], ['Fees · Noon', 'r'], ['Profit · Noon', 'r'], ['Margin · Noon', 'r'], ['Fees · In House', 'r'], ['Profit · In House', 'r'], ['Margin · In House', 'r'], ['AOV', 'r']];
+  const row = (lbl, a) => `<td>${lbl}</td><td class="r">${fN(a.orders)}</td><td class="r">${fN(a.sold)}</td><td class="r">${fM(a.net)}</td><td class="r">${fM(a.retVal + a.failVal)}</td><td class="r">${fM(-a.n.fees)}</td><td class="r">${fM(a.n.prof)}</td><td class="r">${pct(a.n.margin)}</td><td class="r">${fM(-a.h.fees)}</td><td class="r">${fM(a.h.prof)}</td><td class="r">${pct(a.h.margin)}</td><td class="r">${fM(a.aov, 0)}</td>`;
+  $('#t-month').innerHTML = `<thead><tr>${cols.map(c => `<th class="${c[1] || ''}">${c[0]}</th>`).join('')}</tr></thead><tbody>${ms.map(x => `<tr>${row(mLabel(x.k), x.a)}</tr>`).join('')}</tbody><tfoot><tr>${row('Total', a)}</tr></tfoot>`;
+}
+
+/* orders */
+let ORD = { q: '', g: 'all', sort: 'date', asc: false };
+function renderOrders(C){
+  const groups = ['all', 'open', 'processing', 'shipped', 'delivered', 'returned', 'failed', 'canceled'];
+  const label = g => g === 'all' ? 'All' : g === 'open' ? 'Open' : GROUP[g][0];
+  $('#ord-chips').innerHTML = groups.map(g => `<button class="chip${ORD.g === g ? ' on' : ''}" data-g="${g}">${label(g)}</button>`).join('');
+  const q = ORD.q.toLowerCase().trim();
+  let rows = C.L.filter(i => (ORD.g === 'all' || i.g === ORD.g || (ORD.g === 'open' && (i.g === 'processing' || i.g === 'shipped'))) && (!q || (i.id + ' ' + i.p.name + ' ' + i.p.sku + ' ' + i.p.psku + ' ' + i.st).toLowerCase().includes(q)));
+  rows.forEach(i => { i.fees = i.ref + i.ship + i.subs; i.name = i.p.name; });
+  sortTable(rows, ORD);
+  $('#ord-count').textContent = `${fN(rows.length)} of ${fN(C.L.length)} items in this period`;
+  const cols = [['date', 'Date'], ['id', 'Item'], ['name', 'Product'], ['chName', 'Type'], ['st', 'Status'], ['np', 'Net proceeds', 'r'], ['fees', 'Noon fees', 'r'], ['cost', 'Unit cost', 'r'], ['prof', 'Profit · Noon', 'r'], ['prof2', 'Profit · In House', 'r']];
+  $('#t-orders').innerHTML = th(cols, ORD) + `<tbody>${rows.slice(0, LIMIT).map(i => `<tr><td>${fD(i.date)}</td><td class="mono">${esc(i.id)}</td><td title="${esc(i.p.sku)}">${esc(i.p.name)}</td><td>${esc(i.chName)}</td><td><span class="tag ${GROUP[i.g][1]}">${esc(i.st)}</span></td><td class="r">${fM(i.np)}</td><td class="r">${i.fees ? fM(i.fees) : '—'}</td><td class="r">${fM(i.cost)}</td><td class="r">${fM(i.prof)}</td><td class="r">${fM(i.prof2)}</td></tr>`).join('')}</tbody>` +
+    (rows.length > LIMIT ? `<tfoot><tr><td colspan="${cols.length}" class="more">Showing the first ${LIMIT} of ${fN(rows.length)}. Search or pick a status to narrow the list.</td></tr></tfoot>` : '');
+}
+
+/* products */
+function productRows(L){
+  const P = new Map();
+  for (const i of L) { let p = P.get(i.p); if (!p) P.set(i.p, p = { sku: i.p.sku, psku: i.p.psku, name: i.p.name, cat: i.p.cat, cost: i.cost, lines: 0, sold: 0, ret: 0, canceled: 0, net: 0, prof: 0, prof2: 0 });
+    p.lines++; if (i.g === 'canceled') { p.canceled++; continue; }
+    if (i.sold) { p.sold++; p.net += i.np; } else p.ret++;
+    p.prof += i.prof; p.prof2 += i.prof2; }
+  return [...P.values()].map(p => Object.assign(p, { margin: p.net ? p.prof / p.net : -Infinity, margin2: p.net ? p.prof2 / p.net : -Infinity }));
+}
+let PROD = { sort: 'net', asc: false, q: '' };
+function renderProducts(C){
+  const a = C.a, all = productRows(C.L), q = PROD.q.toLowerCase().trim();
+  const sold = all.filter(p => p.sold > 0), loss = sold.filter(p => p.prof < 0);
+  $('#prod-kpis').innerHTML = [
+    kpi('Products sold', fN(sold.length), `${fN(M.skus.length)} SKUs in the data`, { raw: sold.length, fmt: 'n', money: false }),
+    kpi('Items sold', fN(a.sold), `${fN(a.retLines + a.failLines)} came back`, { raw: a.sold, fmt: 'n', money: false }),
+    kpi('Profit · Noon view', fM(a.n.prof, 0), `In House view SAR ${fM(a.h.prof, 0)}`, { raw: a.n.prof }),
+    kpi('Loss-making products', fN(loss.length), `SAR ${fM(loss.reduce((s, p) => s + p.prof, 0), 0)} lost in the Noon view`, { raw: loss.length, fmt: 'n', money: false })
+  ].join('');
+  let rows = all.filter(p => !q || (p.name + ' ' + p.sku + ' ' + p.psku + ' ' + p.cat).toLowerCase().includes(q));
+  sortTable(rows, PROD);
+  const cols = [['name', 'Product'], ['sku', 'Noon SKU'], ['psku', 'Partner SKU'], ['cat', 'Category'], ['sold', 'Sold', 'r'], ['ret', 'Returned', 'r'], ['canceled', 'Cancelled', 'r'], ['net', 'Net sales', 'r'], ['cost', 'Unit cost', 'r'], ['prof', 'Profit · Noon', 'r'], ['margin', 'Margin · Noon', 'r'], ['prof2', 'Profit · In House', 'r'], ['margin2', 'Margin · In House', 'r']];
+  $('#t-products').innerHTML = th(cols, PROD) + `<tbody>${rows.slice(0, LIMIT).map(p => `<tr><td class="wrap">${esc(p.name)}</td><td class="mono">${esc(p.sku)}</td><td class="mono">${esc(p.psku)}</td><td>${esc(p.cat)}</td><td class="r">${fN(p.sold)}</td><td class="r">${p.ret || '—'}</td><td class="r">${p.canceled || '—'}</td><td class="r">${fM(p.net)}</td><td class="r">${fM(p.cost)}</td><td class="r">${fM(p.prof)}</td><td class="r">${p.net ? pct(p.margin) : '—'}</td><td class="r">${fM(p.prof2)}</td><td class="r">${p.net ? pct(p.margin2) : '—'}</td></tr>`).join('')}</tbody>` +
+    (rows.length > LIMIT ? `<tfoot><tr><td colspan="${cols.length}" class="more">Showing the first ${LIMIT} of ${fN(rows.length)} products. Search to find the rest.</td></tr></tfoot>` : '');
+}
+
+/* payments */
+function renderPayments(C){
+  const P = M.payments, inP = P.filter(p => inR(p.date, C.b)), paidP = inP.reduce((s, p) => s + p.amt, 0), np = nextPayout();
+  const S = M.statements.filter(s => inR(s.date, C.b)), stTot = S.reduce((s, x) => s + x.total, 0);
+  const stAll = M.D.stLines.reduce((s, x) => s + x[1], 0), vat = M.D.vat.reduce((s, x) => s + x[1], 0), fbn = M.D.fbn.reduce((s, x) => s + x[1], 0), paid = P.reduce((s, p) => s + p.amt, 0);
+  $('#pay-kpis').innerHTML = [
+    kpi('Paid out by Noon', fM(paidP, 0), `${inP.length} transfers in this period`, { raw: paidP }),
+    kpi('Statements', fM(stTot, 0), `${S.length} weekly statements incl. VAT`, { raw: stTot }),
+    kpi('Last payout', fM(P.length ? P[P.length - 1].amt : 0, 0), P.length ? 'on ' + fD(P[P.length - 1].date) : '—', { raw: P.length ? P[P.length - 1].amt : 0 }),
+    kpi('Next payout', np ? fD(np) : '—', 'Noon pays weekly', { money: false })
+  ].join('');
+  $('#payouts').innerHTML = (np ? `<div class="po next"><i></i><div><div class="d">${fD(np)} · next transfer</div><div class="p">Expected on the usual weekly day</div></div><div class="a">—</div></div>` : '') +
+    P.slice().reverse().map(p => `<div class="po"><i></i><div><div class="d">${fD(p.date)}</div><div class="p">Weekly transfer</div></div><div class="a">${fM(p.amt)}</div></div>`).join('');
+  chart('ch-payouts', { data: { labels: P.map(p => p.date.getDate() + ' ' + MONTHS[p.date.getMonth()]), datasets: [barDS('Payout', P.map(p => r2(p.amt)), css('--c3'))] } });
+  const due = stAll + vat + fbn;
+  $('#recon').innerHTML = [['Statements excl. VAT', stAll], ['VAT on Noon charges', vat], ['FBN charges', fbn]].map(([k, v]) => `<span>${k}</span><span class="num">${fM(v)}</span>`).join('') +
+    `<span class="sum">Owed to the store</span><span class="num sum">${fM(due)}</span><span>Paid out (${P.length} transfers)</span><span class="num">${fM(-paid)}</span><span class="sum">Difference</span><span class="num sum">${fM(due - paid)}</span>` +
+    `<span class="muted" style="grid-column:1/-1">${Math.abs(due - paid) < 1 ? '<span class="tag good">Balanced</span> Statements and payouts match.' : '<span class="tag warn">Check</span> Statements and payouts differ by SAR ' + fM(due - paid) + ' (' + pct(paid ? Math.abs(due - paid) / paid : 0) + ' of all payouts). Taken from the Statement &amp; Payment tab.'}</span>`;
+  const cols = ['Date', 'Statement', 'Rows', 'Net proceeds', 'Referral', 'Fulfilment & logistics', 'Other order fees', 'Subsidies', 'Ads & other', 'Ad subsidies', 'Total'];
+  const tot = S.reduce((t, s) => ({ rows: t.rows + s.rows, np: t.np + s.np, referral: t.referral + s.referral, fulfil: t.fulfil + s.fulfil, otherOrder: t.otherOrder + s.otherOrder + s.shipCredit + s.others, subsidy: t.subsidy + s.subsidy, nonOrderFee: t.nonOrderFee + s.nonOrderFee, nonOrderSubsidy: t.nonOrderSubsidy + s.nonOrderSubsidy, total: t.total + s.total }), { rows: 0, np: 0, referral: 0, fulfil: 0, otherOrder: 0, subsidy: 0, nonOrderFee: 0, nonOrderSubsidy: 0, total: 0 });
+  const cells = s => `<td class="r">${fN(s.rows)}</td><td class="r">${fM(s.np)}</td><td class="r">${fM(s.referral)}</td><td class="r">${fM(s.fulfil)}</td><td class="r">${fM(s.otherOrder)}</td><td class="r">${fM(s.subsidy)}</td><td class="r">${fM(s.nonOrderFee)}</td><td class="r">${fM(s.nonOrderSubsidy)}</td><td class="r">${fM(s.total)}</td>`;
+  $('#t-ledger').innerHTML = `<thead><tr>${cols.map((c, i) => `<th class="${i > 1 ? 'r' : ''}">${c}</th>`).join('')}</tr></thead><tbody>${S.slice().reverse().map(s => `<tr><td>${fD(s.date)}</td><td class="mono">${esc(s.ref)}</td>${cells(Object.assign({}, s, { otherOrder: s.otherOrder + s.shipCredit + s.others }))}</tr>`).join('') || `<tr><td colspan="11" class="more">No statements in this period.</td></tr>`}</tbody><tfoot><tr><td>Total</td><td></td>${cells(tot)}</tr></tfoot>`;
+}
+
+function renderFees(C){
+  const a = C.a, ac = acct(C.F);
+  $('#fee-kpis').innerHTML = [
+    kpi('Referral fees', fM(-a.n.ref, 0), `${pct(a.net ? -a.n.ref / a.net : 0)} of net sales · In House SAR ${fM(-a.h.ref, 0)}`, { raw: -a.n.ref }),
+    kpi('Shipping after subsidies', fM(-(a.n.ship + a.n.subs), 0), `In House view SAR ${fM(-(a.h.ship + a.h.subs), 0)}`, { raw: -(a.n.ship + a.n.subs) }),
+    C.F.length ? kpi('Ads after subsidies', fM(-(ac.ads + ac.adsSub), 0), `${C.F.length} month${C.F.length > 1 ? 's' : ''} · whole account`, { raw: -(ac.ads + ac.adsSub) }) : kpi('Ads after subsidies', '<span style="font-size:15px">Whole months only</span>', 'Pick All time or a month with all types', { money: false }),
+    C.F.length ? kpi('FBN charges', fM(-ac.fbn, 0), `VAT on charges SAR ${fM(-ac.vat, 0)}`, { raw: -ac.fbn }) : kpi('FBN charges', '<span style="font-size:15px">Whole months only</span>', 'Charged per month, not per order', { money: false })
+  ].join('');
+  const ms = monthly(C.L);
+  chart('ch-comm', { data: { labels: ms.map(x => mLabel(x.k)), datasets: [barDS('Referral', ms.map(x => r2(-x.a.n.ref)), css('--c1'), { stack: 'f' }), barDS('Shipping after subsidies', ms.map(x => r2(-(x.a.n.ship + x.a.n.subs))), css('--c2'), { stack: 'f' })] },
+    options: { scales: { x: { stacked: true, grid: { display: false }, ticks: { color: css('--fg-3') } }, y: { stacked: true, grid: { color: css('--line') }, border: { display: false }, ticks: { color: css('--fg-3'), callback: v => Math.abs(v) >= 1000 ? (v / 1000).toFixed(0) + 'k' : v } } } } });
+  const sc = { x: { grid: { display: false }, ticks: { color: css('--fg-3') } }, y: { beginAtZero: true, grid: { color: css('--line') }, border: { display: false }, ticks: { color: css('--fg-3'), callback: v => (v * 100).toFixed(0) + '%' } } };
+  chart('ch-rate', { yfmt: 'pct', options: { scales: sc }, data: { labels: ms.map(x => mLabel(x.k)), datasets: [
+    { type: 'line', label: 'Noon view', fmt: 'pct', data: ms.map(x => x.a.n.feeRate), borderColor: css('--c1'), backgroundColor: css('--c1') + '22', fill: true, borderWidth: 2, pointRadius: 4, pointBackgroundColor: css('--c1'), pointBorderColor: css('--surface'), pointBorderWidth: 2, tension: .3 },
+    { type: 'line', label: 'In House view', fmt: 'pct', data: ms.map(x => x.a.h.feeRate), borderColor: css('--c2'), borderWidth: 2, borderDash: [5, 4], pointRadius: 3, pointBackgroundColor: css('--c2'), tension: .3, fill: false }] } });
+  const rows = [['Referral / commission', a.n.ref, a.h.ref], ['Shipping', a.n.ship, a.h.ship], ['Order subsidies', a.n.subs, a.h.subs], ['Order fees after subsidies', a.n.fees, a.h.fees, 1]];
+  if (C.F.length) rows.push(['Advertising', ac.ads, ac.ads], ['Advertising subsidy', ac.adsSub, ac.adsSub], ['FBN charges', ac.fbn, ac.fbn], ['Damaged returns credit', ac.dmg, ac.dmg], ['All charges after subsidies', a.n.fees + ac.ads + ac.adsSub + ac.fbn + ac.dmg, a.h.fees + ac.ads + ac.adsSub + ac.fbn + ac.dmg, 1]);
+  $('#t-fees').innerHTML = `<thead><tr><th>Charge</th><th class="r">Noon view</th><th class="r">% of net sales</th><th class="r">In House view</th><th class="r">% of net sales</th></tr></thead><tbody>${rows.map(r => `<tr class="${r[3] ? 'sum' : ''}"><td>${r[0]}</td><td class="r">${fM(r[1])}</td><td class="r">${pct(a.net ? -r[1] / a.net : 0)}</td><td class="r">${fM(r[2])}</td><td class="r">${pct(a.net ? -r[2] / a.net : 0)}</td></tr>`).join('')}</tbody>` +
+    (C.F.length ? '' : `<tfoot><tr><td colspan="5" class="more">Ads and FBN charges are monthly account charges. They appear here for All time, a single month or the month before, with all courier types.</td></tr></tfoot>`);
+  const F = M.fees, t = acct(F);
+  const fr = (lbl, f) => `<td>${lbl}</td><td class="r">${fM(f.ads)}</td><td class="r">${fM(f.adsSub)}</td><td class="r">${fM(f.fbn)}</td><td class="r">${fM(f.dmg)}</td><td class="r">${fM(f.ads + f.adsSub + f.fbn + f.dmg)}</td><td class="r">${fM(f.vat)}</td>`;
+  $('#t-acct').innerHTML = `<thead><tr><th>Month</th><th class="r">Advertising</th><th class="r">Ad subsidy</th><th class="r">FBN charges</th><th class="r">Damaged returns</th><th class="r">Net charges</th><th class="r">VAT</th></tr></thead><tbody>${F.map(f => `<tr>${fr(mLabel(f.k), f)}</tr>`).join('')}</tbody><tfoot><tr>${fr('Total', t)}</tr></tfoot>`;
+}
+
+function renderReturns(C){
+  const a = C.a;
+  $('#ret-kpis').innerHTML = [
+    kpi('Customer returns', fN(a.retLines), `SAR ${fM(a.retVal, 0)} · ${pct(a.sales ? a.retVal / a.sales : 0)} of sales`, { raw: a.retLines, fmt: 'n', money: false }),
+    kpi('Not delivered', fN(a.failLines), `SAR ${fM(a.failVal, 0)} came back unsold`, { raw: a.failLines, fmt: 'n', money: false }),
+    kpi('Cancelled', fN(a.canceled), `SAR ${fM(a.cancelVal, 0)} never shipped`, { raw: a.canceled, fmt: 'n', money: false }),
+    kpi('Fees lost on returns', fM(-C.L.filter(i => i.g === 'returned' || i.g === 'failed').reduce((s, i) => s + i.prof, 0), 0), 'Noon view · shipping and fees kept by Noon', { raw: -C.L.filter(i => i.g === 'returned' || i.g === 'failed').reduce((s, i) => s + i.prof, 0) })
+  ].join('');
+  const ms = monthly(C.L);
+  chart('ch-returns', { data: { labels: ms.map(x => mLabel(x.k)), datasets: [barDS('Customer returns', ms.map(x => r2(x.a.retVal)), css('--c1')), barDS('Not delivered', ms.map(x => r2(x.a.failVal)), css('--crit')), barDS('Cancelled', ms.map(x => r2(x.a.cancelVal)), css('--c4'))] } });
+  const rows = C.L.filter(i => i.g === 'returned' || i.g === 'failed' || i.g === 'canceled').sort((x, y) => y.date - x.date);
+  $('#ret-count').textContent = `${fN(rows.length)} items in this period`;
+  $('#t-returns').innerHTML = `<thead><tr><th>Date</th><th>Item</th><th>Product</th><th>Type</th><th>Status</th><th class="r">Net proceeds</th><th class="r">Noon fees</th><th class="r">Loss · Noon</th><th class="r">Loss · In House</th></tr></thead><tbody>${rows.slice(0, LIMIT).map(i => `<tr><td>${fD(i.date)}</td><td class="mono">${esc(i.id)}</td><td>${esc(i.p.name)}</td><td>${esc(i.chName)}</td><td><span class="tag ${GROUP[i.g][1]}">${esc(i.st)}</span></td><td class="r">${fM(i.np)}</td><td class="r">${i.ref + i.ship + i.subs ? fM(i.ref + i.ship + i.subs) : '—'}</td><td class="r">${i.prof ? fM(i.prof) : '—'}</td><td class="r">${i.prof2 ? fM(i.prof2) : '—'}</td></tr>`).join('')}</tbody>` +
+    (rows.length > LIMIT ? `<tfoot><tr><td colspan="9" class="more">Showing the latest ${LIMIT} of ${fN(rows.length)}. Pick a month to see the rest.</td></tr></tfoot>` : '');
+}
+
+function renderDelivery(C){
+  const L = C.L.filter(i => i.g !== 'canceled'), now = M.asOf;
+  const shipped = L.filter(i => i.shipD && i.date && i.shipD >= i.date), recv = L.filter(i => i.delD && i.shipD && i.delD >= i.shipD);
+  const avg = (arr, f) => arr.length ? arr.reduce((s, x) => s + f(x), 0) / arr.length : 0;
+  const del = L.filter(i => i.g === 'delivered').length, fail = L.filter(i => i.g === 'failed').length;
+  $('#del-kpis').innerHTML = [
+    kpi('Delivered', fN(del), 'items received by customers', { money: false, raw: del, fmt: 'n' }),
+    kpi('Days to ship', avg(shipped, i => (i.shipD - i.date) / 864e5).toFixed(1), 'order to shipment, average', { money: false }),
+    kpi('Days in transit', avg(recv, i => (i.delD - i.shipD) / 864e5).toFixed(1), 'shipment to delivery, average', { money: false }),
+    kpi('Delivery success', pct(del + fail ? del / (del + fail) : 0), `${fN(fail)} could not be delivered`, { money: false })
+  ].join('');
+  $('#att-sub').textContent = 'Open items checked against ' + fD(now);
+  const att = [], proc = M.items.filter(i => chOK(i) && i.g === 'processing' && (now - i.date) / 864e5 > 3), sh = M.items.filter(i => chOK(i) && i.g === 'shipped' && i.shipD && (now - i.shipD) / 864e5 > 7);
+  proc.slice(0, 12).forEach(i => att.push(insight('crit', 'alert', `<b>${esc(i.id)}</b> processing for ${Math.floor((now - i.date) / 864e5)} days · ${esc(i.p.name)}`)));
+  if (proc.length > 12) att.push(insight('crit', 'alert', `and ${proc.length - 12} more items still processing.`));
+  sh.slice(0, 8).forEach(i => att.push(insight('warn', 'pin', `<b>${esc(i.id)}</b> shipped ${Math.floor((now - i.shipD) / 864e5)} days ago and not yet delivered.`)));
+  if (sh.length > 8) att.push(insight('warn', 'pin', `and ${sh.length - 8} more shipped items not yet delivered.`));
+  $('#attention').innerHTML = att.join('') || insight('good', 'ok', 'Every open item is moving on time.');
+  bars('#carrier-bars', M.D.meta.channels.map((c, k) => { const x = L.filter(i => i.ch === k), d = x.filter(i => i.g === 'delivered').length, f = x.filter(i => i.g === 'failed').length;
+    return [c, x.filter(i => i.sold).length, fN(x.filter(i => i.sold).length) + ' · ' + pct(d + f ? d / (d + f) : 0) + ' delivered']; }).filter(r => r[1] > 0), css('--c3'));
+  const cat = {}; L.filter(i => i.sold).forEach(i => { const c = cat[i.p.cat] || (cat[i.p.cat] = [0, 0]); c[0] += i.np; c[1]++; });
+  bars('#city-bars', Object.entries(cat).sort((x, y) => y[1][0] - x[1][0]).slice(0, 12).map(([k, v]) => [k, v[0], 'SAR ' + fM(v[0], 0) + ' · ' + fN(v[1])]), css('--c2'));
+}
+
+function renderData(){
+  const D = M.D;
+  $('#data-src').innerHTML = `Using <b>${esc(D.meta.file)}</b> · ${esc(D.meta.channel)} account ${esc(D.meta.account)} · orders ${fD(M.first)} to ${fD(M.asOf)}.`;
+  const all = aggregate(M.items), stTab = M.statements.reduce((s, x) => s + x.total, 0), pays = M.payments.reduce((s, p) => s + p.amt, 0);
+  $('#health').innerHTML = `<span>Order items</span><span class="num">${fN(M.items.length)}</span><span>Products (SKUs)</span><span class="num">${fN(M.skus.length)}</span>
+    <span>Products with a Noon title</span><span class="num">${fN(D.skus.filter(s => s[2]).length)}</span>
+    <span>Weekly statements in the PS-12539 tab</span><span class="num">${M.statements.length}</span>
+    <span>Statement totals (PS-12539 tab)</span><span class="num">${fM(stTab)}</span>
+    <span>Payouts (Statement &amp; Payment tab)</span><span class="num">${fM(pays)}</span>
+    <span>Profit · Noon view, all time</span><span class="num">${fM(all.n.prof)}</span><span>Profit · In House view, all time</span><span class="num">${fM(all.h.prof)}</span>`;
+}
+
+/* ---------- navigation ---------- */
+const TITLES = { overview: 'Overview', sales: 'Sales report', orders: 'Orders', products: 'Products', payments: 'Payments & payouts', fees: 'Fees & ads', returns: 'Returns & cancellations', delivery: 'Delivery', data: 'Data & methods' };
+function go(page){
+  if (!TITLES[page]) page = 'overview';
+  document.querySelectorAll('.page').forEach(p => p.classList.toggle('on', p.id === 'p-' + page));
+  document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('active', a.dataset.page === page));
+  $('#page-title').firstChild.textContent = TITLES[page];
+  $('#app').classList.remove('nav-open');
+  Object.values(charts).forEach(c => c.resize());
+  countUp(document.getElementById('p-' + page));
+  store.set('page', page);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+window.addEventListener('hashchange', () => go(location.hash.slice(1)));
+$('#menu-btn').onclick = () => $('#app').classList.add('nav-open');
+$('#scrim').onclick = () => $('#app').classList.remove('nav-open');
+$('#pills').addEventListener('click', e => { const b = e.target.closest('.pill'); if (!b) return; RANGE = { kind: b.dataset.range }; setPills(); renderAll(); });
+$('#month-sel').addEventListener('change', e => { if (!e.target.value) return; RANGE = { kind: 'month', month: e.target.value }; setPills(); renderAll(); });
+$('#ch-sel').addEventListener('change', e => { CH = e.target.value; e.target.classList.toggle('on', CH !== ''); store.set('ch', CH); renderAll(); });
+$('#wf-view').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; VIEW = b.dataset.v; document.querySelectorAll('#wf-view button').forEach(x => x.classList.toggle('on', x === b)); renderWaterfall(current()); });
+function setPills(){ document.querySelectorAll('.pill').forEach(p => p.classList.toggle('on', p.dataset.range === RANGE.kind)); if (RANGE.kind !== 'month') $('#month-sel').value = ''; $('#month-sel').classList.toggle('on', RANGE.kind === 'month'); store.set('range', RANGE); }
+document.querySelector('.quick [data-status="open"]').addEventListener('click', () => { ORD.g = 'open'; renderOrders(current()); });
+$('#pipeline').addEventListener('click', e => { const s = e.target.closest('.stage'); if (!s) return; ORD.g = s.dataset.go; location.hash = 'orders'; renderOrders(current()); });
+let qT; const later = f => { clearTimeout(qT); qT = setTimeout(f, 160); };
+$('#ord-q').addEventListener('input', e => { ORD.q = e.target.value; later(() => renderOrders(current())); });
+$('#prod-q').addEventListener('input', e => { PROD.q = e.target.value; later(() => renderProducts(current())); });
+$('#ord-chips').addEventListener('click', e => { const c = e.target.closest('.chip'); if (!c) return; ORD.g = c.dataset.g; renderOrders(current()); });
+$('#t-orders').addEventListener('click', e => { const h = e.target.closest('th[data-k]'); if (!h) return; if (ORD.sort === h.dataset.k) ORD.asc = !ORD.asc; else { ORD.sort = h.dataset.k; ORD.asc = false; } renderOrders(current()); });
+$('#t-products').addEventListener('click', e => { const h = e.target.closest('th[data-k]'); if (!h) return; if (PROD.sort === h.dataset.k) PROD.asc = !PROD.asc; else { PROD.sort = h.dataset.k; PROD.asc = false; } renderProducts(current()); });
+
+/* theme */
+$('#theme-btn').onclick = () => { const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.dataset.theme = dark ? 'light' : 'dark'; store.set('theme', document.documentElement.dataset.theme); renderAll(); };
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => renderAll());
+
+/* clock */
+function tick(){ const now = new Date(); const tz = { timeZone: 'Asia/Riyadh' };
+  try { $('#clk-time').textContent = now.toLocaleTimeString('en-GB', tz); $('#clk-date').textContent = now.toLocaleDateString('en-GB', Object.assign({ weekday: 'short', day: 'numeric', month: 'short' }, tz)) + ' · Riyadh'; } catch (e) { $('#clk-time').textContent = now.toLocaleTimeString(); }
+  $('#live-txt').textContent = 'Data through ' + fD(M.asOf); }
+
+/* hero canvas: slow drifting light ribbons */
+function heroFx(){
+  const cv = $('#hero-canvas'); if (!cv) return; const ctx = cv.getContext('2d'); const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w, h, t = 0; const size = () => { const r = cv.getBoundingClientRect(); w = cv.width = r.width * devicePixelRatio; h = cv.height = r.height * devicePixelRatio; };
+  size(); addEventListener('resize', size);
+  const draw = () => { if (!w) size(); ctx.clearRect(0, 0, w, h);
+    for (let k = 0; k < 4; k++) { ctx.beginPath(); for (let x = 0; x <= w; x += 8) { const y = h * (.35 + k * .14) + Math.sin(x / w * 5 + t * (.6 + k * .2) + k) * h * .08; x ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+      ctx.strokeStyle = k % 2 ? `rgba(254,238,0,${.16 + k * .03})` : `rgba(255,255,255,${.10 + k * .03})`; ctx.lineWidth = (1 + k * .6) * devicePixelRatio; ctx.stroke(); }
+    t += .006; if (!reduce) requestAnimationFrame(draw); };
+  draw();
+}
+
+/* ---------- boot ---------- */
+(function boot(){
+  const thm = store.get('theme'); if (thm) document.documentElement.dataset.theme = thm;
+  const rg = store.get('range'); if (rg && rg.kind) RANGE = rg;
+  const ch = store.get('ch'); if (ch === '0' || ch === '1' || ch === '2') { CH = ch; $('#ch-sel').value = ch; $('#ch-sel').classList.add('on'); }
+  M = build(EMBED);
+  const ms = [...new Set(M.items.map(i => mk(i.date)).filter(Boolean))].sort().reverse();
+  $('#month-sel').innerHTML = '<option value="">Pick month</option>' + ms.map(k => { const [y, m] = k.split('-'); return `<option value="${k}">${MONTHS[+m - 1]} ${y}</option>`; }).join('');
+  if (RANGE.kind === 'month') { if (ms.includes(RANGE.month)) $('#month-sel').value = RANGE.month; else RANGE = { kind: 'all' }; }
+  setPills(); renderAll(); tick();
+  go(location.hash.slice(1) || store.get('page') || 'overview');
+  setInterval(tick, 1000); heroFx();
+})();
+</script>
