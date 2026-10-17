@@ -3,7 +3,7 @@
   <aside class="rail" id="rail" aria-label="Main navigation">
     <div class="brand">
       <div class="brand-mark" aria-label="noon">noon</div>
-      <div><div class="brand-name">× In House</div><div class="brand-sub">Courier channel · KSA</div></div>
+      <div><div class="brand-name">× In House</div><div class="brand-sub">{{Chan}} channel · KSA</div></div>
     </div>
     <nav class="nav" id="nav">
       <div class="nav-label">Reports</div>
@@ -21,7 +21,7 @@
     </nav>
     <div class="rail-foot">
       <div class="who">Channel managers</div>
-      <div>Fedaa → Ayham → Sham<br>Noon courier · account 12539</div>
+      <div>Fedaa → Ayham → Sham<br>Noon {{chan}} · account {{ACCT}}</div>
       <div style="margin-top:8px" class="live"><i></i><span id="live-txt">Live view</span></div>
     </div>
   </aside>
@@ -39,7 +39,7 @@
         <button class="pill" data-range="90">90 days</button>
       </div>
       <select class="month-sel" id="month-sel" aria-label="Pick a month"><option value="">Pick month</option></select>
-      <select class="month-sel" id="ch-sel" aria-label="Courier type"><option value="">All types</option><option value="0">Flex</option><option value="1">FBN</option><option value="2">Supermall</option></select>
+      <select class="month-sel" id="ch-sel" aria-label="Delivery type"><option value="">All types</option></select>
       <div class="gsearch" role="search"><svg viewBox="0 0 24 24"><path d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM21 21l-5-5"/></svg><input id="gs" type="search" placeholder="Search orders, products, SKUs, statements" autocomplete="off" aria-label="Search the portal"><div class="gs-res" id="gs-res" hidden></div></div>
       <div class="quick">
         <a class="qbtn" href="#payments"><span class="dot" style="background:var(--orange)"></span>Last payout <b id="q-pay">0</b></a>
@@ -48,7 +48,7 @@
       </div>
       <button class="icon-btn" id="theme-btn" aria-label="Switch light or dark"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
       <div class="clock"><b id="clk-time">--:--:--</b><span id="clk-date">Riyadh</span></div>
-      <div class="ticker" aria-hidden="true"><div class="ticker-track"><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>Courier Channel</span><i>✦</i><span>Fedaa · Ayham · Sham</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>Courier Channel</span><i>✦</i><span>Fedaa · Ayham · Sham</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div></div></div>
+      <div class="ticker" aria-hidden="true"><div class="ticker-track"><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>{{Chan}} Channel</span><i>✦</i><span>Fedaa · Ayham · Sham</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>{{Chan}} Channel</span><i>✦</i><span>Fedaa · Ayham · Sham</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div></div></div>
     </header>
 
     <main class="content">
@@ -58,11 +58,11 @@
           <canvas id="hero-canvas" aria-hidden="true"></canvas>
           <div class="hero-in">
             <div>
-              <div class="eyebrow" id="greet">Noon courier · In House</div>
-              <h1>noon KSA · Courier channel</h1>
-              <div class="role">In House store · <span class="gold-tx">account 12539</span></div>
+              <div class="eyebrow" id="greet">Noon {{chan}} · In House</div>
+              <h1>noon KSA · {{Chan}} channel</h1>
+              <div class="role">In House store · <span class="gold-tx">account {{ACCT}}</span></div>
               <div class="team" aria-label="Channel managers"><span><i>F</i>Fedaa</span><span class="arr">→</span><span><i>A</i>Ayham</span><span class="arr">→</span><span><i>S</i>Sham</span></div>
-              <div class="tagline" id="hero-line">Every Noon order, fee, statement and payout for the courier account, with Noon's numbers and In House's numbers side by side.</div>
+              <div class="tagline" id="hero-line">Every Noon order, fee, statement and payout for the {{chan}} account, with Noon's numbers and In House's numbers side by side.</div>
             </div>
             <div class="hero-stats" id="hero-stats"></div>
           </div>
@@ -79,7 +79,7 @@
           </div>
         </div>
         <div class="card">
-          <div class="card-head"><h3>Noon view and In House view, side by side</h3><p>SAR · selected period and courier type</p></div>
+          <div class="card-head"><h3>Noon view and In House view, side by side</h3><p>SAR · selected period and delivery type</p></div>
           <div class="tbl-wrap"><table class="vs" id="t-vs"></table></div>
         </div>
         <div class="card">
@@ -149,7 +149,7 @@
           </div>
         </div>
         <div class="card">
-          <div class="card-head"><h3>Weekly statements</h3><p>SAR incl. VAT · from the PS-12539 statement tab</p></div>
+          <div class="card-head"><h3>Weekly statements</h3><p>SAR incl. VAT · from the PS-{{ACCT}} statement tab</p></div>
           <div class="toolbar"><input class="search" id="st-q" type="search" placeholder="Search statement number or date"></div>
           <div class="tbl-wrap"><table id="t-ledger"></table></div>
         </div>
@@ -180,7 +180,7 @@
         <div class="kpis" id="del-kpis"></div>
         <div class="grid g2">
           <div class="card"><div class="card-head"><h3>Needs attention</h3><p id="att-sub">Open items checked against the data date</p></div><ul class="insights" id="attention"></ul></div>
-          <div class="card"><div class="card-head"><h3>Courier type</h3><p>Items sold · delivery success</p></div><div class="bars" id="carrier-bars"></div></div>
+          <div class="card"><div class="card-head"><h3>Delivery type</h3><p>Items sold · delivery success</p></div><div class="bars" id="carrier-bars"></div></div>
         </div>
         <div class="card"><div class="card-head"><h3>Top categories</h3><p>Net sales · items sold</p></div><div class="bars" id="city-bars"></div></div>
       </section>
@@ -201,8 +201,8 @@
               <dt>Noon view</dt><dd>Referral, shipping and order subsidies exactly as Noon charged them (the first set of fee columns). Revenue and profit use the workbook's Revenue and Profit columns.</dd>
               <dt>In House view</dt><dd>Your own fee figures (Comm, Shipping and the second subsidy column). Revenue and profit use the Revenue2 and Profit2 columns. The two views are the same until June 2026.</dd>
               <dt>Profit</dt><dd>Revenue minus the unit cost of each item sold. Returned items carry their fees but no product cost.</dd>
-              <dt>Profit after account charges</dt><dd>Profit plus ads, ad subsidies, FBN charges and damaged-return credits from the All Fee tab. Shown for whole months and for all courier types only, because these charges are not split by order.</dd>
-              <dt>Payouts</dt><dd>Transfers listed in the Statement &amp; Payment tab. Statement totals in the PS-12539 tab already include VAT.</dd>
+              <dt>Profit after account charges</dt><dd>Profit plus ads, ad subsidies, FBN charges and damaged-return credits from the All Fee tab. Shown for whole months and for all delivery types only, because these charges are not split by order.</dd>
+              <dt>Payouts</dt><dd>Transfers listed in the Statement &amp; Payment tab. Statement totals in the PS-{{ACCT}} tab already include VAT.</dd>
               <dt>Period filter</dt><dd>Order money follows the order date. The range buttons count back from the last order in the data, not from today.</dd>
             </dl>
           </div>
@@ -218,14 +218,14 @@
 const EMBED = /*__DATA__*/null;
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const store = { get(k){ try{ return JSON.parse(localStorage.getItem('noon-' + k)); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem('noon-' + k, JSON.stringify(v)); }catch(e){} } };
+const store = { get(k){ try{ return JSON.parse(localStorage.getItem('noon-{{ACCT}}-' + k)); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem('noon-{{ACCT}}-' + k, JSON.stringify(v)); }catch(e){} } };
 
 const r2 = x => Math.round(x * 100) / 100;
 const mk = d => d ? d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') : '';
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const mLabel = k => { const [y, m] = k.split('-'); return MONTHS[+m - 1] + ' ' + y.slice(2); };
 const fD = d => d ? d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear() : '—';
-const fM = (x, dp = 2) => (x < 0 ? '−' : '') + Math.abs(x).toLocaleString('en-US', { minimumFractionDigits: dp, maximumFractionDigits: dp });
+const fM = (x, dp = 2) => { if (Math.abs(x) < .5 / 10 ** dp) x = 0; return (x < 0 ? '−' : '') + Math.abs(x).toLocaleString('en-US', { minimumFractionDigits: dp, maximumFractionDigits: dp }); };
 const fN = x => Math.round(x).toLocaleString('en-US');
 const pct = x => isFinite(x) ? (x * 100).toFixed(1) + '%' : '—';
 const titleCase = s => s.replace(/\s+/g, ' ').trim().replace(/(^|\s)([a-z])/g, (m, a, b) => a + b.toUpperCase());
@@ -241,7 +241,7 @@ let M = null;
 function build(D){
   const base = isoDate(D.meta.base).getTime(), at = m => m == null ? null : new Date(base + m * 6e4);
   const skus = D.skus.map(s => { let t = s[2] ? titleCase(s[2].toLowerCase()) : ''; if (t.length > 72) t = t.slice(0, 70) + '…';
-    return { sku: s[0], psku: s[1], name: t || (s[3] || 'Item') + ' · ' + s[0], cat: s[3] || 'Other', family: s[4], brand: s[5] }; });
+    return { sku: s[0], psku: s[1], name: t || (s[3] || 'Item') + ' · ' + s[0], cat: s[3] ? titleCase(String(s[3]).replace(/_/g, ' ').toLowerCase()) : 'Other', family: s[4], brand: s[5] }; });
   const items = D.items.map(r => { const p = skus[r[3]], st = D.meta.status[r[4]], g = GROUP_OF[st] || 'processing';
     return { date: at(r[0]), order: r[1], id: r[1] + '-' + r[2], p, st, g, sold: SOLD.has(g), ch: r[5], chName: D.meta.channels[r[5]],
       gmv: r[6], np: r[7], ref: r[8], ship: r[9], subs: r[10], cost: r[11], ref2: r[12], ship2: r[13], subs2: r[14], rev: r[15], prof: r[16], rev2: r[17], prof2: r[18],
@@ -289,7 +289,7 @@ const chOK = i => CH === '' || i.ch === +CH;
 function current(){
   const b = rangeBounds(), L = M.items.filter(i => chOK(i) && inR(i.date, b));
   const keys = monthKeys(L);
-  // Account charges are monthly and not split by order, so they only apply to whole months with all courier types.
+  // Account charges are monthly and not split by order, so they only apply to whole months with all delivery types.
   const whole = CH === '' && (RANGE.kind === 'all' || RANGE.kind === 'month' || RANGE.kind === 'last');
   const F = whole ? M.fees.filter(f => keys.includes(f.k)) : [];
   return { b, L, a: aggregate(L), keys, F, whole };
@@ -385,7 +385,7 @@ function renderAll(){
 
 function renderOverview(C){
   const a = C.a, paid = M.payments.filter(p => inR(p.date, C.b)).reduce((s, p) => s + p.amt, 0), np = nextPayout();
-  const hr = new Date().getHours(); $('#greet').textContent = (hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening') + ' · Noon courier · In House';
+  const hr = new Date().getHours(); $('#greet').textContent = (hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening') + ' · Noon {{chan}} · In House';
   $('#hero-stats').innerHTML = [['Net sales', 'SAR ' + fM(a.net, 0)], ['Orders', fN(a.orders)], ['Paid out by Noon', 'SAR ' + fM(paid, 0)], ['Next payout', np ? fD(np) : '—']].map(([k, v]) => `<div class="hs"><span>${k}</span><b>${v}</b></div>`).join('');
   const d = a.h.prof - a.n.prof;
   $('#kpis').innerHTML = [
@@ -553,7 +553,7 @@ function renderFees(C){
   const rows = [['Referral / commission', a.n.ref, a.h.ref], ['Shipping', a.n.ship, a.h.ship], ['Order subsidies', a.n.subs, a.h.subs], ['Order fees after subsidies', a.n.fees, a.h.fees, 1]];
   if (C.F.length) rows.push(['Advertising', ac.ads, ac.ads], ['Advertising subsidy', ac.adsSub, ac.adsSub], ['FBN charges', ac.fbn, ac.fbn], ['Damaged returns credit', ac.dmg, ac.dmg], ['All charges after subsidies', a.n.fees + ac.ads + ac.adsSub + ac.fbn + ac.dmg, a.h.fees + ac.ads + ac.adsSub + ac.fbn + ac.dmg, 1]);
   $('#t-fees').innerHTML = `<thead><tr><th>Charge</th><th class="r">Noon view</th><th class="r">% of net sales</th><th class="r">In House view</th><th class="r">% of net sales</th></tr></thead><tbody>${rows.map(r => `<tr class="${r[3] ? 'sum' : ''}"><td>${r[0]}</td><td class="r">${fM(r[1])}</td><td class="r">${pct(a.net ? -r[1] / a.net : 0)}</td><td class="r">${fM(r[2])}</td><td class="r">${pct(a.net ? -r[2] / a.net : 0)}</td></tr>`).join('')}</tbody>` +
-    (C.F.length ? '' : `<tfoot><tr><td colspan="5" class="more">Ads and FBN charges are monthly account charges. They appear here for All time, a single month or the month before, with all courier types.</td></tr></tfoot>`);
+    (C.F.length ? '' : `<tfoot><tr><td colspan="5" class="more">Ads and FBN charges are monthly account charges. They appear here for All time, a single month or the month before, with all delivery types.</td></tr></tfoot>`);
   const F = M.fees, t = acct(F);
   const fr = (lbl, f) => `<td>${lbl}</td><td class="r">${fM(f.ads)}</td><td class="r">${fM(f.adsSub)}</td><td class="r">${fM(f.fbn)}</td><td class="r">${fM(f.dmg)}</td><td class="r">${fM(f.ads + f.adsSub + f.fbn + f.dmg)}</td><td class="r">${fM(f.vat)}</td>`;
   $('#t-acct').innerHTML = `<thead><tr><th>Month</th><th class="r">Advertising</th><th class="r">Ad subsidy</th><th class="r">FBN charges</th><th class="r">Damaged returns</th><th class="r">Net charges</th><th class="r">VAT</th></tr></thead><tbody>${F.map(f => `<tr>${fr(mLabel(f.k), f)}</tr>`).join('')}</tbody><tfoot><tr>${fr('Total', t)}</tr></tfoot>`;
@@ -607,8 +607,8 @@ function renderData(){
   const all = aggregate(M.items), stTab = M.statements.reduce((s, x) => s + x.total, 0), pays = M.payments.reduce((s, p) => s + p.amt, 0);
   $('#health').innerHTML = `<span>Order items</span><span class="num">${fN(M.items.length)}</span><span>Products (SKUs)</span><span class="num">${fN(M.skus.length)}</span>
     <span>Products with a Noon title</span><span class="num">${fN(D.skus.filter(s => s[2]).length)}</span>
-    <span>Weekly statements in the PS-12539 tab</span><span class="num">${M.statements.length}</span>
-    <span>Statement totals (PS-12539 tab)</span><span class="num">${fM(stTab)}</span>
+    <span>Weekly statements in the PS-{{ACCT}} tab</span><span class="num">${M.statements.length}</span>
+    <span>Statement totals (PS-{{ACCT}} tab)</span><span class="num">${fM(stTab)}</span>
     <span>Payouts (Statement &amp; Payment tab)</span><span class="num">${fM(pays)}</span>
     <span>Profit · Noon view, all time</span><span class="num">${fM(all.n.prof)}</span><span>Profit · In House view, all time</span><span class="num">${fM(all.h.prof)}</span>`;
 }
@@ -713,8 +713,9 @@ function heroFx(){
 (function boot(){
   const thm = store.get('theme'); if (thm) document.documentElement.dataset.theme = thm;
   const rg = store.get('range'); if (rg && rg.kind) RANGE = rg;
-  const ch = store.get('ch'); if (ch === '0' || ch === '1' || ch === '2') { CH = ch; $('#ch-sel').value = ch; $('#ch-sel').classList.add('on'); }
   M = build(EMBED);
+  $('#ch-sel').innerHTML = '<option value="">All types</option>' + M.D.meta.channels.map((c, k) => `<option value="${k}">${esc(c)}</option>`).join('');
+  const ch = store.get('ch'); if (ch != null && ch !== '' && M.D.meta.channels[+ch]) { CH = ch; $('#ch-sel').value = ch; $('#ch-sel').classList.add('on'); }
   const ms = [...new Set(M.items.map(i => mk(i.date)).filter(Boolean))].sort().reverse();
   $('#month-sel').innerHTML = '<option value="">Pick month</option>' + ms.map(k => { const [y, m] = k.split('-'); return `<option value="${k}">${MONTHS[+m - 1]} ${y}</option>`; }).join('');
   if (RANGE.kind === 'month') { if (ms.includes(RANGE.month)) $('#month-sel').value = RANGE.month; else RANGE = { kind: 'all' }; }
