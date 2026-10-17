@@ -3,7 +3,12 @@
   <aside class="rail" id="rail" aria-label="Main navigation">
     <div class="brand">
       <div class="brand-mark" aria-label="noon">noon</div>
-      <div><div class="brand-name">× In House</div><div class="brand-sub">{{Chan}} channel · KSA</div></div>
+      <div><div class="brand-name">× In House</div><div class="brand-sub"><span data-t="Chan"></span> channel · KSA</div></div>
+    </div>
+    <div class="acct-box">
+      <div class="nav-label">Account</div>
+      <div class="acct-sw" id="acct-sw" role="group" aria-label="Switch account"></div>
+      <button class="acct-home" id="acct-home" type="button"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>All Noon reports</button>
     </div>
     <nav class="nav" id="nav">
       <div class="nav-label">Reports</div>
@@ -21,7 +26,7 @@
     </nav>
     <div class="rail-foot">
       <div class="who">Channel managers</div>
-      <div>Fedaa → Ayham → Sham<br>Noon {{chan}} · account {{ACCT}}</div>
+      <div>Fedaa → Ayham → Sham<br>Noon <span data-t="chan"></span> · account <span data-t="acct"></span></div>
       <div style="margin-top:8px" class="live"><i></i><span id="live-txt">Live view</span></div>
     </div>
   </aside>
@@ -30,6 +35,7 @@
   <div class="main">
     <header class="topbar">
       <button class="menu-btn" id="menu-btn" aria-label="Open menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <button class="acct-chip" id="acct-chip" type="button" aria-label="Switch account"><span class="ac-dot"></span><b id="acct-chip-name">Noon</b><span class="ac-no" id="acct-chip-no"></span><svg viewBox="0 0 24 24"><path d="M7 7h12l-3-3M17 17H5l3 3"/></svg></button>
       <div class="page-title" id="page-title">Overview<small id="range-txt">All time</small></div>
       <div class="pills" role="group" aria-label="Date range" id="pills">
         <button class="pill on" data-range="all">All time</button>
@@ -48,7 +54,7 @@
       </div>
       <button class="icon-btn" id="theme-btn" aria-label="Switch light or dark"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
       <div class="clock"><b id="clk-time">--:--:--</b><span id="clk-date">Riyadh</span></div>
-      <div class="ticker" aria-hidden="true"><div class="ticker-track"><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>{{Chan}} Channel</span><i>✦</i><span>Fedaa · Ayham · Sham</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span>{{Chan}} Channel</span><i>✦</i><span>Fedaa · Ayham · Sham</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div></div></div>
+      <div class="ticker" aria-hidden="true"><div class="ticker-track"><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span><span data-t="Chan"></span> Channel</span><i>✦</i><span>Fedaa · Ayham · Sham</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div><div class="ticker-set"><span>noon</span><i>✦</i><span>In House</span><i>✦</i><span><span data-t="Chan"></span> Channel</span><i>✦</i><span>Fedaa · Ayham · Sham</span><i>✦</i><span>Live Reports</span><i>✦</i><span>Sales Intelligence</span><i>✦</i></div></div></div>
     </header>
 
     <main class="content">
@@ -58,11 +64,11 @@
           <canvas id="hero-canvas" aria-hidden="true"></canvas>
           <div class="hero-in">
             <div>
-              <div class="eyebrow" id="greet">Noon {{chan}} · In House</div>
-              <h1>noon KSA · {{Chan}} channel</h1>
-              <div class="role">In House store · <span class="gold-tx">account {{ACCT}}</span></div>
+              <div class="eyebrow" id="greet">Noon <span data-t="chan"></span> · In House</div>
+              <h1>noon KSA · <span data-t="Chan"></span> channel</h1>
+              <div class="role">In House store · <span class="gold-tx">account <span data-t="acct"></span></span></div>
               <div class="team" aria-label="Channel managers"><span><i>F</i>Fedaa</span><span class="arr">→</span><span><i>A</i>Ayham</span><span class="arr">→</span><span><i>S</i>Sham</span></div>
-              <div class="tagline" id="hero-line">Every Noon order, fee, statement and payout for the {{chan}} account, with Noon's numbers and In House's numbers side by side.</div>
+              <div class="tagline" id="hero-line">Every Noon order, fee, statement and payout for the <span data-t="chan"></span> account, with Noon's numbers and In House's numbers side by side.</div>
             </div>
             <div class="hero-stats" id="hero-stats"></div>
           </div>
@@ -149,7 +155,7 @@
           </div>
         </div>
         <div class="card">
-          <div class="card-head"><h3>Weekly statements</h3><p>SAR incl. VAT · from the PS-{{ACCT}} statement tab</p></div>
+          <div class="card-head"><h3>Weekly statements</h3><p>SAR incl. VAT · from the PS-<span data-t="acct"></span> statement tab</p></div>
           <div class="toolbar"><input class="search" id="st-q" type="search" placeholder="Search statement number or date"></div>
           <div class="tbl-wrap"><table id="t-ledger"></table></div>
         </div>
@@ -202,7 +208,7 @@
               <dt>In House view</dt><dd>Your own fee figures (Comm, Shipping and the second subsidy column). Revenue and profit use the Revenue2 and Profit2 columns. The two views are the same until June 2026.</dd>
               <dt>Profit</dt><dd>Revenue minus the unit cost of each item sold. Returned items carry their fees but no product cost.</dd>
               <dt>Profit after account charges</dt><dd>Profit plus ads, ad subsidies, FBN charges and damaged-return credits from the All Fee tab. Shown for whole months and for all delivery types only, because these charges are not split by order.</dd>
-              <dt>Payouts</dt><dd>Transfers listed in the Statement &amp; Payment tab. Statement totals in the PS-{{ACCT}} tab already include VAT.</dd>
+              <dt>Payouts</dt><dd>Transfers listed in the Statement &amp; Payment tab. Statement totals in the PS-<span data-t="acct"></span> tab already include VAT.</dd>
               <dt>Period filter</dt><dd>Order money follows the order date. The range buttons count back from the last order in the data, not from today.</dd>
             </dl>
           </div>
@@ -213,12 +219,26 @@
 </div>
 <div class="toast" id="toast" role="status"></div>
 
+<div class="intro" id="intro" hidden>
+  <canvas class="intro-fx" id="intro-fx" aria-hidden="true"></canvas>
+  <button class="intro-x" id="intro-x" type="button" aria-label="Back to the report" hidden><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="intro-in">
+    <div class="intro-brand an" style="--dl:0s"><span class="brand-mark">noon</span><span class="ix">×</span><span class="ih">In House</span></div>
+    <h1 class="intro-title"><span class="an" style="--dl:.25s">In-House</span> <span class="an hl" style="--dl:.4s">Noon</span> <span class="an" style="--dl:.55s">Reports</span></h1>
+    <p class="intro-sub an" style="--dl:.8s">Noon KSA sales, fees, payouts and returns for every In House account. Pick one to open it.</p>
+    <svg class="intro-arrows an" style="--dl:.95s" viewBox="0 0 600 90" aria-hidden="true"><path class="ia" d="M300 0 V26 Q300 44 270 44 H180 Q150 44 150 64 V82"/><path class="ia" d="M300 26 Q300 44 330 44 H420 Q450 44 450 64 V82"/><path class="ih2" d="M141 72 L150 84 L159 72"/><path class="ih2" d="M441 72 L450 84 L459 72"/></svg>
+    <div class="intro-cards" id="intro-cards"></div>
+    <div class="intro-team an" style="--dl:1.6s"><span>Channel managers</span><b>Fedaa</b><i>→</i><b>Ayham</b><i>→</i><b>Sham</b></div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
 const EMBED = /*__DATA__*/null;
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const store = { get(k){ try{ return JSON.parse(localStorage.getItem('noon-{{ACCT}}-' + k)); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem('noon-{{ACCT}}-' + k, JSON.stringify(v)); }catch(e){} } };
+const gstore = { get(k){ try{ return JSON.parse(localStorage.getItem('noon-all-' + k)); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem('noon-all-' + k, JSON.stringify(v)); }catch(e){} } };
+const store = { get(k){ try{ return JSON.parse(localStorage.getItem('noon-' + ACCT + '-' + k)); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem('noon-' + ACCT + '-' + k, JSON.stringify(v)); }catch(e){} } };
 
 const r2 = x => Math.round(x * 100) / 100;
 const mk = d => d ? d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') : '';
@@ -385,7 +405,7 @@ function renderAll(){
 
 function renderOverview(C){
   const a = C.a, paid = M.payments.filter(p => inR(p.date, C.b)).reduce((s, p) => s + p.amt, 0), np = nextPayout();
-  const hr = new Date().getHours(); $('#greet').textContent = (hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening') + ' · Noon {{chan}} · In House';
+  const hr = new Date().getHours(); $('#greet').textContent = (hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening') + ' · Noon ' + CHAN + ' · In House';
   $('#hero-stats').innerHTML = [['Net sales', 'SAR ' + fM(a.net, 0)], ['Orders', fN(a.orders)], ['Paid out by Noon', 'SAR ' + fM(paid, 0)], ['Next payout', np ? fD(np) : '—']].map(([k, v]) => `<div class="hs"><span>${k}</span><b>${v}</b></div>`).join('');
   const d = a.h.prof - a.n.prof;
   $('#kpis').innerHTML = [
@@ -607,8 +627,8 @@ function renderData(){
   const all = aggregate(M.items), stTab = M.statements.reduce((s, x) => s + x.total, 0), pays = M.payments.reduce((s, p) => s + p.amt, 0);
   $('#health').innerHTML = `<span>Order items</span><span class="num">${fN(M.items.length)}</span><span>Products (SKUs)</span><span class="num">${fN(M.skus.length)}</span>
     <span>Products with a Noon title</span><span class="num">${fN(D.skus.filter(s => s[2]).length)}</span>
-    <span>Weekly statements in the PS-{{ACCT}} tab</span><span class="num">${M.statements.length}</span>
-    <span>Statement totals (PS-{{ACCT}} tab)</span><span class="num">${fM(stTab)}</span>
+    <span>Weekly statements in the PS-${ACCT} tab</span><span class="num">${M.statements.length}</span>
+    <span>Statement totals (PS-${ACCT} tab)</span><span class="num">${fM(stTab)}</span>
     <span>Payouts (Statement &amp; Payment tab)</span><span class="num">${fM(pays)}</span>
     <span>Profit · Noon view, all time</span><span class="num">${fM(all.n.prof)}</span><span>Profit · In House view, all time</span><span class="num">${fM(all.h.prof)}</span>`;
 }
@@ -689,13 +709,13 @@ function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add
 
 /* theme */
 $('#theme-btn').onclick = () => { const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-  document.documentElement.dataset.theme = dark ? 'light' : 'dark'; store.set('theme', document.documentElement.dataset.theme); renderAll(); };
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => renderAll());
+  document.documentElement.dataset.theme = dark ? 'light' : 'dark'; gstore.set('theme', document.documentElement.dataset.theme); if (M) renderAll(); if (!$('#intro').hidden) introFx(); };
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { if (M) renderAll(); });
 
 /* clock */
 function tick(){ const now = new Date(); const tz = { timeZone: 'Asia/Riyadh' };
   try { $('#clk-time').textContent = now.toLocaleTimeString('en-GB', tz); $('#clk-date').textContent = now.toLocaleDateString('en-GB', Object.assign({ weekday: 'short', day: 'numeric', month: 'short' }, tz)) + ' · Riyadh'; } catch (e) { $('#clk-time').textContent = now.toLocaleTimeString(); }
-  $('#live-txt').textContent = 'Data through ' + fD(M.asOf); }
+  if (M) $('#live-txt').textContent = 'Data through ' + fD(M.asOf); }
 
 /* hero canvas: slow drifting light ribbons */
 function heroFx(){
@@ -709,18 +729,110 @@ function heroFx(){
   draw();
 }
 
+/* ---------- accounts: one page, Bulky and Courier ---------- */
+const SETS = EMBED.meta ? { [EMBED.meta.account === '18947' ? 'bulky' : 'courier']: EMBED } : EMBED;
+const KEYS = ['bulky', 'courier'].filter(k => SETS[k]), MULTI = KEYS.length > 1;
+const MODELS = {}, model = k => MODELS[k] || (MODELS[k] = build(SETS[k]));
+const cap = k => k[0].toUpperCase() + k.slice(1);
+let ACCT = '', CHAN = '', fxOn = false;
+
+function useAcct(k){
+  M = model(k); CHAN = k; ACCT = M.D.meta.account;
+  document.querySelectorAll('[data-t]').forEach(e => e.textContent = e.dataset.t === 'acct' ? ACCT : e.dataset.t === 'Chan' ? cap(k) : k);
+  document.title = MULTI ? 'In-House Noon Reports · ' + cap(k) : 'Noon ' + cap(k) + ' Portal';
+  $('#acct-chip-name').textContent = cap(k); $('#acct-chip-no').textContent = ACCT;
+  document.querySelectorAll('#acct-sw button').forEach(b => b.classList.toggle('on', b.dataset.k === k));
+  // filters and searches belong to one account, so each account keeps its own
+  GS = null; Object.assign(ORD, { q: '', g: 'all' }); PROD.q = ''; RETQ = STQ = '';
+  ['#ord-q', '#ret-q', '#st-q', '#prod-q', '#gs'].forEach(s => { const e = $(s); if (e) e.value = ''; });
+  $('#gs-res').hidden = true;
+  const rg = store.get('range'); RANGE = rg && rg.kind ? rg : { kind: 'all' };
+  $('#ch-sel').innerHTML = '<option value="">All types</option>' + M.D.meta.channels.map((c, n) => `<option value="${n}">${esc(c)}</option>`).join('');
+  const ch = store.get('ch'); CH = ch != null && ch !== '' && M.D.meta.channels[+ch] ? ch : ''; $('#ch-sel').value = CH; $('#ch-sel').classList.toggle('on', CH !== '');
+  const ms = [...new Set(M.items.map(i => mk(i.date)).filter(Boolean))].sort().reverse();
+  $('#month-sel').innerHTML = '<option value="">Pick month</option>' + ms.map(m => { const [y, n] = m.split('-'); return `<option value="${m}">${MONTHS[+n - 1]} ${y}</option>`; }).join('');
+  if (RANGE.kind === 'month') { if (ms.includes(RANGE.month)) $('#month-sel').value = RANGE.month; else RANGE = { kind: 'all' }; }
+  gstore.set('acct', k);
+  setPills(); renderAll(); tick();
+  if (!fxOn) { fxOn = true; heroFx(); }
+}
+const pageNow = () => { const h = location.hash.slice(1); return TITLES[h] ? h : store.get('page') || 'overview'; };
+
+/* switch straight from the rail */
+function switchAcct(k){
+  if (k === CHAN) return;
+  const app = $('#app'); app.classList.remove('enter'); app.classList.add('swap');
+  setTimeout(() => { useAcct(k); go(pageNow()); app.classList.remove('swap'); void app.offsetWidth; app.classList.add('enter'); toast('Now showing ' + cap(k) + ' · account ' + ACCT); }, 260);
+}
+
+/* intro: title, two account cards, animated hand-over into the portal */
+function introCards(){
+  const ic = { bulky: '<path d="M3 11V8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3M2 11h20v6H2zM5 17v3M19 17v3M7 11v-1M17 11v-1"/>', courier: '<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM17 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>' };
+  const blurb = { bulky: 'Large items such as furniture, delivered by Flex, Direct, New Ansari and FBN.', courier: 'Parcel orders shipped through Flex, FBN and Supermall.' };
+  const last = gstore.get('acct');
+  $('#intro-cards').innerHTML = KEYS.map((k, n) => { const D = SETS[k];
+    return `<button class="acard an" type="button" data-k="${k}" style="--dl:${1.2 + n * .15}s">
+      <span class="ac-shine"></span>
+      <span class="ac-top"><span class="ac-ic"><svg viewBox="0 0 24 24">${ic[k]}</svg></span>
+        <span class="ac-name"><b>${cap(k)}</b><span class="mono">Account ${esc(D.meta.account)}</span></span>
+        ${k === CHAN ? '<span class="ac-tag now">Open now</span>' : k === last ? '<span class="ac-tag">Last opened</span>' : ''}</span>
+      <span class="ac-blurb">${blurb[k]}</span>
+      <span class="ac-stats" data-stats="${k}"><span><small>Net sales</small><b class="num">…</b></span><span><small>Orders</small><b class="num">…</b></span><span><small>Data as of</small><b>…</b></span></span>
+      <span class="ac-spark" data-spark="${k}"></span>
+      <span class="ac-go">Open ${cap(k)} portal<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </button>`; }).join('');
+  // the numbers fill in once the intro animation is under way
+  setTimeout(() => KEYS.forEach(k => { const m = model(k), a = aggregate(m.items), mo = monthKeys(m.items).map(key => m.items.filter(i => mk(i.date) === key && i.sold).reduce((s, i) => s + i.np, 0));
+    const st = document.querySelector(`[data-stats="${k}"]`).querySelectorAll('b');
+    st[0].textContent = 'SAR ' + fM(a.net / 1e6, 2) + 'M'; st[1].textContent = fN(a.orders); st[2].textContent = fD(m.asOf);
+    const mx = Math.max(...mo, 1);
+    document.querySelector(`[data-spark="${k}"]`).innerHTML = mo.map((v, n) => `<i style="height:${Math.max(6, v / mx * 100)}%;animation-delay:${n * 45}ms"></i>`).join('');
+  }), 350);
+}
+let introBusy = false;
+function openIntro(again){ introBusy = false;
+  const el = $('#intro'); introCards();
+  el.classList.remove('leave', 'picking'); el.classList.toggle('again', !!again); el.hidden = false;
+  $('#intro-x').hidden = !CHAN; document.documentElement.classList.add('intro-open');
+  introFx(); setTimeout(() => { const c = document.querySelector('.acard'); if (c && again) c.focus({ preventScroll: true }); }, 50);
+}
+function closeIntro(){
+  const el = $('#intro'); el.classList.add('leave'); const app = $('#app'); app.classList.remove('enter'); void app.offsetWidth; app.classList.add('enter');
+  setTimeout(() => { el.hidden = true; el.classList.remove('leave', 'picking'); document.documentElement.classList.remove('intro-open'); introBusy = false; }, 620);
+}
+function pick(k, card){
+  if (introBusy) return; introBusy = true;
+  card.classList.add('picked'); $('#intro').classList.add('picking');
+  setTimeout(() => { if (k !== CHAN) { useAcct(k); go(pageNow()); } closeIntro(); }, 420);
+}
+$('#intro-cards').addEventListener('click', e => { const c = e.target.closest('.acard'); if (c) pick(c.dataset.k, c); });
+$('#intro-x').onclick = () => { if (CHAN && !introBusy) { introBusy = true; closeIntro(); } };
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#intro').hidden && CHAN && !introBusy) { introBusy = true; closeIntro(); } });
+$('#acct-home').onclick = () => { $('#app').classList.remove('nav-open'); openIntro(true); };
+$('#acct-chip').onclick = () => openIntro(true);
+$('#acct-sw').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { $('#app').classList.remove('nav-open'); switchAcct(b.dataset.k); } });
+
+/* intro backdrop: slow ribbons, ink on yellow in light, yellow on charcoal in dark */
+let fxRaf = 0;
+function introFx(){
+  const cv = $('#intro-fx'), ctx = cv.getContext('2d'), reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  cancelAnimationFrame(fxRaf); let t = 0;
+  const draw = () => { if ($('#intro').hidden) return; const w = cv.width = innerWidth * devicePixelRatio, h = cv.height = innerHeight * devicePixelRatio; ctx.clearRect(0, 0, w, h);
+    for (let k = 0; k < 5; k++) { ctx.beginPath(); for (let x = 0; x <= w; x += 10) { const y = h * (.2 + k * .15) + Math.sin(x / w * 4 + t * (.5 + k * .17) + k * 1.3) * h * .07; x ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+      ctx.strokeStyle = dark ? (k % 2 ? `rgba(254,238,0,${.10 + k * .025})` : `rgba(126,155,242,${.10 + k * .02})`) : (k % 2 ? `rgba(26,28,34,${.06 + k * .015})` : `rgba(56,102,223,${.10 + k * .02})`);
+      ctx.lineWidth = (1 + k * .7) * devicePixelRatio; ctx.stroke(); }
+    t += .006; if (!reduce) fxRaf = requestAnimationFrame(draw); };
+  draw();
+}
+
 /* ---------- boot ---------- */
 (function boot(){
-  const thm = store.get('theme'); if (thm) document.documentElement.dataset.theme = thm;
-  const rg = store.get('range'); if (rg && rg.kind) RANGE = rg;
-  M = build(EMBED);
-  $('#ch-sel').innerHTML = '<option value="">All types</option>' + M.D.meta.channels.map((c, k) => `<option value="${k}">${esc(c)}</option>`).join('');
-  const ch = store.get('ch'); if (ch != null && ch !== '' && M.D.meta.channels[+ch]) { CH = ch; $('#ch-sel').value = ch; $('#ch-sel').classList.add('on'); }
-  const ms = [...new Set(M.items.map(i => mk(i.date)).filter(Boolean))].sort().reverse();
-  $('#month-sel').innerHTML = '<option value="">Pick month</option>' + ms.map(k => { const [y, m] = k.split('-'); return `<option value="${k}">${MONTHS[+m - 1]} ${y}</option>`; }).join('');
-  if (RANGE.kind === 'month') { if (ms.includes(RANGE.month)) $('#month-sel').value = RANGE.month; else RANGE = { kind: 'all' }; }
-  setPills(); renderAll(); tick();
-  go(location.hash.slice(1) || store.get('page') || 'overview');
-  setInterval(tick, 1000); heroFx();
+  const thm = gstore.get('theme'); if (thm) document.documentElement.dataset.theme = thm;
+  if (MULTI) $('#acct-sw').innerHTML = KEYS.map(k => `<button type="button" data-k="${k}"><b>${cap(k)}</b><span>${esc(SETS[k].meta.account)}</span></button>`).join('');
+  else document.documentElement.classList.add('single');
+  setInterval(tick, 1000); tick();
+  if (!MULTI) { useAcct(KEYS[0]); go(pageNow()); return; }
+  openIntro(false);
 })();
 </script>

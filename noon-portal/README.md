@@ -13,4 +13,4 @@ python3 tools/build.py data.json index.html
 
 - `index.html`: the portal, with data embedded
 - `tools/prepare_data.py`: reads the workbook tabs into a compact data file (courier 12539 or bulky 18947, picked from the PS- tab name)
-- `tools/build.py`, `tools/css.part`, `tools/body.part`: assemble the page
+- `tools/build.py`, `tools/css.part`, `tools/body.part`: assemble the page. Give `build.py` two data files (bulky, then courier) to build the combined page in `../noon-reports/`.
