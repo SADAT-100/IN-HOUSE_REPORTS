@@ -34,6 +34,7 @@
 
   <div class="main">
     <header class="topbar">
+      <a class="hub-btn" id="hub-btn" href="index.html" aria-label="Back to the main hub" hidden><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg><span>Main hub</span></a>
       <button class="menu-btn" id="menu-btn" aria-label="Open menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       <button class="acct-chip" id="acct-chip" type="button" aria-label="Switch account"><span class="ac-dot"></span><b id="acct-chip-name">Noon</b><span class="ac-no" id="acct-chip-no"></span><svg viewBox="0 0 24 24"><path d="M7 7h12l-3-3M17 17H5l3 3"/></svg></button>
       <div class="page-title" id="page-title">Overview<small id="range-txt">All time</small></div>
@@ -835,4 +836,7 @@ function introFx(){
   if (!MULTI) { useAcct(KEYS[0]); go(pageNow()); return; }
   openIntro(false);
 })();
+
+// The hub button only makes sense where index.html sits next to this file: opened from disk or a site, not inside claude.ai.
+if (location.protocol === 'file:' || !/claude/i.test(location.hostname)) $('#hub-btn').hidden = false;
 </script>

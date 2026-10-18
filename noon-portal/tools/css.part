@@ -396,4 +396,11 @@ html.intro-open,html.intro-open body{overflow:hidden}
 @media (max-width:900px){.acct-chip{order:1}}
 @media (max-width:640px){.intro-cards{grid-template-columns:minmax(0,1fr);gap:14px}.intro-arrows{display:none}.intro-sub{margin-bottom:18px}.intro-brand .brand-mark{height:44px;font-size:24px}.intro-sub{font-size:14px}}
 @media (max-width:520px){.acct-chip .ac-no{display:none}.acard{padding:16px}.ac-stats b{font-size:12.5px}}
+.hub-btn{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 12px 0 8px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;font-weight:700;font-size:12.5px;flex:none;transition:transform .25s,box-shadow .25s,border-color .25s}
+.hub-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}
+.hub-btn:hover{transform:translateY(-1px);border-color:transparent;box-shadow:0 0 0 1px var(--hub-glow,rgba(254,238,0,.7)),0 0 16px var(--hub-glow,rgba(254,238,0,.4))}
+.hub-btn:hover svg{transform:translateX(-3px)}
+.hub-btn[hidden]{display:none}
+@media (max-width:900px){.hub-btn{order:0}}
+@media (max-width:520px){.hub-btn{width:38px;padding:0;justify-content:center}.hub-btn span{display:none}}
 </style>
