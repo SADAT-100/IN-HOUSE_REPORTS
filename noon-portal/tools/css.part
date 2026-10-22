@@ -283,6 +283,9 @@ table.vs td,table.vs th{cursor:default}
 table.vs tr.sum td{font-weight:700;border-top:1px solid var(--line-strong)}
 .diff-up{color:var(--good)} .diff-dn{color:var(--crit)}
 .more{padding:10px 12px;font-size:12px;color:var(--fg-3)}
+tr.pick{cursor:pointer} tr.pick:hover td{background:var(--surface-2)} tr.pick.on td{background:var(--hot-bg)} tr.pick:focus-visible{outline:2px solid var(--accent-ink);outline-offset:-2px}
+td.rank{font-family:var(--f-mono);color:var(--fg-3);width:28px}
+#top-card{scroll-margin-top:90px}
 td.neg,span.neg{color:var(--crit)} td.pos,span.pos{color:var(--good)} tr.loss td:first-child{box-shadow:inset 3px 0 0 var(--crit)}
 .more-btn{margin:10px auto;display:flex}
 .gsearch{position:relative;flex:1 1 220px;min-width:0;max-width:340px}

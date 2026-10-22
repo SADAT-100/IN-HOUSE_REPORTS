@@ -288,6 +288,9 @@ table.vs td,table.vs th{cursor:default}
 table.vs tr.sum td{font-weight:700;border-top:1px solid var(--line-strong)}
 .diff-up{color:var(--good)} .diff-dn{color:var(--crit)}
 .more{padding:10px 12px;font-size:12px;color:var(--fg-3)}
+tr.pick{cursor:pointer} tr.pick:hover td{background:var(--surface-2)} tr.pick.on td{background:var(--hot-bg)} tr.pick:focus-visible{outline:2px solid var(--accent-ink);outline-offset:-2px}
+td.rank{font-family:var(--f-mono);color:var(--fg-3);width:28px}
+#top-card{scroll-margin-top:90px}
 td.neg,span.neg{color:var(--crit)} td.pos,span.pos{color:var(--good)} tr.loss td:first-child{box-shadow:inset 3px 0 0 var(--crit)}
 .more-btn{margin:10px auto;display:flex}
 .gsearch{position:relative;flex:1 1 220px;min-width:0;max-width:340px}
@@ -427,6 +430,7 @@ html.intro-open,html.intro-open body{overflow:hidden}
       <a href="#sales" data-page="sales"><svg viewBox="0 0 24 24"><path d="M3 20h18M6 16l4-5 3 3 5-7"/></svg>Sales</a>
       <a href="#orders" data-page="orders"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM9 8h6M9 12h6M9 16h4"/></svg>Orders<span class="badge" id="b-orders">0</span></a>
       <a href="#products" data-page="products"><svg viewBox="0 0 24 24"><path d="M4 13V9a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v4M3 13h18v4H3zM6 17v3M18 17v3"/></svg>Products</a>
+      <a href="#categories" data-page="categories"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>Categories<span class="badge" id="b-cat">0</span></a>
       <div class="nav-label">Money</div>
       <a href="#payments" data-page="payments"><svg viewBox="0 0 24 24"><path d="M3 7h18v12H3zM3 11h18M7 15h3"/></svg>Payments<span class="badge hot" id="b-pay">·</span></a>
       <a href="#fees" data-page="fees"><svg viewBox="0 0 24 24"><path d="M19 5L5 19M7 9a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM17 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>Fees &amp; ads</a>
@@ -548,6 +552,28 @@ html.intro-open,html.intro-open body{overflow:hidden}
           <div class="card-head"><h3>Product performance</h3><p>Unit cost from the workbook · profit in both views</p></div>
           <div class="toolbar"><input class="search" id="prod-q" type="search" placeholder="Search product, SKU, partner SKU, category"></div>
           <div class="tbl-wrap"><table id="t-products"></table></div><div id="prod-more"></div>
+        </div>
+      </section>
+
+      <!-- CATEGORIES -->
+      <section class="page" id="p-categories">
+        <div class="kpis" id="cat-kpis"></div>
+        <div class="grid g2">
+          <div class="card"><div class="card-head"><h3>Share of net sales</h3><p>Top categories in this period</p></div><div class="chart-box sm"><canvas id="ch-catshare"></canvas></div><div class="legend" id="cat-legend"></div></div>
+          <div class="card"><div class="card-head"><h3>Category sales by month</h3><p>SAR net sales · top 5 categories and the rest</p></div><div class="chart-box sm"><canvas id="ch-catmonth"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Category performance</h3><p id="cat-note">Click a category to see its top sellers</p></div>
+          <div class="toolbar"><input class="search" id="cat-q" type="search" placeholder="Search category"></div>
+          <div class="tbl-wrap"><table id="t-cats"></table></div>
+        </div>
+        <div class="card" id="top-card">
+          <div class="card-head"><h3>Top sellers</h3><p id="top-note"></p></div>
+          <div class="toolbar">
+            <select class="month-sel" id="top-cat" aria-label="Category"></select>
+            <div class="seg" id="top-by" role="group" aria-label="Rank by"><button data-v="net" class="on">Net sales</button><button data-v="sold">Units</button><button data-v="prof">Profit</button><button data-v="loss">Losing money</button></div>
+          </div>
+          <div class="tbl-wrap"><table id="t-top"></table></div>
         </div>
       </section>
 
@@ -811,7 +837,7 @@ function renderAll(){
   const last = M.payments[M.payments.length - 1];
   $('#b-orders').textContent = fN(a.orders); $('#b-ret').textContent = fN(a.retLines + a.failLines);
   $('#b-pay').textContent = last ? fM(last.amt / 1000, 1) + 'k' : '·'; $('#q-pay').textContent = last ? fM(last.amt, 0) : '—'; $('#q-open').textContent = fN(open.length); $('#q-ret').textContent = fN(a.retLines);
-  renderOverview(C); renderSales(C); renderOrders(C); renderProducts(C); renderPayments(C); renderFees(C); renderReturns(C); renderDelivery(C); renderData();
+  renderOverview(C); renderSales(C); renderOrders(C); renderProducts(C); renderCategories(C); renderPayments(C); renderFees(C); renderReturns(C); renderDelivery(C); renderData();
   countUp(document.querySelector('.page.on'));
 }
 
@@ -941,6 +967,77 @@ function renderProducts(C){
   moreBar('#prod-more', 'prod', shown, rows.length, 'products'); paint('#t-products');
 }
 
+/* categories */
+let CAT = { sort: 'net', asc: false, q: '', pick: '', by: 'net' };
+const CAT_COL = () => [css('--c2'), css('--c3'), css('--c1'), css('--c4'), css('--orange'), css('--fg-3')];
+function catRows(L){
+  const R = new Map();
+  for (const i of L) { const k = i.p.cat; let c = R.get(k); if (!c) R.set(k, c = { cat: k, skus: new Set(), ords: new Set(), lines: 0, sold: 0, ret: 0, canceled: 0, net: 0, retVal: 0, prof: 0, prof2: 0 });
+    c.lines++; if (i.g === 'canceled') { c.canceled++; continue; }
+    c.ords.add(i.order); if (i.sold) { c.sold++; c.net += i.np; c.skus.add(i.p); } else { c.ret++; c.retVal += i.np; }
+    c.prof += i.prof; c.prof2 += i.prof2; }
+  return [...R.values()].map(c => Object.assign(c, { products: c.skus.size, orders: c.ords.size, price: c.sold ? c.net / c.sold : 0,
+    retRate: c.sold + c.ret ? c.ret / (c.sold + c.ret) : 0, margin: c.net ? c.prof / c.net : -Infinity, margin2: c.net ? c.prof2 / c.net : -Infinity }));
+}
+function renderCategories(C){
+  const a = C.a, all = catRows(C.L), tot = all.reduce((s, c) => s + c.net, 0) || 1;
+  all.forEach(c => c.share = c.net / tot);
+  // change: latest month in the range against the month before it, same delivery type
+  const lastK = C.keys[C.keys.length - 1], prevK = lastK && (([y, m]) => m === 1 ? (y - 1) + '-12' : y + '-' + String(m - 1).padStart(2, '0'))(lastK.split('-').map(Number));
+  // the data's own latest month is partial, so both months are cut to the same days
+  const part = lastK === mk(M.asOf) ? M.asOf.getDate() : 32;
+  const netBy = k => { const o = {}; if (k) M.items.forEach(i => { if (i.sold && chOK(i) && mk(i.date) === k && i.date.getDate() <= part) o[i.p.cat] = (o[i.p.cat] || 0) + i.np; }); return o; };
+  const nowM = netBy(lastK), prevM = netBy(prevK);
+  all.forEach(c => { const p = prevM[c.cat] || 0, n = nowM[c.cat] || 0; c.chg = p ? n / p - 1 : n ? Infinity : -Infinity; });
+  const selling = all.filter(c => c.sold > 0).sort((x, y) => y.net - x.net);
+  const best = selling.slice().sort((x, y) => y.prof - x.prof)[0], big = selling.filter(c => c.sold + c.ret >= 20).sort((x, y) => y.retRate - x.retRate)[0];
+  const lossC = selling.filter(c => c.prof < 0);
+  $('#b-cat').textContent = fN(selling.length);
+  $('#cat-kpis').innerHTML = [
+    kpi('Categories selling', fN(selling.length), `${fN(new Set(M.skus.map(p => p.cat)).size)} categories in the data${lossC.length ? ' · ' + lossC.length + ' losing money' : ''}`, { raw: selling.length, fmt: 'n', money: false }),
+    kpi('Top category', selling[0] ? esc(selling[0].cat) : '—', selling[0] ? `${pct(selling[0].share)} of net sales · SAR ${fM(selling[0].net, 0)}` : 'Nothing sold in this period', { money: false }),
+    kpi('Most profitable', best ? esc(best.cat) : '—', best ? `SAR ${fM(best.prof, 0)} profit · ${pct(best.margin)} margin, Noon view` : '—', { money: false }),
+    kpi('Highest return rate', big ? esc(big.cat) : '—', big ? `${pct(big.retRate)} of items came back · ${fN(big.ret)} items` : 'Not enough items yet', { money: false })
+  ].join('');
+  // share doughnut and monthly stack
+  const top = selling.slice(0, 5), rest = selling.slice(5), col = CAT_COL();
+  const parts = top.map(c => [c.cat, c.net]).concat(rest.length ? [['Other ' + rest.length, rest.reduce((s, c) => s + c.net, 0)]] : []);
+  chart('ch-catshare', { type: 'doughnut', data: { labels: parts.map(x => x[0]), datasets: [{ label: 'Net sales', data: parts.map(x => r2(x[1])), backgroundColor: col.slice(0, parts.length), borderColor: css('--surface'), borderWidth: 2 }] },
+    options: { cutout: '62%', interaction: { mode: 'nearest', intersect: true }, scales: { x: { display: false }, y: { display: false } },
+      plugins: { legend: { display: false }, tooltip: { backgroundColor: css('--fg'), titleColor: css('--bg'), bodyColor: css('--bg'), padding: 10, cornerRadius: 8, callbacks: { label: c => ' ' + c.label + ': SAR ' + fM(c.parsed) + ' · ' + pct(c.parsed / tot) } } } } });
+  $('#cat-legend').innerHTML = parts.map((x, k) => `<span><i style="background:${col[k]}"></i>${esc(x[0])} · ${pct(x[1] / tot)}</span>`).join('');
+  const topSet = new Set(top.map(c => c.cat)), ks = C.keys;
+  const series = top.map(c => c.cat).concat(rest.length ? ['Other'] : []), grid = series.map(() => ks.map(() => 0));
+  C.L.forEach(i => { if (!i.sold) return; const x = ks.indexOf(mk(i.date)); if (x < 0) return; const y = topSet.has(i.p.cat) ? series.indexOf(i.p.cat) : series.length - 1; grid[y][x] += i.np; });
+  chart('ch-catmonth', { data: { labels: ks.map(mLabel), datasets: series.map((n, k) => barDS(n, grid[k].map(r2), col[k], { stack: 's', borderRadius: 0, borderSkipped: false })) },
+    options: { scales: { x: { stacked: true, grid: { display: false }, ticks: { color: css('--fg-3') } }, y: { stacked: true, grid: { color: css('--line') }, border: { display: false }, ticks: { color: css('--fg-3'), callback: v => Math.abs(v) >= 1000 ? (v / 1000).toFixed(0) + 'k' : v } } } } });
+  // table
+  const q = CAT.q.toLowerCase().trim(), rows = sortTable(all.filter(c => !q || c.cat.toLowerCase().includes(q)), CAT);
+  const chgTxt = c => c.chg === Infinity ? '<span class="tag good">New</span>' : c.chg === -Infinity ? '—' : (c.chg >= 0 ? '+' : '−') + (Math.abs(c.chg) * 100).toFixed(0) + '%';
+  $('#cat-note').textContent = lastK && prevK ? `Change compares ${part < 32 ? '1–' + part + ' ' + MONTHS[+lastK.slice(5) - 1] + ' with 1–' + part + ' ' + MONTHS[+prevK.slice(5) - 1] : mLabel(lastK) + ' with ' + mLabel(prevK)} · click a category to see its top sellers` : 'Click a category to see its top sellers';
+  const cols = [['cat', 'Category'], ['products', 'Products sold', 'r'], ['orders', 'Orders', 'r'], ['sold', 'Items sold', 'r'], ['ret', 'Returned', 'r'], ['retRate', 'Return rate', 'r'], ['net', 'Net sales', 'r'], ['share', 'Share', 'r'], ['price', 'Avg price', 'r'], ['prof', 'Profit · Noon', 'r'], ['margin', 'Margin · Noon', 'r'], ['prof2', 'Profit · In House', 'r'], ['margin2', 'Margin · In House', 'r'], ['chg', 'Change', 'r']];
+  const cells = c => `<td class="r">${fN(c.products)}</td><td class="r">${fN(c.orders)}</td><td class="r">${fN(c.sold)}</td><td class="r">${c.ret ? fN(c.ret) : '—'}</td><td class="r">${c.sold + c.ret ? pct(c.retRate) : '—'}</td><td class="r">${fM(c.net)}</td><td class="r">${pct(c.share)}</td><td class="r">${c.sold ? fM(c.price) : '—'}</td><td class="r">${fM(c.prof)}</td><td class="r">${c.net ? pct(c.margin) : '—'}</td><td class="r">${fM(c.prof2)}</td><td class="r">${c.net ? pct(c.margin2) : '—'}</td>`;
+  const T = all.reduce((t, c) => ({ products: t.products + c.products, orders: 0, sold: t.sold + c.sold, ret: t.ret + c.ret, net: t.net + c.net, prof: t.prof + c.prof, prof2: t.prof2 + c.prof2 }), { products: 0, orders: 0, sold: 0, ret: 0, net: 0, prof: 0, prof2: 0 });
+  Object.assign(T, { orders: a.orders, share: 1, price: T.sold ? T.net / T.sold : 0, retRate: T.sold + T.ret ? T.ret / (T.sold + T.ret) : 0, margin: T.net ? T.prof / T.net : 0, margin2: T.net ? T.prof2 / T.net : 0 });
+  $('#t-cats').innerHTML = th(cols, CAT) + `<tbody>${rows.map(c => `<tr class="pick${CAT.pick === c.cat ? ' on' : ''}" data-cat="${esc(c.cat)}" tabindex="0"><td>${esc(c.cat)}</td>${cells(c)}<td class="r">${chgTxt(c)}</td></tr>`).join('') || '<tr><td colspan="14" class="more">No categories in this period.</td></tr>'}</tbody><tfoot><tr><td>All categories</td>${cells(T)}<td class="r"></td></tr></tfoot>`;
+  paint('#t-cats');
+  $('#t-cats').querySelectorAll('tbody td:last-child').forEach(td => { const v = td.textContent.trim(); if (/^\+/.test(v)) td.classList.add('pos'); if (/^−/.test(v)) td.classList.add('neg'); });
+  // top sellers
+  if (CAT.pick && !all.some(c => c.cat === CAT.pick)) CAT.pick = '';
+  $('#top-cat').innerHTML = `<option value="">All categories</option>` + selling.map(c => `<option value="${esc(c.cat)}"${CAT.pick === c.cat ? ' selected' : ''}>${esc(c.cat)}</option>`).join('');
+  renderTop(C);
+}
+function renderTop(C){
+  const by = CAT.by, P = productRows(C.L.filter(i => !CAT.pick || i.p.cat === CAT.pick)).filter(p => by === 'loss' ? p.prof < 0 : p.sold > 0);
+  P.sort((x, y) => by === 'loss' ? x.prof - y.prof : (y[by] - x[by]) || (y.net - x.net));
+  const list = P.slice(0, 15), net = P.reduce((s, p) => s + p.net, 0) || 1, catNet = productRows(C.L.filter(i => !CAT.pick || i.p.cat === CAT.pick)).reduce((s, p) => s + p.net, 0) || 1;
+  const what = { net: 'net sales', sold: 'units sold', prof: 'profit, Noon view', loss: 'biggest losses, Noon view' }[by];
+  $('#top-note').textContent = (CAT.pick || 'All categories') + ' · top ' + list.length + ' of ' + fN(P.length) + ' products by ' + what;
+  const cols = ['#', 'Product', 'Category', 'Sold', 'Returned', 'Net sales', 'Share of category', 'Unit cost', 'Profit · Noon', 'Margin · Noon', 'Profit · In House'];
+  $('#t-top').innerHTML = `<thead><tr>${cols.map((c, k) => `<th class="${k > 2 ? 'r' : ''}">${c}</th>`).join('')}</tr></thead><tbody>${list.map((p, k) => `<tr><td class="rank">${k + 1}</td><td class="wrap" title="${esc(p.sku)}">${esc(p.name)}</td><td>${esc(p.cat)}</td><td class="r">${fN(p.sold)}</td><td class="r">${p.ret || '—'}</td><td class="r">${fM(p.net)}</td><td class="r">${pct(p.net / catNet)}</td><td class="r">${fM(p.cost)}</td><td class="r">${fM(p.prof)}</td><td class="r">${p.net ? pct(p.margin) : '—'}</td><td class="r">${fM(p.prof2)}</td></tr>`).join('') || `<tr><td colspan="11" class="more">${by === 'loss' ? 'No product lost money here in this period.' : 'Nothing sold here in this period.'}</td></tr>`}</tbody>`;
+  paint('#t-top');
+}
+
 /* payments */
 function renderPayments(C){
   const P = M.payments, inP = P.filter(p => inR(p.date, C.b)), paidP = inP.reduce((s, p) => s + p.amt, 0), np = nextPayout();
@@ -1046,7 +1143,7 @@ function renderData(){
 }
 
 /* ---------- navigation ---------- */
-const TITLES = { overview: 'Overview', sales: 'Sales report', orders: 'Orders', products: 'Products', payments: 'Payments & payouts', fees: 'Fees & ads', returns: 'Returns & cancellations', delivery: 'Delivery', data: 'Data & methods' };
+const TITLES = { overview: 'Overview', sales: 'Sales report', orders: 'Orders', products: 'Products', categories: 'Categories', payments: 'Payments & payouts', fees: 'Fees & ads', returns: 'Returns & cancellations', delivery: 'Delivery', data: 'Data & methods' };
 function go(page){
   if (!TITLES[page]) page = 'overview';
   document.querySelectorAll('.page').forEach(p => p.classList.toggle('on', p.id === 'p-' + page));
@@ -1074,6 +1171,14 @@ $('#ret-q').addEventListener('input', e => { RETQ = e.target.value; PAGE.ret = S
 $('#st-q').addEventListener('input', e => { STQ = e.target.value; later(() => renderPayments(current())); });
 document.addEventListener('click', e => { const b = e.target.closest('[data-more],[data-all]'); if (!b) return; const k = b.dataset.more || b.dataset.all;
   PAGE[k] = b.dataset.all ? 1e9 : PAGE[k] + STEP; ({ ord: renderOrders, prod: renderProducts, ret: renderReturns })[k](current()); });
+$('#cat-q').addEventListener('input', e => { CAT.q = e.target.value; later(() => renderCategories(current())); });
+$('#t-cats').addEventListener('click', e => { const h = e.target.closest('th[data-k]');
+  if (h) { if (CAT.sort === h.dataset.k) CAT.asc = !CAT.asc; else { CAT.sort = h.dataset.k; CAT.asc = h.dataset.k === 'cat'; } renderCategories(current()); return; }
+  const r = e.target.closest('tr[data-cat]'); if (!r) return; CAT.pick = CAT.pick === r.dataset.cat ? '' : r.dataset.cat; renderCategories(current());
+  if (CAT.pick) $('#top-card').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+$('#t-cats').addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.matches('tr[data-cat]')) e.target.click(); });
+$('#top-cat').addEventListener('change', e => { CAT.pick = e.target.value; renderCategories(current()); });
+$('#top-by').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; CAT.by = b.dataset.v; document.querySelectorAll('#top-by button').forEach(x => x.classList.toggle('on', x === b)); renderTop(current()); });
 $('#prod-q').addEventListener('input', e => { PROD.q = e.target.value; PAGE.prod = STEP; later(() => renderProducts(current())); });
 $('#ord-chips').addEventListener('click', e => { const c = e.target.closest('.chip'); if (!c) return; ORD.g = c.dataset.g; PAGE.ord = STEP; renderOrders(current()); });
 $('#t-orders').addEventListener('click', e => { const h = e.target.closest('th[data-k]'); if (!h) return; if (ORD.sort === h.dataset.k) ORD.asc = !ORD.asc; else { ORD.sort = h.dataset.k; ORD.asc = false; } renderOrders(current()); });
