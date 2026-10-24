@@ -592,8 +592,11 @@ html.intro-open,html.intro-open body{overflow:hidden}
             <div class="recon" id="recon"></div>
           </div>
         </div>
+        <div class="card"><div class="card-head"><h3>Received from Noon by month</h3><p>All months · SAR transferred to the bank, by transfer date</p></div>
+          <div class="grid g2"><div class="tbl-wrap"><table id="t-paymonth"></table></div><div class="chart-box"><canvas id="ch-paymonth"></canvas></div></div></div>
+        <div class="card" id="ded-card" hidden><div class="card-head"><h3>Deducted from the balance</h3><p>Noon invoices taken from the money owed to the store · SAR incl. VAT</p></div><div class="tbl-wrap"><table id="t-ded"></table></div></div>
         <div class="card">
-          <div class="card-head"><h3>Weekly statements</h3><p>SAR incl. VAT · from the PS-<span data-t="acct"></span> statement tab</p></div>
+          <div class="card-head"><h3>Weekly statements</h3><p id="ledger-sub">SAR incl. VAT · from the PS-<span data-t="acct"></span> statement tab</p></div>
           <div class="toolbar"><input class="search" id="st-q" type="search" placeholder="Search statement number or date"></div>
           <div class="tbl-wrap"><table id="t-ledger"></table></div>
         </div>
@@ -607,7 +610,7 @@ html.intro-open,html.intro-open body{overflow:hidden}
           <div class="card"><div class="card-head"><h3>Fees as a share of net sales</h3><p>Order fees ÷ net sales, both views</p></div><div class="chart-box"><canvas id="ch-rate"></canvas></div></div>
         </div>
         <div class="card"><div class="card-head"><h3>Charges from Noon</h3><p>SAR · selected period</p></div><div class="tbl-wrap"><table class="vs" id="t-fees"></table></div></div>
-        <div class="card"><div class="card-head"><h3>Monthly account charges</h3><p>SAR · ads, FBN charges and VAT from the All Fee tab</p></div><div class="tbl-wrap"><table id="t-acct"></table></div></div>
+        <div class="card"><div class="card-head"><h3>Monthly account charges</h3><p id="acct-sub">SAR · ads, FBN charges and VAT from the All Fee tab</p></div><div class="tbl-wrap"><table id="t-acct"></table></div></div>
       </section>
 
       <!-- RETURNS -->
@@ -632,8 +635,8 @@ html.intro-open,html.intro-open body{overflow:hidden}
       <!-- DATA -->
       <section class="page" id="p-data">
         <div class="card">
-          <div class="card-head"><h3>Updating the portal</h3><span class="tag info">Coming next</span></div>
-          <p class="muted" style="font-size:13px">Uploading new Noon files will be added once the standard export from the channel managers is agreed. Until then the numbers come from the workbook named below. Only four people will be able to update the portal: the marketplace manager and the three Noon channel managers, Fedaa, Ayham and Sham. Everyone else can only view it.</p>
+          <div class="card-head"><h3>Updating the portal</h3><span class="tag info">Standard export</span></div>
+          <p class="muted" style="font-size:13px">Each update uses two exports from Noon, both from 1 January to today: the <b>Transaction View Report</b> (Finance › Reports, for payments, statements, ads and fees) and the <b>sales export</b> (for orders and items). The newest files replace the old ones in full, so nothing is counted twice. Only four people will be able to update the portal: the marketplace manager and the three Noon channel managers, Fedaa, Ayham and Sham. Everyone else can only view it.</p>
         </div>
         <div class="card"><p class="foot-note" id="data-src" style="margin:0"></p></div>
         <div class="grid g2">
@@ -642,11 +645,11 @@ html.intro-open,html.intro-open body{overflow:hidden}
             <dl class="defs">
               <dt>Net sales</dt><dd>Noon net proceeds of items that are Delivered, Shipped, Processing or Pending. Returned, failed and cancelled items are left out.</dd>
               <dt>Orders</dt><dd>Noon order numbers with at least one item that was not cancelled.</dd>
-              <dt>Noon view</dt><dd>Referral, shipping and order subsidies exactly as Noon charged them (the first set of fee columns). Revenue and profit use the workbook's Revenue and Profit columns.</dd>
+              <dt>Noon view</dt><dd id="def-noon">Referral, shipping and order subsidies exactly as Noon charged them (the first set of fee columns). Revenue and profit use the workbook's Revenue and Profit columns.</dd>
               <dt>In House view</dt><dd>Your own fee figures (Comm, Shipping and the second subsidy column). Revenue and profit use the Revenue2 and Profit2 columns. The two views are the same until June 2026.</dd>
               <dt>Profit</dt><dd>Revenue minus the unit cost of each item sold. Returned items carry their fees but no product cost.</dd>
               <dt>Profit after account charges</dt><dd>Profit plus ads, ad subsidies, FBN charges and damaged-return credits from the All Fee tab. Shown for whole months and for all delivery types only, because these charges are not split by order.</dd>
-              <dt>Payouts</dt><dd>Transfers listed in the Statement &amp; Payment tab. Statement totals in the PS-<span data-t="acct"></span> tab already include VAT.</dd>
+              <dt>Payouts</dt><dd id="def-pay">Transfers listed in the Statement &amp; Payment tab. Statement totals in the PS-<span data-t="acct"></span> tab already include VAT.</dd>
               <dt>Period filter</dt><dd>Order money follows the order date. The range buttons count back from the last order in the data, not from today.</dd>
             </dl>
           </div>
@@ -708,7 +711,8 @@ function build(D){
   const payments = D.payments.map(([d, a]) => ({ date: isoDate(d), amt: a }));
   const statements = D.statements.map(s => Object.assign({}, s, { date: isoDate(s.date) }));
   const fees = D.fees.map(f => ({ k: '2026-' + String(f[0]).padStart(2, '0'), ads: f[1], adsSub: f[2], fbn: f[3], dmg: f[4], vat: f[5] }));
-  return { D, skus, items, asOf, first, payments, statements, fees };
+  const deductions = (D.deductions || []).map(([d, ref, a]) => ({ date: isoDate(d), ref, amt: a }));
+  return { D, skus, items, asOf, first, payments, statements, fees, deductions, fin: D.meta.finance || null };
 }
 
 function aggregate(L){
@@ -731,6 +735,9 @@ function aggregate(L){
   a.retRate = a.sales ? (a.retVal + a.failVal) / a.sales : 0;
   return a;
 }
+
+// With Noon's finance export, monthly charges are the invoices Noon takes from the balance, not the workbook's FBN lines.
+const DED = () => M.fin ? 'Deducted by Noon' : 'FBN charges';
 
 /* ---------- range & filters ---------- */
 let RANGE = { kind: 'all' }, CH = '', VIEW = 'noon';
@@ -861,7 +868,7 @@ function renderOverview(C){
   const ac = acct(C.F), rows = [['Net sales', a.net, a.net], ['Referral / commission', a.n.ref, a.h.ref], ['Shipping', a.n.ship, a.h.ship], ['Order subsidies', a.n.subs, a.h.subs]];
   if (Math.abs(a.n.other) > 1 || Math.abs(a.h.other) > 1) rows.push(['Other adjustments', a.n.other, a.h.other]);
   rows.push(['Revenue', a.n.rev, a.h.rev, 1], ['Product cost', -a.n.cost, -a.h.cost], ['Profit', a.n.prof, a.h.prof, 1]);
-  if (C.F.length) { const x = ac.ads + ac.adsSub + ac.fbn + ac.dmg; rows.push(['Ads, FBN and damaged returns', x, x], ['Profit after account charges', a.n.prof + x, a.h.prof + x, 1]); }
+  if (C.F.length) { const x = ac.ads + ac.adsSub + ac.fbn + ac.dmg; rows.push([M.fin ? 'Ads and Noon deductions' : 'Ads, FBN and damaged returns', x, x], ['Profit after account charges', a.n.prof + x, a.h.prof + x, 1]); }
   const dc = v => Math.abs(v) < .5 ? '<span class="muted">—</span>' : `<span class="${v > 0 ? 'diff-up' : 'diff-dn'}">${v > 0 ? '+' : ''}${fM(v)}</span>`;
   $('#t-vs').innerHTML = `<thead><tr><th></th><th class="r">Noon view</th><th class="r">In House view</th><th class="r">Difference</th></tr></thead><tbody>${rows.map(r => `<tr class="${r[3] ? 'sum' : ''}"><td>${r[0]}</td><td class="r">${fM(r[1])}</td><td class="r">${fM(r[2])}</td><td class="r">${dc(r[2] - r[1])}</td></tr>`).join('')}
     <tr><td>Margin on net sales</td><td class="r">${pct(a.n.margin)}</td><td class="r">${pct(a.h.margin)}</td><td class="r"></td></tr></tbody>`;
@@ -1051,10 +1058,24 @@ function renderPayments(C){
     kpi('Next payout', np ? fD(np) : '—', 'Noon pays weekly', { money: false })
   ].join('');
   $('#payouts').innerHTML = (np ? `<div class="po next"><i></i><div><div class="d">${fD(np)} · next transfer</div><div class="p">Expected on the usual weekly day</div></div><div class="a">—</div></div>` : '') +
-    P.slice().reverse().map(p => `<div class="po"><i></i><div><div class="d">${fD(p.date)}</div><div class="p">Weekly transfer</div></div><div class="a">${fM(p.amt)}</div></div>`).join('');
+    P.slice().reverse().map(p => `<div class="po"><i></i><div><div class="d">${fD(p.date)}</div><div class="p">${p.amt < 0 ? 'Transfer returned to Noon' : 'Weekly transfer'}</div></div><div class="a">${fM(p.amt)}</div></div>`).join('');
+  // money received per calendar month
+  const pm = {}; P.forEach(p => { const k = mk(p.date); (pm[k] = pm[k] || { amt: 0, n: 0 }).amt += p.amt; if (p.amt > 0) pm[k].n++; });
+  const pk = Object.keys(pm).sort(), curK = mk(M.fin ? isoDate(M.fin.to) : M.asOf); let run = 0;
+  const pmRows = pk.map((k, i) => { run += pm[k].amt; const prev = i ? pm[pk[i - 1]].amt : 0; return { k, ...pm[k], run, chg: prev ? pm[k].amt / prev - 1 : null }; });
+  $('#t-paymonth').innerHTML = `<thead><tr><th>Month</th><th class="r">Transfers</th><th class="r">Received</th><th class="r">vs month before</th><th class="r">Running total</th></tr></thead><tbody>${pmRows.slice().reverse().map(r => `<tr><td>${mLabel(r.k)}${r.k === curK ? ' <span class="tag mute">so far</span>' : ''}</td><td class="r">${r.n}</td><td class="r">${fM(r.amt)}</td><td class="r">${r.chg == null ? '—' : `<span class="${r.chg >= 0 ? 'pos' : 'neg'}">${r.chg >= 0 ? '+' : '−'}${(Math.abs(r.chg) * 100).toFixed(0)}%</span>`}</td><td class="r">${fM(r.run)}</td></tr>`).join('')}</tbody><tfoot><tr><td>Total</td><td class="r">${pmRows.reduce((s, r) => s + r.n, 0)}</td><td class="r">${fM(run)}</td><td></td><td></td></tr></tfoot>`;
+  chart('ch-paymonth', { data: { labels: pk.map(mLabel), datasets: [barDS('Received', pmRows.map(r => r2(r.amt)), css('--c2'))] } });
+  $('#ded-card').hidden = !M.deductions.length;
+  if (M.deductions.length) { const dt = M.deductions.reduce((s, x) => s + x.amt, 0);
+    $('#t-ded').innerHTML = `<thead><tr><th>Date</th><th>Noon reference</th><th class="r">Amount</th></tr></thead><tbody>${M.deductions.slice().reverse().map(x => `<tr><td>${fD(x.date)}</td><td class="mono">${esc(x.ref)}</td><td class="r neg">${fM(x.amt)}</td></tr>`).join('')}</tbody><tfoot><tr><td>Total</td><td>${M.deductions.length} deductions</td><td class="r">${fM(dt)}</td></tr></tfoot>`; }
+  $('#ledger-sub').textContent = M.fin ? 'SAR incl. VAT · from Noon\'s Transaction View export (' + M.fin.file + ')' : 'SAR incl. VAT · from the PS-' + ACCT + ' statement tab';
   chart('ch-payouts', { data: { labels: P.map(p => p.date.getDate() + ' ' + MONTHS[p.date.getMonth()]), datasets: [barDS('Payout', P.map(p => r2(p.amt)), css('--c3'))] } });
   const due = stAll + vat + fbn;
-  $('#recon').innerHTML = [['Statements excl. VAT', stAll], ['VAT on Noon charges', vat], ['FBN charges', fbn]].map(([k, v]) => `<span>${k}</span><span class="num">${fM(v)}</span>`).join('') +
+  if (M.fin) { const st = M.statements.reduce((s, x) => s + x.total, 0), ded = M.deductions.reduce((s, x) => s + x.amt, 0), left = st + ded - paid;
+    $('#recon').innerHTML = `<span>Weekly statements (${M.statements.length}, incl. VAT)</span><span class="num">${fM(st)}</span><span>Deducted by Noon (${M.deductions.length} invoices)</span><span class="num">${fM(ded)}</span>` +
+      `<span class="sum">Owed to the store</span><span class="num sum">${fM(st + ded)}</span><span>Paid out (${P.filter(p => p.amt > 0).length} transfers)</span><span class="num">${fM(-paid)}</span><span class="sum">Still with Noon</span><span class="num sum">${fM(left)}</span>` +
+      `<span class="muted" style="grid-column:1/-1"><span class="tag good">From Noon's ledger</span> Statements ${fD(isoDate(M.fin.from))} to ${fD(isoDate(M.fin.to))}. The first payout in January paid December's statement, so this balance also carries what Noon owed on 1 January.</span>`; }
+  else $('#recon').innerHTML = [['Statements excl. VAT', stAll], ['VAT on Noon charges', vat], ['FBN charges', fbn]].map(([k, v]) => `<span>${k}</span><span class="num">${fM(v)}</span>`).join('') +
     `<span class="sum">Owed to the store</span><span class="num sum">${fM(due)}</span><span>Paid out (${P.length} transfers)</span><span class="num">${fM(-paid)}</span><span class="sum">Difference</span><span class="num sum">${fM(due - paid)}</span>` +
     `<span class="muted" style="grid-column:1/-1">${Math.abs(due - paid) < 1 ? '<span class="tag good">Balanced</span> Statements and payouts match.' : '<span class="tag warn">Check</span> Statements and payouts differ by SAR ' + fM(due - paid) + ' (' + pct(paid ? Math.abs(due - paid) / paid : 0) + ' of all payouts). Taken from the Statement &amp; Payment tab.'}</span>`;
   const cols = ['Date', 'Statement', 'Rows', 'Net proceeds', 'Referral', 'Fulfilment & logistics', 'Other order fees', 'Subsidies', 'Ads & other', 'Ad subsidies', 'Total'];
@@ -1070,7 +1091,7 @@ function renderFees(C){
     kpi('Referral fees', fM(-a.n.ref, 0), `${pct(a.net ? -a.n.ref / a.net : 0)} of net sales · In House SAR ${fM(-a.h.ref, 0)}`, { raw: -a.n.ref }),
     kpi('Shipping after subsidies', fM(-(a.n.ship + a.n.subs), 0), `In House view SAR ${fM(-(a.h.ship + a.h.subs), 0)}`, { raw: -(a.n.ship + a.n.subs) }),
     C.F.length ? kpi('Ads after subsidies', fM(-(ac.ads + ac.adsSub), 0), `${C.F.length} month${C.F.length > 1 ? 's' : ''} · whole account`, { raw: -(ac.ads + ac.adsSub) }) : kpi('Ads after subsidies', '<span style="font-size:15px">Whole months only</span>', 'Pick All time or a month with all types', { money: false }),
-    C.F.length ? kpi('FBN charges', fM(-ac.fbn, 0), `VAT on charges SAR ${fM(-ac.vat, 0)}`, { raw: -ac.fbn }) : kpi('FBN charges', '<span style="font-size:15px">Whole months only</span>', 'Charged per month, not per order', { money: false })
+    C.F.length ? kpi(DED(), fM(-ac.fbn, 0), M.fin ? 'invoices taken from the balance' : `VAT on charges SAR ${fM(-ac.vat, 0)}`, { raw: -ac.fbn }) : kpi(DED(), '<span style="font-size:15px">Whole months only</span>', 'Charged per month, not per order', { money: false })
   ].join('');
   const ms = monthly(C.L);
   chart('ch-comm', { data: { labels: ms.map(x => mLabel(x.k)), datasets: [barDS('Referral', ms.map(x => r2(-x.a.n.ref)), css('--c1'), { stack: 'f' }), barDS('Shipping after subsidies', ms.map(x => r2(-(x.a.n.ship + x.a.n.subs))), css('--c2'), { stack: 'f' })] },
@@ -1080,12 +1101,13 @@ function renderFees(C){
     { type: 'line', label: 'Noon view', fmt: 'pct', data: ms.map(x => x.a.n.feeRate), borderColor: css('--c1'), backgroundColor: css('--c1') + '22', fill: true, borderWidth: 2, pointRadius: 4, pointBackgroundColor: css('--c1'), pointBorderColor: css('--surface'), pointBorderWidth: 2, tension: .3 },
     { type: 'line', label: 'In House view', fmt: 'pct', data: ms.map(x => x.a.h.feeRate), borderColor: css('--c2'), borderWidth: 2, borderDash: [5, 4], pointRadius: 3, pointBackgroundColor: css('--c2'), tension: .3, fill: false }] } });
   const rows = [['Referral / commission', a.n.ref, a.h.ref], ['Shipping', a.n.ship, a.h.ship], ['Order subsidies', a.n.subs, a.h.subs], ['Order fees after subsidies', a.n.fees, a.h.fees, 1]];
-  if (C.F.length) rows.push(['Advertising', ac.ads, ac.ads], ['Advertising subsidy', ac.adsSub, ac.adsSub], ['FBN charges', ac.fbn, ac.fbn], ['Damaged returns credit', ac.dmg, ac.dmg], ['All charges after subsidies', a.n.fees + ac.ads + ac.adsSub + ac.fbn + ac.dmg, a.h.fees + ac.ads + ac.adsSub + ac.fbn + ac.dmg, 1]);
+  if (C.F.length) rows.push(['Advertising', ac.ads, ac.ads], ['Advertising subsidy', ac.adsSub, ac.adsSub], [DED(), ac.fbn, ac.fbn], ...(M.fin ? [] : [['Damaged returns credit', ac.dmg, ac.dmg]]), ['All charges after subsidies', a.n.fees + ac.ads + ac.adsSub + ac.fbn + ac.dmg, a.h.fees + ac.ads + ac.adsSub + ac.fbn + ac.dmg, 1]);
   $('#t-fees').innerHTML = `<thead><tr><th>Charge</th><th class="r">Noon view</th><th class="r">% of net sales</th><th class="r">In House view</th><th class="r">% of net sales</th></tr></thead><tbody>${rows.map(r => `<tr class="${r[3] ? 'sum' : ''}"><td>${r[0]}</td><td class="r">${fM(r[1])}</td><td class="r">${pct(a.net ? -r[1] / a.net : 0)}</td><td class="r">${fM(r[2])}</td><td class="r">${pct(a.net ? -r[2] / a.net : 0)}</td></tr>`).join('')}</tbody>` +
     (C.F.length ? '' : `<tfoot><tr><td colspan="5" class="more">Ads and FBN charges are monthly account charges. They appear here for All time, a single month or the month before, with all delivery types.</td></tr></tfoot>`);
   const F = M.fees, t = acct(F);
-  const fr = (lbl, f) => `<td>${lbl}</td><td class="r">${fM(f.ads)}</td><td class="r">${fM(f.adsSub)}</td><td class="r">${fM(f.fbn)}</td><td class="r">${fM(f.dmg)}</td><td class="r">${fM(f.ads + f.adsSub + f.fbn + f.dmg)}</td><td class="r">${fM(f.vat)}</td>`;
-  $('#t-acct').innerHTML = `<thead><tr><th>Month</th><th class="r">Advertising</th><th class="r">Ad subsidy</th><th class="r">FBN charges</th><th class="r">Damaged returns</th><th class="r">Net charges</th><th class="r">VAT</th></tr></thead><tbody>${F.map(f => `<tr>${fr(mLabel(f.k), f)}</tr>`).join('')}</tbody><tfoot><tr>${fr('Total', t)}</tr></tfoot>`;
+  const old = !M.fin, fr = (lbl, f) => `<td>${lbl}</td><td class="r">${fM(f.ads)}</td><td class="r">${fM(f.adsSub)}</td><td class="r">${fM(f.fbn)}</td>${old ? `<td class="r">${fM(f.dmg)}</td>` : ''}<td class="r">${fM(f.ads + f.adsSub + f.fbn + f.dmg)}</td>${old ? `<td class="r">${fM(f.vat)}</td>` : ''}`;
+  $('#acct-sub').textContent = M.fin ? 'SAR incl. VAT · ads and ad subsidies from the weekly statements, deductions from the balance · Noon finance export' : 'SAR · ads, FBN charges and VAT from the All Fee tab';
+  $('#t-acct').innerHTML = `<thead><tr><th>Month</th><th class="r">Advertising</th><th class="r">Ad subsidy</th><th class="r">${DED()}</th>${old ? '<th class="r">Damaged returns</th>' : ''}<th class="r">Net charges</th>${old ? '<th class="r">VAT</th>' : ''}</tr></thead><tbody>${F.map(f => `<tr>${fr(mLabel(f.k), f)}</tr>`).join('')}</tbody><tfoot><tr>${fr('Total', t)}</tr></tfoot>`;
   paint('#t-fees'); paint('#t-acct');
 }
 
@@ -1132,13 +1154,17 @@ function renderDelivery(C){
 
 function renderData(){
   const D = M.D;
-  $('#data-src').innerHTML = `Using <b>${esc(D.meta.file)}</b> · ${esc(D.meta.channel)} account ${esc(D.meta.account)} · orders ${fD(M.first)} to ${fD(M.asOf)}.`;
+  $('#data-src').innerHTML = `Using <b>${esc(D.meta.file)}</b> · ${esc(D.meta.channel)} account ${esc(D.meta.account)} · orders ${fD(M.first)} to ${fD(M.asOf)}.` +
+    (M.fin ? ` Payments, statements, ads and Noon order fees from <b>${esc(M.fin.file)}</b> (Noon Transaction View export, ${fN(M.fin.rows)} rows, statements ${fD(isoDate(M.fin.from))} to ${fD(isoDate(M.fin.to))}).${M.fin.ordersNotInSales ? ' ' + fN(M.fin.ordersNotInSales) + ' newer orders in that export are waiting for the next sales export.' : ''}` : '');
+  if (M.fin) { $('#def-noon').textContent = 'Every fee Noon booked against the order in its weekly statements, from the finance export: referral, shipping and fulfilment, other order fees and order subsidies, including corrections settled in later weeks. Revenue is net proceeds plus these fees; profit is revenue minus unit cost for items sold.';
+    $('#def-pay').textContent = 'Bank transfers in the finance export. A transfer Noon took back shows as a negative. Deductions are Noon invoices taken from the balance. Statement totals already include VAT.'; }
   const all = aggregate(M.items), stTab = M.statements.reduce((s, x) => s + x.total, 0), pays = M.payments.reduce((s, p) => s + p.amt, 0);
   $('#health').innerHTML = `<span>Order items</span><span class="num">${fN(M.items.length)}</span><span>Products (SKUs)</span><span class="num">${fN(M.skus.length)}</span>
     <span>Products with a Noon title</span><span class="num">${fN(D.skus.filter(s => s[2]).length)}</span>
-    <span>Weekly statements in the PS-${ACCT} tab</span><span class="num">${M.statements.length}</span>
-    <span>Statement totals (PS-${ACCT} tab)</span><span class="num">${fM(stTab)}</span>
-    <span>Payouts (Statement &amp; Payment tab)</span><span class="num">${fM(pays)}</span>
+    <span>Weekly statements (${M.fin ? 'finance export' : 'PS-' + ACCT + ' tab'})</span><span class="num">${M.statements.length}</span>
+    <span>Statement totals</span><span class="num">${fM(stTab)}</span>
+    <span>Payouts (${M.fin ? 'finance export' : 'Statement &amp; Payment tab'})</span><span class="num">${fM(pays)}</span>
+    ${M.fin ? `<span>Orders whose Noon fees come from the export</span><span class="num">${fN(M.fin.ordersUpdated)}</span>` : ''}
     <span>Profit · Noon view, all time</span><span class="num">${fM(all.n.prof)}</span><span>Profit · In House view, all time</span><span class="num">${fM(all.h.prof)}</span>`;
 }
 
