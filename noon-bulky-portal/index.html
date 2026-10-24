@@ -610,6 +610,7 @@ html.intro-open,html.intro-open body{overflow:hidden}
           <div class="card"><div class="card-head"><h3>Fees as a share of net sales</h3><p>Order fees ÷ net sales, both views</p></div><div class="chart-box"><canvas id="ch-rate"></canvas></div></div>
         </div>
         <div class="card"><div class="card-head"><h3>Charges from Noon</h3><p>SAR · selected period</p></div><div class="tbl-wrap"><table class="vs" id="t-fees"></table></div></div>
+        <div class="card" id="nf-card" hidden><div class="card-head"><h3>Noon charges by type</h3><p>SAR excl. VAT · by statement month · Noon statements export</p></div><div class="tbl-wrap"><table id="t-nf"></table></div></div>
         <div class="card"><div class="card-head"><h3>Monthly account charges</h3><p id="acct-sub">SAR · ads, FBN charges and VAT from the All Fee tab</p></div><div class="tbl-wrap"><table id="t-acct"></table></div></div>
       </section>
 
@@ -636,7 +637,7 @@ html.intro-open,html.intro-open body{overflow:hidden}
       <section class="page" id="p-data">
         <div class="card">
           <div class="card-head"><h3>Updating the portal</h3><span class="tag info">Standard export</span></div>
-          <p class="muted" style="font-size:13px">Each update uses two exports from Noon, both from 1 January to today: the <b>Transaction View Report</b> (Finance › Reports, for payments, statements, ads and fees) and the <b>sales export</b> (for orders and items). The newest files replace the old ones in full, so nothing is counted twice. Only four people will be able to update the portal: the marketplace manager and the three Noon channel managers, Fedaa, Ayham and Sham. Everyone else can only view it.</p>
+          <p class="muted" style="font-size:13px">Each update uses Noon exports from 1 January to today: the <b>sales export</b> (Account Health &amp; Reports › Sales, for orders and items), the <b>Transaction View Report</b> (Payments &amp; Fees, for payouts, statements, ads and every order fee) and the <b>statements export</b> (Payments &amp; Fees, for charge names and VAT). The newest files replace the old ones in full, so nothing is counted twice. Only four people will be able to update the portal: the marketplace manager and the three Noon channel managers, Fedaa, Ayham and Sham. Everyone else can only view it.</p>
         </div>
         <div class="card"><p class="foot-note" id="data-src" style="margin:0"></p></div>
         <div class="grid g2">
@@ -646,7 +647,7 @@ html.intro-open,html.intro-open body{overflow:hidden}
               <dt>Net sales</dt><dd>Noon net proceeds of items that are Delivered, Shipped, Processing or Pending. Returned, failed and cancelled items are left out.</dd>
               <dt>Orders</dt><dd>Noon order numbers with at least one item that was not cancelled.</dd>
               <dt>Noon view</dt><dd id="def-noon">Referral, shipping and order subsidies exactly as Noon charged them (the first set of fee columns). Revenue and profit use the workbook's Revenue and Profit columns.</dd>
-              <dt>In House view</dt><dd>Your own fee figures (Comm, Shipping and the second subsidy column). Revenue and profit use the Revenue2 and Profit2 columns. The two views are the same until June 2026.</dd>
+              <dt>In House view</dt><dd id="def-ih">Your own fee figures (Comm, Shipping and the second subsidy column). Revenue and profit use the Revenue2 and Profit2 columns. The two views are the same until June 2026.</dd>
               <dt>Profit</dt><dd>Revenue minus the unit cost of each item sold. Returned items carry their fees but no product cost.</dd>
               <dt>Profit after account charges</dt><dd>Profit plus ads, ad subsidies, FBN charges and damaged-return credits from the All Fee tab. Shown for whole months and for all delivery types only, because these charges are not split by order.</dd>
               <dt>Payouts</dt><dd id="def-pay">Transfers listed in the Statement &amp; Payment tab. Statement totals in the PS-<span data-t="acct"></span> tab already include VAT.</dd>
@@ -1108,6 +1109,14 @@ function renderFees(C){
   const old = !M.fin, fr = (lbl, f) => `<td>${lbl}</td><td class="r">${fM(f.ads)}</td><td class="r">${fM(f.adsSub)}</td><td class="r">${fM(f.fbn)}</td>${old ? `<td class="r">${fM(f.dmg)}</td>` : ''}<td class="r">${fM(f.ads + f.adsSub + f.fbn + f.dmg)}</td>${old ? `<td class="r">${fM(f.vat)}</td>` : ''}`;
   $('#acct-sub').textContent = M.fin ? 'SAR incl. VAT · ads and ad subsidies from the weekly statements, deductions from the balance · Noon finance export' : 'SAR · ads, FBN charges and VAT from the All Fee tab';
   $('#t-acct').innerHTML = `<thead><tr><th>Month</th><th class="r">Advertising</th><th class="r">Ad subsidy</th><th class="r">${DED()}</th>${old ? '<th class="r">Damaged returns</th>' : ''}<th class="r">Net charges</th>${old ? '<th class="r">VAT</th>' : ''}</tr></thead><tbody>${F.map(f => `<tr>${fr(mLabel(f.k), f)}</tr>`).join('')}</tbody><tfoot><tr>${fr('Total', t)}</tr></tfoot>`;
+  const NF = M.D.noonFees; $('#nf-card').hidden = !NF;
+  if (NF) { const ks = Object.keys(NF).sort(), names = {}; ks.forEach(k => Object.entries(NF[k]).forEach(([nm, v]) => { names[nm] = (names[nm] || 0) + v; }));
+    const vatBy = {}; (M.D.vat || []).forEach(([d, v]) => { vatBy[d.slice(0, 7)] = (vatBy[d.slice(0, 7)] || 0) + v; });
+    const order = Object.keys(names).sort((x, y) => (x === 'Net Proceeds') - (y === 'Net Proceeds') || names[x] - names[y]);
+    const tot = k => order.reduce((s, nm) => s + (NF[k][nm] || 0), 0);
+    const row = (nm, f, cls) => `<tr class="${cls || ''}"><td>${nm}</td>${ks.map(k => `<td class="r">${fM(f(k))}</td>`).join('')}<td class="r">${fM(ks.reduce((s, k) => s + f(k), 0))}</td></tr>`;
+    $('#t-nf').innerHTML = `<thead><tr><th>Charge</th>${ks.map(k => `<th class="r">${mLabel(k)}</th>`).join('')}<th class="r">Total</th></tr></thead><tbody>${order.map(nm => row(esc(nm), k => NF[k][nm] || 0)).join('')}${row('Statement total excl. VAT', tot, 'sum')}${row('VAT on Noon charges', k => vatBy[k] || 0)}${row('Statement total incl. VAT', k => tot(k) + (vatBy[k] || 0), 'sum')}</tbody>`;
+    paint('#t-nf'); }
   paint('#t-fees'); paint('#t-acct');
 }
 
@@ -1155,8 +1164,9 @@ function renderDelivery(C){
 function renderData(){
   const D = M.D;
   $('#data-src').innerHTML = `Using <b>${esc(D.meta.file)}</b> · ${esc(D.meta.channel)} account ${esc(D.meta.account)} · orders ${fD(M.first)} to ${fD(M.asOf)}.` +
-    (M.fin ? ` Payments, statements, ads and Noon order fees from <b>${esc(M.fin.file)}</b> (Noon Transaction View export, ${fN(M.fin.rows)} rows, statements ${fD(isoDate(M.fin.from))} to ${fD(isoDate(M.fin.to))}).${M.fin.ordersNotInSales ? ' ' + fN(M.fin.ordersNotInSales) + ' newer orders in that export are waiting for the next sales export.' : ''}` : '');
+    (M.fin ? ` Payments, statements, ads and Noon order fees from <b>${esc(M.fin.file)}</b> (Noon Transaction View export, ${fN(M.fin.rows)} rows, statements ${fD(isoDate(M.fin.from))} to ${fD(isoDate(M.fin.to))}).${M.fin.statementsFile ? ' Charge names and VAT from <b>' + esc(M.fin.statementsFile) + '</b>.' : ''}${M.fin.ordersNotInSales ? ' ' + fN(M.fin.ordersNotInSales) + ' orders in the finance export have no row in the sales exports (orders placed before 1 January and paid later, or newer than the sales export).' : ''}${M.fin.noCost ? ' <b>' + fN(M.fin.noCost) + ' products (' + fN(M.fin.noCostItems) + ' items) have no unit cost yet</b>, so their profit reads high.' : ''}` : '');
   if (M.fin) { $('#def-noon').textContent = 'Every fee Noon booked against the order in its weekly statements, from the finance export: referral, shipping and fulfilment, other order fees and order subsidies, including corrections settled in later weeks. Revenue is net proceeds plus these fees; profit is revenue minus unit cost for items sold.';
+    $('#def-ih').textContent = 'From June 2026 the workbook\'s In House model: no commission, plus SAR 5.00 per item, no subsidy; profit is net proceeds plus 5.00 minus unit cost for items sold. Before June, the workbook\'s own fee figures (the same as Noon\'s at the time).';
     $('#def-pay').textContent = 'Bank transfers in the finance export. A transfer Noon took back shows as a negative. Deductions are Noon invoices taken from the balance. Statement totals already include VAT.'; }
   const all = aggregate(M.items), stTab = M.statements.reduce((s, x) => s + x.total, 0), pays = M.payments.reduce((s, p) => s + p.amt, 0);
   $('#health').innerHTML = `<span>Order items</span><span class="num">${fN(M.items.length)}</span><span>Products (SKUs)</span><span class="num">${fN(M.skus.length)}</span>
